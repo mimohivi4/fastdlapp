@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<base href="https://mimohivi4.github.io/fastdlapp/">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-97DQT5FHPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-97DQT5FHPF');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3337905412116301" crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UK Percentage Calculator — VAT 20% & Discounts | Adawati</title>
+<meta name="description" content="Free UK percentage calculator: calculate 20% VAT, percentage discounts, service charge (12.5%), and percentage change. Works in GBP. No signup needed.">
+<meta name="keywords" content="UK percentage calculator, VAT 20% calculator UK, percentage discount calculator UK, service charge calculator UK, GBP percentage, percentage of amount UK">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mimohivi4.github.io/fastdlapp/uk/percentage-calculator/">
+<link rel="alternate" hreflang="x-default" href="https://mimohivi4.github.io/fastdlapp/">
+<link rel="alternate" hreflang="en-GB" href="https://mimohivi4.github.io/fastdlapp/uk/percentage-calculator/">
+<link rel="alternate" hreflang="en-US" href="https://mimohivi4.github.io/fastdlapp/us/">
+<link rel="alternate" hreflang="ar" href="https://mimohivi4.github.io/fastdlapp/om/">
+<meta property="og:title" content="UK Percentage Calculator — VAT 20%, Discounts & Service Charge | Adawati">
+<meta property="og:description" content="Calculate 20% UK VAT, discounts, service charge (12.5%), and percentage changes. Free, instant, works in GBP.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mimohivi4.github.io/fastdlapp/uk/percentage-calculator/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+  {"@type":"ListItem","position":1,"name":"Adawati","item":"https://mimohivi4.github.io/fastdlapp/"},
+  {"@type":"ListItem","position":2,"name":"UK Tools","item":"https://mimohivi4.github.io/fastdlapp/uk/"},
+  {"@type":"ListItem","position":3,"name":"UK Percentage Calculator","item":"https://mimohivi4.github.io/fastdlapp/uk/percentage-calculator/"}
+]},
+{"@type":"WebApplication","name":"UK Percentage Calculator — VAT, Discounts & Service Charge","url":"https://mimohivi4.github.io/fastdlapp/uk/percentage-calculator/","description":"Calculate UK VAT (20%), discounts, service charge (12.5%), and percentage of any amount in GBP.","applicationCategory":"FinanceApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}},
+{"@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"What is the VAT rate in the UK?","acceptedAnswer":{"@type":"Answer","text":"The standard UK VAT rate is 20%. A reduced rate of 5% applies to domestic fuel and some energy-saving products. A zero rate (0%) applies to most food, children's clothing, and books."}},
+  {"@type":"Question","name":"How do I calculate 20% VAT on a UK price?","acceptedAnswer":{"@type":"Answer","text":"Multiply the net price by 0.20 to get the VAT amount, then add to get the gross. Example: £100 × 0.20 = £20 VAT. Total = £120."}},
+  {"@type":"Question","name":"How do I remove 20% VAT from a UK price?","acceptedAnswer":{"@type":"Answer","text":"Divide the gross (VAT-inclusive) price by 1.20. Example: £120 ÷ 1.20 = £100 net. VAT = £20."}},
+  {"@type":"Question","name":"What is the typical service charge at UK restaurants?","acceptedAnswer":{"@type":"Answer","text":"UK restaurants typically add a 12.5% optional service charge. It is discretionary — you can ask for it to be removed if service was poor. Always check whether it is already included before tipping extra."}},
+  {"@type":"Question","name":"How do I calculate a percentage discount in the UK?","acceptedAnswer":{"@type":"Answer","text":"Multiply the original price by the discount percentage (as a decimal) to get the saving. Then subtract from the original. Example: £80 × 0.25 = £20 saving. Sale price = £60."}}
+]}
+]}
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar"><div class="nav-container">
+  <a href="uk/" class="nav-brand">Adawati 🇬🇧</a>
+  <div class="nav-links">
+    <a href="uk/">UK Tools</a>
+    <a href="index.html">Global</a>
+  </div>
+</div></nav>
+
+<main><div class="tool-page">
+  <div class="page-header"><a href="uk/">← Back to UK Tools</a></div>
+
+  <div class="card">
+    <div class="card-icon" style="background:#fef2f2;">💯</div>
+    <h1 class="card-title">UK Percentage Calculator</h1>
+    <div class="card-subtitle">VAT 20% • Service charge 12.5% • Discounts • GBP</div>
+    <div class="divider"></div>
+
+    <label>Calculation type</label>
+    <div class="option-toggle" style="flex-wrap:wrap;gap:6px;">
+      <button class="option-btn active" onclick="setCalcType('pct_of')">X% of Amount</button>
+      <button class="option-btn" onclick="setCalcType('what_pct')">What % is X of Y?</button>
+      <button class="option-btn" onclick="setCalcType('pct_change')">% Change</button>
+    </div>
+
+    <div id="pct_of_section">
+      <label>Percentage (%)</label>
+      <input type="number" id="pct" placeholder="e.g. 20" oninput="calculate()">
+      <label>Amount (£)</label>
+      <input type="number" id="amt" placeholder="e.g. 100" oninput="calculate()">
+    </div>
+    <div id="what_pct_section" style="display:none;">
+      <label>Value (X)</label>
+      <input type="number" id="xval" placeholder="e.g. 20" oninput="calculate()">
+      <label>Total (Y)</label>
+      <input type="number" id="yval" placeholder="e.g. 120" oninput="calculate()">
+    </div>
+    <div id="pct_change_section" style="display:none;">
+      <label>From amount (£)</label>
+      <input type="number" id="fromVal" placeholder="e.g. 80" oninput="calculate()">
+      <label>To amount (£)</label>
+      <input type="number" id="toVal" placeholder="e.g. 100" oninput="calculate()">
+    </div>
+
+    <div id="result" style="display:none;margin-top:20px;">
+      <div class="result-box show success">
+        <div class="result-value" id="mainResult"></div>
+        <div class="result-label" id="resultLabel">Result</div>
+      </div>
+      <div id="breakdown" style="margin-top:12px;padding:14px;background:var(--surface-2);border-radius:var(--radius-sm);font-size:14px;line-height:2;"></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title" style="font-size:15px;">🇬🇧 UK Quick Reference — Common Percentages</div>
+    <div style="overflow-x:auto;margin-top:12px;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:var(--surface-2);">
+            <th style="padding:9px 10px;text-align:left;border:1px solid var(--border);">Situation</th>
+            <th style="padding:9px 10px;text-align:center;border:1px solid var(--border);">Rate</th>
+            <th style="padding:9px 10px;text-align:left;border:1px solid var(--border);">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding:8px 10px;border:1px solid var(--border);">Standard VAT</td><td style="padding:8px 10px;text-align:center;border:1px solid var(--border);font-weight:700;">20%</td><td style="padding:8px 10px;border:1px solid var(--border);">Most goods & services</td></tr>
+          <tr style="background:var(--surface-2);"><td style="padding:8px 10px;border:1px solid var(--border);">Reduced VAT</td><td style="padding:8px 10px;text-align:center;border:1px solid var(--border);font-weight:700;">5%</td><td style="padding:8px 10px;border:1px solid var(--border);">Domestic energy, children's car seats</td></tr>
+          <tr><td style="padding:8px 10px;border:1px solid var(--border);">Zero-rated VAT</td><td style="padding:8px 10px;text-align:center;border:1px solid var(--border);font-weight:700;">0%</td><td style="padding:8px 10px;border:1px solid var(--border);">Most food, books, children's clothing</td></tr>
+          <tr style="background:var(--surface-2);"><td style="padding:8px 10px;border:1px solid var(--border);">Restaurant service charge</td><td style="padding:8px 10px;text-align:center;border:1px solid var(--border);font-weight:700;">12.5%</td><td style="padding:8px 10px;border:1px solid var(--border);">Optional — removable on request</td></tr>
+          <tr><td style="padding:8px 10px;border:1px solid var(--border);">Discretionary tip</td><td style="padding:8px 10px;text-align:center;border:1px solid var(--border);font-weight:700;">10–15%</td><td style="padding:8px 10px;border:1px solid var(--border);">If no service charge already added</td></tr>
+          <tr style="background:var(--surface-2);"><td style="padding:8px 10px;border:1px solid var(--border);">Basic income tax rate</td><td style="padding:8px 10px;text-align:center;border:1px solid var(--border);font-weight:700;">20%</td><td style="padding:8px 10px;border:1px solid var(--border);">£12,571–£50,270 (2025/26)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div style="margin-top:16px;text-align:center;">
+    <strong>More UK tools:</strong>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:8px;">
+      <a href="loan-calculator.html" style="font-size:13px;padding:8px 14px;background:var(--surface-2);color:var(--text);text-decoration:none;border-radius:8px;">🧮 Mortgage Calculator</a>
+      <a href="currency-converter.html" style="font-size:13px;padding:8px 14px;background:var(--surface-2);color:var(--text);text-decoration:none;border-radius:8px;">💱 GBP Converter</a>
+      <a href="bmi-calculator.html" style="font-size:13px;padding:8px 14px;background:var(--surface-2);color:var(--text);text-decoration:none;border-radius:8px;">⚖️ BMI (stone/lbs)</a>
+      <a href="uk/" style="font-size:13px;padding:8px 14px;background:var(--primary);color:#fff;text-decoration:none;border-radius:8px;">🇬🇧 All UK Tools</a>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <h2 style="font-size:17px;font-weight:700;margin-bottom:10px;">UK Percentage Calculator — VAT, Discounts & Service Charge</h2>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.8;margin-bottom:12px;">In the UK, percentages come up constantly: 20% standard VAT on most purchases, 12.5% optional service charge at restaurants, and seasonal discounts from 10–70%. This calculator handles three modes — finding X% of an amount, finding what percentage X is of Y, and calculating percentage change.</p>
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:6px;">UK VAT — add and remove</h3>
+    <ul style="font-size:14px;color:var(--text-muted);line-height:2;padding-inline-start:18px;margin-bottom:12px;">
+      <li><strong>Add 20% VAT:</strong> Net × 1.20 &nbsp;|&nbsp; Example: £500 → £600</li>
+      <li><strong>Remove 20% VAT:</strong> Gross ÷ 1.20 &nbsp;|&nbsp; Example: £600 → £500</li>
+    </ul>
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:6px;">Service charge vs. tip</h3>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.8;margin-bottom:0;">UK restaurants often add a 12.5% optional service charge. Unlike the US, tipping culture is not compulsory. If service charge is already on the bill, no additional tip is expected. You can legally request removal of the service charge.</p>
+  </div>
+</div></main>
+
+<footer class="footer" style="padding:28px;">
+  <div style="max-width:1160px;margin:0 auto;">
+    <div class="footer-links"><a href="about.html">About</a><a href="contact.html">Contact</a><a href="uk/">UK Hub</a></div>
+    <div class="footer-copy-simple">© 2026 Adawati</div>
+  </div>
+</footer>
+
+<script>
+let calcType = 'pct_of';
+function setCalcType(t) {
+  calcType = t;
+  document.getElementById('pct_of_section').style.display = t === 'pct_of' ? '' : 'none';
+  document.getElementById('what_pct_section').style.display = t === 'what_pct' ? '' : 'none';
+  document.getElementById('pct_change_section').style.display = t === 'pct_change' ? '' : 'none';
+  document.querySelectorAll('.option-btn').forEach((b,i)=>b.classList.toggle('active', ['pct_of','what_pct','pct_change'][i]===t));
+  document.getElementById('result').style.display = 'none';
+}
+function calculate() {
+  let res, label, breakdown;
+  if (calcType === 'pct_of') {
+    const p = parseFloat(document.getElementById('pct').value);
+    const a = parseFloat(document.getElementById('amt').value);
+    if (isNaN(p)||isNaN(a)) { document.getElementById('result').style.display='none'; return; }
+    res = (a * p / 100).toFixed(2);
+    label = p + '% of £' + a;
+    breakdown = 'Amount: <strong>£' + a + '</strong><br>Percentage: <strong>' + p + '%</strong><br>Result: <strong style="color:#16a34a;">£' + res + '</strong><br>Remainder: <strong>£' + (a - res).toFixed(2) + '</strong>';
+  } else if (calcType === 'what_pct') {
+    const x = parseFloat(document.getElementById('xval').value);
+    const y = parseFloat(document.getElementById('yval').value);
+    if (isNaN(x)||isNaN(y)||y===0) { document.getElementById('result').style.display='none'; return; }
+    res = (x/y*100).toFixed(2) + '%';
+    label = x + ' is what % of ' + y + '?';
+    breakdown = x + ' ÷ ' + y + ' × 100 = <strong style="color:#16a34a;">' + res + '</strong>';
+  } else {
+    const from = parseFloat(document.getElementById('fromVal').value);
+    const to = parseFloat(document.getElementById('toVal').value);
+    if (isNaN(from)||isNaN(to)||from===0) { document.getElementById('result').style.display='none'; return; }
+    const chg = ((to-from)/from*100).toFixed(2);
+    res = (chg > 0 ? '+' : '') + chg + '%';
+    label = 'Percentage change from £' + from + ' to £' + to;
+    breakdown = '((' + to + ' − ' + from + ') ÷ ' + from + ') × 100 = <strong style="color:' + (chg>=0?'#16a34a':'#dc2626') + ';">' + res + '</strong>';
+  }
+  document.getElementById('mainResult').textContent = res;
+  document.getElementById('resultLabel').textContent = label;
+  document.getElementById('breakdown').innerHTML = breakdown;
+  document.getElementById('result').style.display = 'block';
+}
+</script>
+</body></html>
