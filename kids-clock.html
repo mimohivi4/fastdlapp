@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-97DQT5FHPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-97DQT5FHPF');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3337905412116301" crossorigin="anonymous"></script>
+<meta name="theme-color" content="#4f46e5">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn to Tell the Time — Kids Clock Game | Adawati</title>
+<meta name="description" content="Interactive clock game for kids ages 5-9: read the clock face and choose the right time. O'clock and half-hour practice. Free, no signup.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://adawati2027.github.io/my-tools-site/kids-clock.html">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="icon-192.svg">
+<link rel="apple-touch-icon" href="icon-192.svg">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://adawati2027.github.io/my-tools-site/"},{"@type":"ListItem","position":2,"name":"Tell the Time","item":"https://adawati2027.github.io/my-tools-site/kids-clock.html"}]},{"@type":"WebApplication","name":"Tell the Time | Adawati","url":"https://adawati2027.github.io/my-tools-site/kids-clock.html","applicationCategory":"EducationalApplication","operatingSystem":"All","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}]}</script>
+<link rel="stylesheet" href="style.css">
+<style>
+.clock-wrap{display:flex;justify-content:center;margin:12px 0;}
+.clock-svg{filter:drop-shadow(0 4px 16px rgba(0,0,0,.12));}
+.clock-levels{display:flex;gap:8px;justify-content:center;margin-bottom:14px;}
+.clock-lvl{padding:8px 18px;border-radius:99px;border:2px solid transparent;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;transition:all .2s;background:var(--surface-2);color:var(--text);}
+.clock-lvl.active{background:var(--primary);color:#fff;}
+.clock-choices{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:12px 0;}
+.clock-choice{padding:12px 18px;border-radius:14px;border:3px solid var(--border);background:var(--surface-2);font-size:22px;font-weight:900;cursor:pointer;font-family:inherit;transition:all .15s;}
+.clock-choice:hover{transform:scale(1.07);border-color:var(--primary);}
+.clock-choice.correct{background:#dcfce7;border-color:#22c55e;color:#15803d;}
+.clock-choice.wrong{background:#fee2e2;border-color:#ef4444;color:#b91c1c;}
+.clock-score{font-size:14px;font-weight:700;color:var(--text-muted);text-align:center;margin-bottom:6px;}
+.clock-done{text-align:center;padding:24px;background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:16px;border:2px solid #22c55e;}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-container">
+  <a href="index.html" class="nav-brand">Adawati</a>
+  <div class="nav-links"><a href="kids-learn.html">🧒 Kids</a><a href="index.html">Home</a></div>
+</div></nav>
+
+<main><div class="tool-page">
+  <div class="page-header"><a href="kids-learn.html">← Back to Kids</a></div>
+  <div class="card">
+    <div class="card-icon" style="background:#f0fdf4;">🕐</div>
+    <h1 class="card-title">Tell the Time!</h1>
+    <div class="card-subtitle">Clock Reading Game — Ages 5–9</div>
+    <div class="divider"></div>
+
+    <div class="clock-levels">
+      <button class="clock-lvl active" onclick="setLevel('oclock')" id="lvlO">🕐 O'Clock</button>
+      <button class="clock-lvl" onclick="setLevel('half')" id="lvlH">🕧 Half Hours</button>
+      <button class="clock-lvl" onclick="setLevel('quarter')" id="lvlQ">🕑 Quarters</button>
+    </div>
+
+    <div id="gameArea">
+      <div class="clock-score" id="cScore">Score: 0 / 10</div>
+      <div class="clock-wrap">
+        <svg id="clockSvg" class="clock-svg" width="200" height="200" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="95" fill="white" stroke="#e2e8f0" stroke-width="6"/>
+          <!-- Hour marks -->
+          <g id="marks"></g>
+          <!-- Hour numbers -->
+          <text x="100" y="22" text-anchor="middle" font-size="13" font-weight="800" fill="#334155">12</text>
+          <text x="178" y="105" text-anchor="middle" font-size="13" font-weight="800" fill="#334155">3</text>
+          <text x="100" y="188" text-anchor="middle" font-size="13" font-weight="800" fill="#334155">6</text>
+          <text x="22" y="105" text-anchor="middle" font-size="13" font-weight="800" fill="#334155">9</text>
+          <!-- Hands -->
+          <line id="hourHand" x1="100" y1="100" x2="100" y2="50" stroke="#1e293b" stroke-width="7" stroke-linecap="round"/>
+          <line id="minHand" x1="100" y1="100" x2="100" y2="35" stroke="#6366f1" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="100" cy="100" r="6" fill="#1e293b"/>
+        </svg>
+      </div>
+      <div style="text-align:center;font-size:17px;font-weight:700;color:var(--text-muted);margin-bottom:8px;">What time does the clock show?</div>
+      <div class="clock-choices" id="cChoices"></div>
+      <div style="font-size:20px;font-weight:800;text-align:center;min-height:28px;" id="cFeedback"></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;padding:16px;">
+    <div style="font-size:14px;font-weight:700;margin-bottom:10px;">📚 Time Tips</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;">
+      <div style="background:var(--surface-2);padding:10px;border-radius:8px;"><strong>Short hand</strong> = Hour (where it points)</div>
+      <div style="background:var(--surface-2);padding:10px;border-radius:8px;"><strong>Long hand</strong> = Minutes (blue)</div>
+      <div style="background:var(--surface-2);padding:10px;border-radius:8px;">Long hand at <strong>12</strong> = O'clock</div>
+      <div style="background:var(--surface-2);padding:10px;border-radius:8px;">Long hand at <strong>6</strong> = Half past</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+      <a href="kids-math.html" class="btn" style="background:var(--surface-2);color:var(--text);text-decoration:none;">➕ Math Game</a>
+      <a href="kids-learn.html" class="btn" style="background:var(--surface-2);color:var(--text);text-decoration:none;">🧒 All Kids Tools</a>
+    </div>
+  </div>
+</div></main>
+
+<script>
+let level='oclock', score=0, qIdx=0, answered=false, currentTime={h:0,m:0};
+const TOTAL=10;
+
+function setLevel(l){
+  level=l;
+  ['oclock','half','quarter'].forEach(x=>{
+    const id=x==='oclock'?'lvlO':x==='half'?'lvlH':'lvlQ';
+    document.getElementById(id).classList.toggle('active',x===l);
+  });
+  startGame();
+}
+
+function randTime(){
+  const h=Math.floor(Math.random()*12)||12;
+  let m=0;
+  if(level==='half') m=Math.random()>0.5?30:0;
+  if(level==='quarter'){const opts=[0,15,30,45];m=opts[Math.floor(Math.random()*4)];}
+  return {h,m};
+}
+
+function fmt(h,m){
+  return m===0?`${h}:00`:m<10?`${h}:0${m}`:`${h}:${m}`;
+}
+
+function readableTime(h,m){
+  if(m===0) return `${h} o'clock`;
+  if(m===30) return `half past ${h}`;
+  if(m===15) return `quarter past ${h}`;
+  if(m===45) return `quarter to ${h===12?1:h+1}`;
+  return fmt(h,m);
+}
+
+function drawClock(h,m){
+  const hDeg=(h%12)*30 + m*0.5;
+  const mDeg=m*6;
+  const hRad=(hDeg-90)*Math.PI/180;
+  const mRad=(mDeg-90)*Math.PI/180;
+  const hLen=45, mLen=60;
+  const hx=100+hLen*Math.cos(hRad);
+  const hy=100+hLen*Math.sin(hRad);
+  const mx=100+mLen*Math.cos(mRad);
+  const my=100+mLen*Math.sin(mRad);
+  document.getElementById('hourHand').setAttribute('x2',hx);
+  document.getElementById('hourHand').setAttribute('y2',hy);
+  document.getElementById('minHand').setAttribute('x2',mx);
+  document.getElementById('minHand').setAttribute('y2',my);
+}
+
+function wrongTimes(correct,n){
+  const s=new Set([fmt(correct.h,correct.m)]);
+  const opts=[0,15,30,45];
+  let itr=0;
+  while(s.size<n+1&&itr<100){
+    itr++;
+    const h=Math.floor(Math.random()*12)||12;
+    let m=0;
+    if(level==='half') m=Math.random()>0.5?30:0;
+    else if(level==='quarter') m=opts[Math.floor(Math.random()*4)];
+    const f=fmt(h,m);
+    if(f!==fmt(correct.h,correct.m)) s.add(f);
+  }
+  return [...s].sort(()=>Math.random()-.5);
+}
+
+function startGame(){
+  score=0; qIdx=0; answered=false;
+  renderQ();
+}
+
+function renderQ(){
+  if(qIdx>=TOTAL){
+    const pct=Math.round(score/TOTAL*100);
+    document.getElementById('gameArea').innerHTML=`
+      <div class="clock-done">
+        <div style="font-size:60px;">🏆</div>
+        <div style="font-size:22px;font-weight:900;color:#15803d;margin:10px 0;">${pct>=80?'⏰ Clock Master!':pct>=50?'👍 Nice work!':'💪 Keep practicing!'}</div>
+        <div style="font-size:15px;color:var(--text-muted);">Score: ${score} / ${TOTAL} (${pct}%)</div>
+        <button class="btn btn-primary" style="margin-top:16px;" onclick="startGame()">Play Again</button>
+      </div>`;
+    return;
+  }
+  currentTime=randTime();
+  const choices=wrongTimes(currentTime,3);
+  drawClock(currentTime.h,currentTime.m);
+  document.getElementById('cScore').textContent=`Score: ${score} / ${TOTAL} | Q ${qIdx+1} of ${TOTAL}`;
+  document.getElementById('cChoices').innerHTML=choices.map(c=>
+    `<button class="clock-choice" onclick="answerQ(this,'${c}','${fmt(currentTime.h,currentTime.m)}')">${c}</button>`
+  ).join('');
+  document.getElementById('cFeedback').textContent='';
+  answered=false;
+}
+
+function answerQ(btn,chosen,correct){
+  if(answered) return;
+  answered=true;
+  const rt=readableTime(currentTime.h,currentTime.m);
+  if(chosen===correct){
+    btn.classList.add('correct');
+    score++;
+    document.getElementById('cFeedback').textContent=`✅ ${rt}`;
+    if(window.speechSynthesis){const u=new SpeechSynthesisUtterance(`It is ${rt}`);u.lang='en-US';speechSynthesis.speak(u);}
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.clock-choice').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});
+    document.getElementById('cFeedback').textContent=`❌ It's ${rt}`;
+  }
+  setTimeout(()=>{qIdx++;renderQ();},1100);
+}
+
+startGame();
+</script>
+<script>(function(){var r=document.documentElement,b=document.getElementById('darkToggle');if(!b)return;try{if(localStorage.getItem('theme')==='dark'){r.classList.add('dark');b.textContent='☀️';}}catch(e){}b.addEventListener('click',function(){var d=r.classList.toggle('dark');b.textContent=d?'☀️':'🌙';try{localStorage.setItem('theme',d?'dark':'light');}catch(e){}});if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}})();</script>
+<script src="i18n.js?v=39"></script>
+</body></html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-97DQT5FHPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-97DQT5FHPF');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3337905412116301" crossorigin="anonymous"></script>
+<meta name="theme-color" content="#4f46e5">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kids Spelling Bee Game — Type the Word | Adawati</title>
+<meta name="description" content="Free spelling bee game for kids ages 6-12: hear the word, see the picture, type the spelling. Three difficulty levels. No signup.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://adawati2027.github.io/my-tools-site/kids-spelling.html">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="icon-192.svg">
+<link rel="apple-touch-icon" href="icon-192.svg">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://adawati2027.github.io/my-tools-site/"},{"@type":"ListItem","position":2,"name":"Spelling Bee","item":"https://adawati2027.github.io/my-tools-site/kids-spelling.html"}]},{"@type":"WebApplication","name":"Spelling Bee | Adawati","url":"https://adawati2027.github.io/my-tools-site/kids-spelling.html","applicationCategory":"EducationalApplication","operatingSystem":"All","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}]}</script>
+<link rel="stylesheet" href="style.css">
+<style>
+.sp-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:16px;}
+.sp-tab{padding:9px 18px;border-radius:99px;border:2px solid transparent;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;transition:all .2s;background:var(--surface-2);color:var(--text);}
+.sp-tab.active{background:var(--primary);color:#fff;}
+.sp-emoji{font-size:100px;text-align:center;line-height:1;margin:10px 0;cursor:pointer;}
+.sp-hint{font-size:17px;font-weight:700;text-align:center;color:var(--text-muted);margin-bottom:10px;}
+.sp-blank{font-size:32px;font-weight:900;text-align:center;letter-spacing:8px;color:var(--primary);min-height:44px;font-family:monospace;}
+.sp-input-row{display:flex;gap:8px;justify-content:center;align-items:center;margin:12px 0;}
+.sp-input{font-size:22px;font-weight:800;padding:10px 16px;border-radius:12px;border:3px solid var(--border);background:var(--surface-2);color:var(--text);font-family:inherit;text-align:center;min-width:180px;outline:none;text-transform:lowercase;}
+.sp-input:focus{border-color:var(--primary);}
+.sp-input.correct-border{border-color:#22c55e!important;background:#dcfce7;}
+.sp-input.wrong-border{border-color:#ef4444!important;background:#fee2e2;}
+.sp-score{font-size:14px;font-weight:700;color:var(--text-muted);text-align:center;margin-bottom:6px;}
+.sp-feedback{font-size:20px;font-weight:800;text-align:center;min-height:28px;}
+.sp-done{text-align:center;padding:24px;background:linear-gradient(135deg,#fdf4ff,#ede9fe);border-radius:16px;border:2px solid var(--primary);}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-container">
+  <a href="index.html" class="nav-brand">Adawati</a>
+  <div class="nav-links"><a href="kids-learn.html">🧒 Kids</a><a href="index.html">Home</a></div>
+</div></nav>
+
+<main><div class="tool-page">
+  <div class="page-header"><a href="kids-learn.html">← Back to Kids</a></div>
+  <div class="card">
+    <div class="card-icon" style="background:#fdf4ff;">🐝</div>
+    <h1 class="card-title">Spelling Bee</h1>
+    <div class="card-subtitle">Hear & Type the Word — Ages 6–12</div>
+    <div class="divider"></div>
+
+    <div class="sp-tabs">
+      <button class="sp-tab active" onclick="setDiff('easy')" id="tabEasy">⭐ Easy</button>
+      <button class="sp-tab" onclick="setDiff('medium')" id="tabMedium">⭐⭐ Medium</button>
+      <button class="sp-tab" onclick="setDiff('hard')" id="tabHard">⭐⭐⭐ Hard</button>
+    </div>
+
+    <div id="gameArea">
+      <div class="sp-score" id="spScore">Score: 0 / 10</div>
+      <div class="sp-emoji" id="spEmoji" onclick="speakWord()">🍎</div>
+      <div class="sp-hint">🔊 Tap picture to hear the word!</div>
+      <div class="sp-blank" id="spBlank"></div>
+      <div class="sp-input-row">
+        <input class="sp-input" id="spInput" type="text" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Type here..." onkeydown="if(event.key==='Enter')checkAnswer()">
+        <button class="btn btn-primary" onclick="checkAnswer()" style="height:48px;">Check</button>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:center;margin-bottom:8px;">
+        <button class="btn" onclick="speakWord()" style="background:var(--surface-2);color:var(--text);font-size:13px;padding:6px 12px;">🔊 Hear Again</button>
+        <button class="btn" onclick="showHint()" style="background:var(--surface-2);color:var(--text);font-size:13px;padding:6px 12px;">💡 Hint</button>
+      </div>
+      <div class="sp-feedback" id="spFeedback"></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+      <a href="kids-alphabet.html" class="btn" style="background:var(--surface-2);color:var(--text);text-decoration:none;">🔤 Alphabet</a>
+      <a href="kids-learn.html" class="btn" style="background:var(--surface-2);color:var(--text);text-decoration:none;">🧒 All Kids Tools</a>
+      <a href="kids-typing.html" class="btn" style="background:var(--surface-2);color:var(--text);text-decoration:none;">⌨️ Typing</a>
+    </div>
+  </div>
+</div></main>
+
+<script>
+const WORDS = {
+  easy: [
+    {e:'🍎',w:'apple'},{e:'🐱',w:'cat'},{e:'🐶',w:'dog'},{e:'🌙',w:'moon'},
+    {e:'🌟',w:'star'},{e:'🐟',w:'fish'},{e:'🌸',w:'rose'},{e:'🚗',w:'car'},
+    {e:'🏠',w:'home'},{e:'🎈',w:'ball'},{e:'🍕',w:'cake'},{e:'🐝',w:'bee'},
+  ],
+  medium: [
+    {e:'🐘',w:'elephant'},{e:'🦒',w:'giraffe'},{e:'🦊',w:'fox'},{e:'🌈',w:'rainbow'},
+    {e:'🦋',w:'butterfly'},{e:'🌻',w:'sunflower'},{e:'🐬',w:'dolphin'},{e:'🦈',w:'shark'},
+    {e:'🦘',w:'kangaroo'},{e:'🦁',w:'lion'},{e:'🐢',w:'turtle'},{e:'🦉',w:'owl'},
+  ],
+  hard: [
+    {e:'🦏',w:'rhinoceros'},{e:'🐊',w:'crocodile'},{e:'🦚',w:'peacock'},{e:'🐙',w:'octopus'},
+    {e:'🦌',w:'reindeer'},{e:'🦓',w:'zebra'},{e:'🌋',w:'volcano'},{e:'☂️',w:'umbrella'},
+    {e:'🎸',w:'xylophone'},{e:'🧶',w:'knitting'},{e:'🐝',w:'bumblebee'},{e:'🦅',w:'eagle'},
+  ]
+};
+const TOTAL=10;
+let diff='easy', score=0, qIdx=0, answered=false, questions=[], hintShown=false;
+
+function setDiff(d){
+  diff=d;
+  ['easy','medium','hard'].forEach(x=>{
+    document.getElementById('tab'+x.charAt(0).toUpperCase()+x.slice(1)).classList.toggle('active',x===d);
+  });
+  startGame();
+}
+
+function shuffle(a){return [...a].sort(()=>Math.random()-.5);}
+
+function startGame(){
+  score=0; qIdx=0; answered=false;
+  questions=shuffle(WORDS[diff]).slice(0,TOTAL);
+  renderQ();
+}
+
+function speakWord(){
+  const w=questions[qIdx];
+  if(!w||!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(w.w);
+  u.lang='en-US'; u.rate=0.7;
+  speechSynthesis.speak(u);
+}
+
+function showHint(){
+  const w=questions[qIdx];
+  if(!w) return;
+  hintShown=true;
+  const hint=w.w.split('').map((c,i)=>i===0||i===w.w.length-1?c:'_').join(' ');
+  document.getElementById('spBlank').textContent=hint;
+}
+
+function renderQ(){
+  if(qIdx>=TOTAL){
+    const pct=Math.round(score/TOTAL*100);
+    document.getElementById('gameArea').innerHTML=`
+      <div class="sp-done">
+        <div style="font-size:60px;">🐝</div>
+        <div style="font-size:22px;font-weight:900;color:var(--primary);margin:10px 0;">${pct>=80?'🏆 Spelling Champion!':pct>=50?'👍 Good job, Speller!':'💪 Keep practicing!'}</div>
+        <div style="font-size:15px;color:var(--text-muted);">Score: ${score} / ${TOTAL} (${pct}%)</div>
+        <button class="btn btn-primary" style="margin-top:16px;" onclick="startGame()">Play Again</button>
+      </div>`;
+    return;
+  }
+  const q=questions[qIdx];
+  hintShown=false;
+  const underscores='_ '.repeat(q.w.length).trim();
+  document.getElementById('spScore').textContent=`Score: ${score} / ${TOTAL} | Word ${qIdx+1} of ${TOTAL}`;
+  document.getElementById('spEmoji').textContent=q.e;
+  document.getElementById('spBlank').textContent=underscores;
+  const inp=document.getElementById('spInput');
+  inp.value='';
+  inp.className='sp-input';
+  document.getElementById('spFeedback').textContent='';
+  answered=false;
+  inp.focus();
+  setTimeout(()=>speakWord(),300);
+}
+
+function checkAnswer(){
+  if(answered) return;
+  const q=questions[qIdx];
+  const val=document.getElementById('spInput').value.trim().toLowerCase();
+  if(!val) return;
+  answered=true;
+  const inp=document.getElementById('spInput');
+  if(val===q.w){
+    inp.className='sp-input correct-border';
+    score++;
+    document.getElementById('spFeedback').textContent='✅ Correct!';
+    if(window.speechSynthesis){const u=new SpeechSynthesisUtterance('Correct!');u.lang='en-US';speechSynthesis.speak(u);}
+  } else {
+    inp.className='sp-input wrong-border';
+    document.getElementById('spFeedback').textContent=`❌ It's spelled: "${q.w}"`;
+    if(window.speechSynthesis){const u=new SpeechSynthesisUtterance(q.w);u.lang='en-US';u.rate=0.7;speechSynthesis.speak(u);}
+  }
+  document.getElementById('spBlank').textContent=q.w.split('').join(' ');
+  setTimeout(()=>{qIdx++;renderQ();},1400);
+}
+
+startGame();
+</script>
+<script>(function(){var r=document.documentElement,b=document.getElementById('darkToggle');if(!b)return;try{if(localStorage.getItem('theme')==='dark'){r.classList.add('dark');b.textContent='☀️';}}catch(e){}b.addEventListener('click',function(){var d=r.classList.toggle('dark');b.textContent=d?'☀️':'🌙';try{localStorage.setItem('theme',d?'dark':'light');}catch(e){}});if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}})();</script>
+<script src="i18n.js?v=39"></script>
+</body></html>

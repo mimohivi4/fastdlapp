@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-97DQT5FHPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-97DQT5FHPF');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3337905412116301" crossorigin="anonymous"></script>
+<meta name="theme-color" content="#4f46e5">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kids Money Game — Count Omani Rials & Baisa | Adawati</title>
+<meta name="description" content="Fun money counting game for kids: learn Omani Rial and Baisa coins and notes. Count money, make change. Ages 7-12, free, no signup.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://adawati2027.github.io/my-tools-site/kids-money.html">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="icon-192.svg">
+<link rel="apple-touch-icon" href="icon-192.svg">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://adawati2027.github.io/my-tools-site/"},{"@type":"ListItem","position":2,"name":"Count the Money","item":"https://adawati2027.github.io/my-tools-site/kids-money.html"}]},{"@type":"WebApplication","name":"Count the Money | Adawati","url":"https://adawati2027.github.io/my-tools-site/kids-money.html","applicationCategory":"EducationalApplication","operatingSystem":"All","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}]}</script>
+<link rel="stylesheet" href="style.css">
+<style>
+.money-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:16px;}
+.money-tab{padding:9px 16px;border-radius:99px;border:2px solid transparent;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;transition:all .2s;background:var(--surface-2);color:var(--text);}
+.money-tab.active{background:var(--primary);color:#fff;}
+.coins-display{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;min-height:80px;padding:12px;background:var(--surface-2);border-radius:14px;margin:10px 0;}
+.coin{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;font-weight:900;cursor:default;border:3px solid rgba(0,0,0,.15);font-size:13px;color:#fff;transition:transform .15s;}
+.coin:hover{transform:scale(1.1);}
+.note{display:inline-flex;align-items:center;justify-content:center;border-radius:10px;font-weight:900;cursor:default;border:3px solid rgba(0,0,0,.15);font-size:13px;color:#fff;padding:10px 16px;transition:transform .15s;}
+.note:hover{transform:scale(1.05);}
+.money-q{font-size:20px;font-weight:800;text-align:center;color:var(--primary);margin:10px 0;}
+.money-choices{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:10px 0;}
+.money-choice{padding:14px 18px;border-radius:14px;border:3px solid var(--border);background:var(--surface-2);font-size:18px;font-weight:900;cursor:pointer;font-family:inherit;transition:all .15s;}
+.money-choice:hover{transform:scale(1.07);border-color:var(--primary);}
+.money-choice.correct{background:#dcfce7;border-color:#22c55e;color:#15803d;}
+.money-choice.wrong{background:#fee2e2;border-color:#ef4444;color:#b91c1c;}
+.money-score{font-size:14px;font-weight:700;color:var(--text-muted);text-align:center;margin-bottom:8px;}
+.money-ref{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-top:12px;}
+.money-ref-item{background:var(--surface-2);border-radius:10px;padding:10px;text-align:center;font-size:13px;font-weight:700;}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-container">
+  <a href="index.html" class="nav-brand">Adawati</a>
+  <div class="nav-links"><a href="kids-learn.html">🧒 Kids</a><a href="index.html">Home</a></div>
+</div></nav>
+
+<main><div class="tool-page">
+  <div class="page-header"><a href="kids-learn.html">← Back to Kids</a></div>
+  <div class="card">
+    <div class="card-icon" style="background:#fef9c3;">💰</div>
+    <h1 class="card-title">Count the Money</h1>
+    <div class="card-subtitle">Omani Rials & Baisa — Ages 7–12</div>
+    <div class="divider"></div>
+
+    <div class="money-tabs">
+      <button class="money-tab active" onclick="setMode('coins')" id="tabCoins">🪙 Coins</button>
+      <button class="money-tab" onclick="setMode('notes')" id="tabNotes">💵 Notes</button>
+      <button class="money-tab" onclick="setMode('mixed')" id="tabMixed">🎲 Mixed</button>
+    </div>
+
+    <div id="gameArea">
+      <div class="money-score" id="mScore">Score: 0 / 10</div>
+      <div style="font-size:16px;font-weight:700;text-align:center;color:var(--text-muted);margin-bottom:6px;">How much money is shown?</div>
+      <div class="coins-display" id="mDisplay"></div>
+      <div class="money-q" id="mQ">?</div>
+      <div class="money-choices" id="mChoices"></div>
+      <div style="font-size:20px;font-weight:800;text-align:center;min-height:28px;" id="mFeedback"></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title" style="font-size:15px;">💡 Oman Money Guide</div>
+    <div class="money-ref" id="mRef"></div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+      <a href="kids-math.html" class="btn" style="background:var(--surface-2);color:var(--text);text-decoration:none;">➕ Math Game</a>
+      <a href="kids-learn.html" class="btn" style="background:var(--surface-2);color:var(--text);text-decoration:none;">🧒 All Kids Tools</a>
+      <a href="currency-converter.html" class="btn" style="background:var(--surface-2);color:var(--text);text-decoration:none;">💱 Currency Converter</a>
+    </div>
+  </div>
+</div></main>
+
+<script>
+// Values in baisa (1 OMR = 1000 baisa)
+const COINS = [
+  {v:5,  label:'5 Bz',  color:'#a3a3a3', size:40, type:'coin'},
+  {v:10, label:'10 Bz', color:'#94a3b8', size:44, type:'coin'},
+  {v:25, label:'25 Bz', color:'#78716c', size:48, type:'coin'},
+  {v:50, label:'50 Bz', color:'#b45309', size:52, type:'coin'},
+  {v:100,label:'100 Bz',color:'#d97706', size:56, type:'coin'},
+];
+const NOTES = [
+  {v:100,  label:'100 Bz', color:'#7c3aed', type:'note'},
+  {v:200,  label:'200 Bz', color:'#2563eb', type:'note'},
+  {v:500,  label:'500 Bz', color:'#047857', type:'note'},
+  {v:1000, label:'1 OMR',  color:'#b91c1c', type:'note'},
+  {v:5000, label:'5 OMR',  color:'#c2410c', type:'note'},
+  {v:10000,label:'10 OMR', color:'#1e40af', type:'note'},
+  {v:20000,label:'20 OMR', color:'#065f46', type:'note'},
+];
+
+const TOTAL=10;
+let mode='coins', score=0, qIdx=0, answered=false, questions=[];
+
+function setMode(m){
+  mode=m;
+  ['coins','notes','mixed'].forEach(x=>{
+    document.getElementById('tab'+x.charAt(0).toUpperCase()+x.slice(1)).classList.toggle('active',x===m);
+  });
+  startGame();
+}
+
+function randInt(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5);}
+
+function formatVal(v){
+  if(v<1000) return v+'Bz';
+  return (v/1000).toFixed(v%1000===0?0:3).replace(/\.?0+$/,'')+ ' OMR';
+}
+
+function makeQ(){
+  let pool;
+  if(mode==='coins') pool=COINS;
+  else if(mode==='notes') pool=NOTES;
+  else pool=[...COINS,...NOTES];
+
+  const count=randInt(2,4);
+  const picked=Array.from({length:count},()=>pool[randInt(0,pool.length-1)]);
+  const total=picked.reduce((s,x)=>s+x.v,0);
+  return {items:picked, total};
+}
+
+function makeChoices(correct){
+  const s=new Set([correct]);
+  const deltas=[50,100,250,500,1000,-50,-100,-250,-500];
+  let itr=0;
+  while(s.size<4&&itr<50){
+    itr++;
+    const d=deltas[randInt(0,deltas.length-1)];
+    const v=correct+d;
+    if(v>0&&!s.has(v)) s.add(v);
+  }
+  while(s.size<4) s.add(correct+randInt(100,500));
+  return [...s].sort(()=>Math.random()-.5);
+}
+
+function startGame(){
+  score=0; qIdx=0; answered=false;
+  questions=Array.from({length:TOTAL},makeQ);
+  renderQ();
+}
+
+function renderQ(){
+  if(qIdx>=TOTAL){
+    const pct=Math.round(score/TOTAL*100);
+    document.getElementById('gameArea').innerHTML=`
+      <div style="text-align:center;padding:24px;background:linear-gradient(135deg,#fef9c3,#fde68a);border-radius:16px;">
+        <div style="font-size:60px;">💰</div>
+        <div style="font-size:22px;font-weight:900;color:#92400e;margin:10px 0;">${pct>=80?'🏆 Money Master!':pct>=50?'👍 Great counting!':'💪 Keep practicing!'}</div>
+        <div style="font-size:15px;color:var(--text-muted);">Score: ${score} / ${TOTAL} (${pct}%)</div>
+        <button class="btn btn-primary" style="margin-top:16px;" onclick="startGame()">Play Again</button>
+      </div>`;
+    return;
+  }
+  const q=questions[qIdx];
+  document.getElementById('mScore').textContent=`Score: ${score} / ${TOTAL} | Q ${qIdx+1} of ${TOTAL}`;
+
+  const display=q.items.map(item=>{
+    if(item.type==='coin'){
+      return `<div class="coin" style="width:${item.size}px;height:${item.size}px;background:${item.color};">${item.label}</div>`;
+    } else {
+      return `<div class="note" style="background:${item.color};">${item.label}</div>`;
+    }
+  }).join('');
+  document.getElementById('mDisplay').innerHTML=display;
+  document.getElementById('mQ').textContent='Total = ?';
+
+  const choices=makeChoices(q.total);
+  document.getElementById('mChoices').innerHTML=choices.map(c=>
+    `<button class="money-choice" onclick="answerQ(this,${c},${q.total})">${formatVal(c)}</button>`
+  ).join('');
+  document.getElementById('mFeedback').textContent='';
+  answered=false;
+}
+
+function answerQ(btn,chosen,correct){
+  if(answered) return;
+  answered=true;
+  if(chosen===correct){
+    btn.classList.add('correct');score++;
+    document.getElementById('mFeedback').textContent=`✅ Correct! ${formatVal(correct)}`;
+    if(window.speechSynthesis){const u=new SpeechSynthesisUtterance('Correct!');u.lang='en-US';speechSynthesis.speak(u);}
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.money-choice').forEach(b=>{if(b.textContent===formatVal(correct))b.classList.add('correct');});
+    document.getElementById('mFeedback').textContent=`❌ Answer: ${formatVal(correct)}`;
+  }
+  setTimeout(()=>{qIdx++;renderQ();},1100);
+}
+
+function buildRef(){
+  const items=[...COINS,...NOTES];
+  document.getElementById('mRef').innerHTML=items.map(item=>`
+    <div class="money-ref-item">
+      <div style="background:${item.color};border-radius:${item.type==='coin'?'50%':'6px'};width:${item.type==='coin'?'40px':'70px'};height:40px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:800;margin-bottom:4px;">${item.label}</div>
+      <div>${item.label}</div>
+      <div style="font-size:11px;color:var(--text-muted);">${formatVal(item.v)}</div>
+    </div>
+  `).join('');
+}
+
+startGame();
+buildRef();
+</script>
+<script>(function(){var r=document.documentElement,b=document.getElementById('darkToggle');if(!b)return;try{if(localStorage.getItem('theme')==='dark'){r.classList.add('dark');b.textContent='☀️';}}catch(e){}b.addEventListener('click',function(){var d=r.classList.toggle('dark');b.textContent=d?'☀️':'🌙';try{localStorage.setItem('theme',d?'dark':'light');}catch(e){}});if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}})();</script>
+<script src="i18n.js?v=39"></script>
+</body></html>

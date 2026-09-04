@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-97DQT5FHPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-97DQT5FHPF');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3337905412116301" crossorigin="anonymous"></script>
+<meta name="theme-color" content="#4f46e5">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABC Alphabet for Kids — Letters with Pictures & Sounds | Adawati</title>
+<meta name="description" content="Fun A-Z alphabet learning for kids ages 4-8: each letter has a picture emoji and audio pronunciation. Learn and quiz mode. Free, no signup.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://adawati2027.github.io/my-tools-site/kids-alphabet.html">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="icon-192.svg">
+<link rel="apple-touch-icon" href="icon-192.svg">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://adawati2027.github.io/my-tools-site/"},{"@type":"ListItem","position":2,"name":"ABC Alphabet","item":"https://adawati2027.github.io/my-tools-site/kids-alphabet.html"}]},{"@type":"WebApplication","name":"ABC Alphabet | Adawati","url":"https://adawati2027.github.io/my-tools-site/kids-alphabet.html","applicationCategory":"EducationalApplication","operatingSystem":"All","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}]}</script>
+<link rel="stylesheet" href="style.css">
+<style>
+.alpha-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:16px;}
+.alpha-tab{padding:10px 24px;border-radius:99px;border:2px solid transparent;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;transition:all .2s;background:var(--surface-2);color:var(--text);}
+.alpha-tab.active{background:var(--primary);color:#fff;}
+.alpha-card{text-align:center;padding:20px;background:linear-gradient(135deg,#fef9c3,#fde68a);border-radius:20px;margin-bottom:16px;cursor:pointer;transition:transform .15s;}
+.alpha-card:active{transform:scale(.97);}
+.alpha-letter{font-size:80px;font-weight:900;color:var(--primary);line-height:1;}
+.alpha-emoji{font-size:80px;line-height:1;margin:8px 0;}
+.alpha-word{font-size:26px;font-weight:900;color:var(--text);margin:4px 0;}
+.alpha-sub{font-size:14px;color:var(--text-muted);font-weight:600;}
+.alpha-nav{display:flex;gap:12px;justify-content:center;align-items:center;margin:12px 0;}
+.alpha-nav button{width:44px;height:44px;border-radius:50%;border:2px solid var(--border);background:var(--surface-2);font-size:20px;cursor:pointer;font-family:inherit;transition:all .15s;}
+.alpha-nav button:hover{border-color:var(--primary);}
+.alpha-progress{font-size:14px;font-weight:700;color:var(--text-muted);}
+.alpha-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:6px;margin-top:12px;}
+.alpha-grid-item{background:var(--surface-2);border-radius:10px;padding:8px 4px;text-align:center;cursor:pointer;border:2px solid transparent;transition:all .15s;font-weight:800;}
+.alpha-grid-item:hover{border-color:var(--primary);}
+.alpha-grid-item .gi-letter{font-size:22px;color:var(--primary);font-weight:900;}
+.alpha-grid-item .gi-emoji{font-size:20px;}
+/* Quiz styles */
+.aq-emoji{font-size:100px;text-align:center;line-height:1;margin:10px 0;}
+.aq-choices{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:400px;margin:12px auto;}
+.aq-choice{padding:16px 8px;border-radius:14px;border:3px solid var(--border);background:var(--surface-2);font-size:28px;font-weight:900;cursor:pointer;font-family:inherit;transition:all .15s;text-align:center;color:var(--primary);}
+.aq-choice:hover{transform:scale(1.08);border-color:var(--primary);}
+.aq-choice.correct{background:#dcfce7;border-color:#22c55e;}
+.aq-choice.wrong{background:#fee2e2;border-color:#ef4444;}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-container">
+  <a href="index.html" class="nav-brand">Adawati</a>
+  <div class="nav-links"><a href="kids-learn.html">🧒 Kids</a><a href="index.html">Home</a></div>
+</div></nav>
+
+<main><div class="tool-page">
+  <div class="page-header"><a href="kids-learn.html">← Back to Kids</a></div>
+  <div class="card">
+    <div class="card-icon" style="background:#fef9c3;">🔤</div>
+    <h1 class="card-title">ABC Alphabet</h1>
+    <div class="card-subtitle">Letters, Pictures & Sounds — Ages 4–8</div>
+    <div class="divider"></div>
+
+    <div class="alpha-tabs">
+      <button class="alpha-tab active" onclick="setMode('learn')" id="tabLearn">📖 Learn</button>
+      <button class="alpha-tab" onclick="setMode('quiz')" id="tabQuiz">🎯 Quiz</button>
+      <button class="alpha-tab" onclick="setMode('grid')" id="tabGrid">🔤 All Letters</button>
+    </div>
+
+    <div id="learnMode">
+      <div class="alpha-card" onclick="speakCurrent()">
+        <div class="alpha-letter" id="aLetter">A</div>
+        <div class="alpha-emoji" id="aEmoji">🍎</div>
+        <div class="alpha-word" id="aWord">Apple</div>
+        <div class="alpha-sub">🔊 Tap to hear!</div>
+      </div>
+      <div class="alpha-nav">
+        <button onclick="prevLetter()">◀</button>
+        <div class="alpha-progress" id="aProgress">1 / 26</div>
+        <button onclick="nextLetter()">▶</button>
+      </div>
+    </div>
+
+    <div id="quizMode" style="display:none;">
+      <div style="font-size:14px;font-weight:700;color:var(--text-muted);text-align:center;margin-bottom:8px;" id="qScore">Score: 0 / 26</div>
+      <div style="font-size:16px;font-weight:700;text-align:center;margin-bottom:8px;">Which letter does this start with? 🔊 Tap image to hear!</div>
+      <div class="aq-emoji" id="qEmoji" onclick="speakQuizWord()">🍎</div>
+      <div style="font-size:18px;font-weight:700;text-align:center;color:var(--text-muted);margin-bottom:10px;" id="qWord"></div>
+      <div class="aq-choices" id="qChoices"></div>
+      <div style="font-size:20px;font-weight:800;text-align:center;min-height:28px;" id="qFeedback"></div>
+    </div>
+
+    <div id="gridMode" style="display:none;">
+      <div class="alpha-grid" id="aGrid"></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+      <a href="kids-spelling.html" class="btn" style="background:var(--surface-2);color:var(--text);text-decoration:none;">🔤 Spelling Bee</a>
+      <a href="kids-learn.html" class="btn" style="background:var(--surface-2);color:var(--text);text-decoration:none;">🧒 All Kids Tools</a>
+    </div>
+  </div>
+</div></main>
+
+<script>
+const ALPHA = [
+  {l:'A',e:'🍎',w:'Apple'}, {l:'B',e:'🐝',w:'Bee'},    {l:'C',e:'🐱',w:'Cat'},
+  {l:'D',e:'🐬',w:'Dolphin'},{l:'E',e:'🐘',w:'Elephant'},{l:'F',e:'🦊',w:'Fox'},
+  {l:'G',e:'🦒',w:'Giraffe'},{l:'H',e:'🏠',w:'House'},  {l:'I',e:'🍦',w:'Ice Cream'},
+  {l:'J',e:'🎵',w:'Jingle'},{l:'K',e:'🦘',w:'Kangaroo'},{l:'L',e:'🦁',w:'Lion'},
+  {l:'M',e:'🌙',w:'Moon'},  {l:'N',e:'🌙',w:'Night'},   {l:'O',e:'🐙',w:'Octopus'},
+  {l:'P',e:'🦚',w:'Peacock'},{l:'Q',e:'👑',w:'Queen'},  {l:'R',e:'🌈',w:'Rainbow'},
+  {l:'S',e:'🦈',w:'Shark'}, {l:'T',e:'🌳',w:'Tree'},    {l:'U',e:'☂️',w:'Umbrella'},
+  {l:'V',e:'🌋',w:'Volcano'},{l:'W',e:'🐋',w:'Whale'},  {l:'X',e:'🎸',w:'Xylophone'},
+  {l:'Y',e:'🧶',w:'Yarn'},  {l:'Z',e:'🦓',w:'Zebra'},
+];
+// Fix N
+ALPHA[13]={l:'N',e:'🥜',w:'Nut'};
+ALPHA[9]={l:'J',e:'🫙',w:'Jar'};
+
+let curIdx=0, mode='learn';
+
+function setMode(m){
+  mode=m;
+  ['learn','quiz','grid'].forEach(x=>{
+    document.getElementById(x+'Mode').style.display=x===m?'':'none';
+    document.getElementById('tab'+x.charAt(0).toUpperCase()+x.slice(1)).classList.toggle('active',x===m);
+  });
+  if(m==='quiz') startQuiz();
+  if(m==='grid') buildGrid();
+}
+
+function speak(text,rate){
+  if(!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US'; u.rate=rate||0.8;
+  speechSynthesis.speak(u);
+}
+
+function renderLearn(){
+  const a=ALPHA[curIdx];
+  document.getElementById('aLetter').textContent=a.l;
+  document.getElementById('aEmoji').textContent=a.e;
+  document.getElementById('aWord').textContent=a.w;
+  document.getElementById('aProgress').textContent=`${curIdx+1} / 26`;
+}
+
+function speakCurrent(){speak(`${ALPHA[curIdx].l} is for ${ALPHA[curIdx].w}`);}
+
+function prevLetter(){curIdx=(curIdx-1+26)%26;renderLearn();}
+function nextLetter(){curIdx=(curIdx+1)%26;renderLearn();}
+
+// Quiz
+let qIdx=0, qScore=0, qAnswered=false, qOrder=[];
+function startQuiz(){
+  qIdx=0; qScore=0; qAnswered=false;
+  qOrder=[...ALPHA].sort(()=>Math.random()-.5);
+  renderQuiz();
+}
+function speakQuizWord(){const a=qOrder[qIdx];speak(`${a.l} is for ${a.w}`);}
+function renderQuiz(){
+  if(qIdx>=26){
+    const pct=Math.round(qScore/26*100);
+    document.getElementById('quizMode').innerHTML=`
+      <div style="text-align:center;padding:24px;background:linear-gradient(135deg,#fef9c3,#fde68a);border-radius:16px;">
+        <div style="font-size:60px;">🏆</div>
+        <div style="font-size:22px;font-weight:900;color:var(--primary);margin:10px 0;">${pct>=80?'🎉 Alphabet Master!':pct>=50?'👍 Great effort!':'💪 Keep practicing!'}</div>
+        <div style="font-size:15px;color:var(--text-muted);">Score: ${qScore} / 26 (${pct}%)</div>
+        <button class="btn btn-primary" style="margin-top:16px;" onclick="startQuiz()">Play Again</button>
+      </div>`;
+    return;
+  }
+  const a=qOrder[qIdx];
+  const wrongs=[...ALPHA].filter(x=>x.l!==a.l).sort(()=>Math.random()-.5).slice(0,3);
+  const choices=[a,...wrongs].sort(()=>Math.random()-.5);
+  document.getElementById('qScore').textContent=`Score: ${qScore} / 26 | Q ${qIdx+1} of 26`;
+  document.getElementById('qEmoji').textContent=a.e;
+  document.getElementById('qWord').textContent=a.w;
+  document.getElementById('qChoices').innerHTML=choices.map(c=>
+    `<button class="aq-choice" onclick="answerQuiz(this,'${c.l}','${a.l}')">${c.l}</button>`
+  ).join('');
+  document.getElementById('qFeedback').textContent='';
+  qAnswered=false;
+  speak(`${a.w}`);
+}
+function answerQuiz(btn,chosen,correct){
+  if(qAnswered) return;
+  qAnswered=true;
+  if(chosen===correct){btn.classList.add('correct');qScore++;document.getElementById('qFeedback').textContent='✅ Correct!';}
+  else{btn.classList.add('wrong');document.querySelectorAll('.aq-choice').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});document.getElementById('qFeedback').textContent=`❌ It's ${correct} for ${qOrder[qIdx].w}`;}
+  setTimeout(()=>{qIdx++;renderQuiz();},1000);
+}
+
+function buildGrid(){
+  document.getElementById('aGrid').innerHTML=ALPHA.map(a=>
+    `<div class="alpha-grid-item" onclick="speak('${a.l} is for ${a.w}')">
+      <div class="gi-letter">${a.l}</div>
+      <div class="gi-emoji">${a.e}</div>
+      <div style="font-size:10px;color:var(--text-muted);">${a.w}</div>
+    </div>`
+  ).join('');
+}
+
+renderLearn();
+</script>
+<script>(function(){var r=document.documentElement,b=document.getElementById('darkToggle');if(!b)return;try{if(localStorage.getItem('theme')==='dark'){r.classList.add('dark');b.textContent='☀️';}}catch(e){}b.addEventListener('click',function(){var d=r.classList.toggle('dark');b.textContent=d?'☀️':'🌙';try{localStorage.setItem('theme',d?'dark':'light');}catch(e){}});if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}})();</script>
+<script src="i18n.js?v=39"></script>
+</body></html>

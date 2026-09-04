@@ -1,0 +1,60 @@
+# أدواتي — Adawati Tools
+
+> Free Arabic-first online tools for Oman and the Arab world. 50+ tools covering finance, health, files, images, dev, productivity, and games. Available in 6 languages (Arabic, English, French, Spanish, German, Russian). No login required, fully client-side, privacy-first.
+> New 2026 tools (Zakat, Fuel Cost, JSON, Base64, Color, Text Case, Pomodoro) each have full localized editions under /ar/, /fr/, /es/, /de/, /ru/ with translated titles, FAQs and hreflang.
+
+## Finance & Salary Tools (Oman)
+- [End of Service Calculator](https://adawati2027.github.io/my-tools-site/end-of-service.html): Oman end-of-service gratuity calculator per Article 61 of the updated Labour Law. Covers Omani nationals (SPF) and expats. Compares old vs new system.
+- [Salary Calculator](https://adawati2027.github.io/my-tools-site/salary-calculator.html): Oman salary calculator with Social Protection Fund (SPF) deduction. Uses insurable wage with OMR 3,000 ceiling per SPF rules.
+- [Currency Converter](https://adawati2027.github.io/my-tools-site/currency-converter.html): Live exchange rates from ExchangeRate-API, updated every 4 hours. Covers 30+ currencies including OMR, SAR, AED, USD, EUR, GBP, EGP, INR.
+- [VAT Calculator](https://adawati2027.github.io/my-tools-site/vat-calculator.html): Oman VAT calculator (5%). Add or remove VAT from any price.
+- [Loan Calculator](https://adawati2027.github.io/my-tools-site/loan-calculator.html): Monthly installment calculator with full amortization schedule. Supports early repayment simulation.
+- [Compound Interest Calculator](https://adawati2027.github.io/my-tools-site/compound-interest.html): Investment growth calculator with compound interest and regular contributions.
+- [Discount Calculator](https://adawati2027.github.io/my-tools-site/discount-calculator.html): Calculate price after discount percentage.
+- [Tip Calculator](https://adawati2027.github.io/my-tools-site/tip-calculator.html): Split bills and calculate tip amounts.
+- [Percentage Calculator](https://adawati2027.github.io/my-tools-site/percentage-calculator.html): Percentage increase, decrease, and ratio calculations.
+
+## Health Tools
+- [BMI Calculator](https://adawati2027.github.io/my-tools-site/bmi-calculator.html): Body Mass Index calculator with WHO classification table, formula explanation, and FAQ. Supports kg/cm and lb/in.
+- [Diet Plan](https://adawati2027.github.io/my-tools-site/diet-plan.html): Personalized daily calorie and macro calculator based on age, weight, height, and activity level.
+
+## Conversion & Date Tools
+- [Unit Converter](https://adawati2027.github.io/my-tools-site/unit-converter.html): Length, weight, temperature, area, volume conversions.
+- [Hijri Date Converter](https://adawati2027.github.io/my-tools-site/hijri-converter.html): Convert between Hijri (Islamic) and Gregorian calendar dates.
+- [Age Calculator](https://adawati2027.github.io/my-tools-site/age-calculator.html): Calculate exact age in years, months, and days.
+- [Date Difference](https://adawati2027.github.io/my-tools-site/date-diff.html): Number of days between two dates.
+- [Timezone Converter](https://adawati2027.github.io/my-tools-site/timezone-converter.html): Convert time between world timezones.
+
+## File & Image Tools
+- [File Converter](https://adawati2027.github.io/my-tools-site/file-converter.html): Client-side file conversion — Word, Excel, CSV, PDF, images (JPG, PNG, WebP). No upload to server.
+- [Image Compressor](https://adawati2027.github.io/my-tools-site/image-compressor.html): Compress images in the browser without uploading. Supports JPG, PNG, WebP.
+- [QR Generator](https://adawati2027.github.io/my-tools-site/qr-generator.html): Generate QR codes for any URL or text.
+
+## Utility Tools
+- [Password Generator](https://adawati2027.github.io/my-tools-site/password-generator.html): Generate secure random passwords with custom length and character sets.
+- [Word Counter](https://adawati2027.github.io/my-tools-site/word-counter.html): Count words, characters, sentences, and reading time.
+- [Random Number Generator](https://adawati2027.github.io/my-tools-site/random-number.html): Generate random numbers in a custom range.
+- [Stopwatch](https://adawati2027.github.io/my-tools-site/stopwatch.html): Precise stopwatch with lap timer.
+
+## New in 2026 — Finance, Dev & Productivity
+- [Zakat Calculator](https://adawati2027.github.io/my-tools-site/zakat-calculator.html): 2.5% Zakat on cash, gold, silver, investments with Nisab check.
+- [Fuel Cost Calculator](https://adawati2027.github.io/my-tools-site/fuel-cost-calculator.html): Trip cost, L/100km, MPG with Gulf fuel presets (OMR/AED/SAR).
+- [JSON Formatter](https://adawati2027.github.io/my-tools-site/json-formatter.html): Validate, beautify, minify JSON locally.
+- [Base64 Encoder](https://adawati2027.github.io/my-tools-site/base64-encoder.html): Unicode-safe Base64 encode/decode.
+- [Color Converter](https://adawati2027.github.io/my-tools-site/color-converter.html): HEX/RGB/HSL picker with palettes.
+- [Text Case Converter](https://adawati2027.github.io/my-tools-site/text-case-converter.html): UPPER/lower/Title/Sentence + word counter.
+- [Pomodoro Timer](https://adawati2027.github.io/my-tools-site/pomodoro-timer.html): 25/5 focus timer with sound & sessions.
+
+## Games
+- [Number Guessing Game](https://adawati2027.github.io/my-tools-site/number-guess.html): Guess the random number with hints.
+- [Memory Card Game](https://adawati2027.github.io/my-tools-site/memory-game.html): Flip cards memory matching game.
+- [Quick Math](https://adawati2027.github.io/my-tools-site/quick-math.html): Speed arithmetic training game.
+- [Reaction Test](https://adawati2027.github.io/my-tools-site/reaction-test.html): Measure your reaction time in milliseconds.
+- [Car Game](https://adawati2027.github.io/my-tools-site/car-game.html): Browser-based car dodging game.
+- [Jump Game](https://adawati2027.github.io/my-tools-site/jump-game.html): Side-scrolling jump game.
+- [Kids Learn](https://adawati2027.github.io/my-tools-site/kids-learn.html): Educational tool for children — letters, numbers, colors.
+
+## About
+- [About Adawati](https://adawati2027.github.io/my-tools-site/about.html): About this free Arabic tool collection.
+- [Privacy Policy](https://adawati2027.github.io/my-tools-site/privacy.html): No data collection, no accounts, fully client-side.
+- [Contact](https://adawati2027.github.io/my-tools-site/contact.html): Contact the developer.

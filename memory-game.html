@@ -1,0 +1,369 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-97DQT5FHPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-97DQT5FHPF');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3337905412116301" crossorigin="anonymous"></script>
+<meta name="theme-color" content="#4f46e5">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory Card Matching Game — 6 Levels | Adawati</title>
+<meta name="description" content="Match the cards and test your memory. 6 difficulty levels from Easy to Legendary. Free memory game in your browser — no downloads, no signup required.">
+<meta name="keywords" content="memory card game, matching game online, free memory game, brain training game, card flip matching game">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://adawati2027.github.io/my-tools-site/memory-game.html">
+<link rel="alternate" hreflang="en" href="https://adawati2027.github.io/my-tools-site/memory-game.html">
+<link rel="alternate" hreflang="ar" href="https://adawati2027.github.io/my-tools-site/ar/memory-game/">
+<link rel="alternate" hreflang="fr" href="https://adawati2027.github.io/my-tools-site/fr/memory-game/">
+<link rel="alternate" hreflang="es" href="https://adawati2027.github.io/my-tools-site/es/memory-game/">
+<link rel="alternate" hreflang="de" href="https://adawati2027.github.io/my-tools-site/de/memory-game/">
+<link rel="alternate" hreflang="ru" href="https://adawati2027.github.io/my-tools-site/ru/memory-game/">
+<link rel="alternate" hreflang="x-default" href="https://adawati2027.github.io/my-tools-site/memory-game.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","@id":"https://adawati2027.github.io/my-tools-site/memory-game.html#app","name":"Memory Card Matching Game","url":"https://adawati2027.github.io/my-tools-site/memory-game.html","description":"Match the cards and test your memory. 6 difficulty levels from Easy to Legendary. Free memory game in your browser — no downloads, no signup.","applicationCategory":"GameApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How does the memory card matching game work?","acceptedAnswer":{"@type":"Answer","text":"Cards are placed face-down. You flip two at a time — if they match, they stay face-up; if not, they flip back. The goal is to match all pairs in as few flips as possible. Tests short-term memory and concentration."}},
+{"@type":"Question","name":"What difficulty levels does the memory game have?","acceptedAnswer":{"@type":"Answer","text":"There are 6 levels from Easy (fewer cards) to Legendary (many cards with a strict time limit). Higher levels present more cards and less time, making it progressively more challenging for experienced players."}}
+]}]}
+</script>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="icon-192.svg">
+<link rel="apple-touch-icon" href="icon-192.svg">
+<link rel="stylesheet" href="style.css">
+<style>
+.level-steps{display:flex;gap:6px;justify-content:center;margin-bottom:14px;flex-wrap:wrap;}
+.level-step{width:36px;height:8px;border-radius:99px;background:var(--border);transition:background 0.3s;}
+.level-step.done{background:#22c55e;} .level-step.active{background:var(--primary);}
+.level-badge{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;}
+.level-pill{padding:5px 16px;border-radius:99px;font-size:13px;font-weight:800;border:2px solid var(--primary);background:var(--primary-light);color:var(--primary);}
+.level-selector{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:14px;}
+.lvl-btn{padding:5px 12px;border-radius:8px;border:1.5px solid var(--border);background:var(--surface-2);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.15s;}
+.lvl-btn:hover{border-color:var(--primary);} .lvl-btn.current{border-color:var(--primary);background:var(--primary);color:#fff;}
+.lvl-btn.completed{border-color:#22c55e;background:#dcfce7;color:#15803d;}
+.mem-stats{display:flex;gap:16px;justify-content:center;margin-bottom:14px;flex-wrap:wrap;}
+.mem-stat{text-align:center;}
+.mem-stat-val{font-size:26px;font-weight:900;color:var(--primary);}
+.mem-stat-lbl{font-size:11px;color:var(--text-muted);font-weight:600;}
+.mem-grid{display:grid;gap:8px;margin:0 auto 16px;max-width:480px;}
+.mem-card{aspect-ratio:1;border-radius:12px;cursor:pointer;position:relative;transform-style:preserve-3d;transition:transform 0.45s cubic-bezier(.4,0,.2,1);user-select:none;}
+.mem-card.flipped,.mem-card.matched{transform:rotateY(180deg);}
+.mem-card.matched{cursor:default;}
+.mem-face,.mem-back{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border-radius:12px;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+.mem-back{background:var(--primary);font-size:22px;color:#fff;}
+.mem-face{background:var(--surface-2);border:2px solid var(--border);transform:rotateY(180deg);}
+.mem-card.matched .mem-face{background:linear-gradient(135deg,#dcfce7,#bbf7d0);border-color:#22c55e;}
+.mem-emoji{font-size:28px;line-height:1;}
+.game-overlay{text-align:center;padding:20px;border-radius:var(--radius-lg);margin:8px 0;font-weight:700;}
+.level-complete{background:linear-gradient(135deg,#dcfce7,#bbf7d0);border:2px solid #22c55e;color:#15803d;display:none;}
+.level-complete.show{display:block;}
+.all-done{background:linear-gradient(135deg,#fef9c3,#fde68a);border:2px solid #eab308;color:#854d0e;display:none;}
+.all-done.show{display:block;}
+.overlay-title{font-size:22px;margin-bottom:6px;} .overlay-sub{font-size:14px;font-weight:600;opacity:.8;margin-bottom:14px;}
+.overlay-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.speed-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:3px 10px;border-radius:99px;background:var(--surface-2);border:1px solid var(--border);margin-bottom:10px;}
+.lb-wrap{margin-top:20px;border-top:1px solid var(--border);padding-top:16px;}
+.lb-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.lb-title{font-size:15px;font-weight:800;}
+.lb-clear{font-size:12px;color:var(--text-muted);background:none;border:none;cursor:pointer;font-family:inherit;}
+.lb-clear:hover{color:#ef4444;}
+.lb-empty{font-size:13px;color:var(--text-muted);text-align:center;padding:10px 0;}
+.lb-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--surface-2);border:1px solid var(--border);}
+.lb-row.gold{background:linear-gradient(135deg,#fef9c3,#fef08a);border-color:#eab308;}
+.lb-row.silver{background:linear-gradient(135deg,#f1f5f9,#e2e8f0);border-color:#94a3b8;}
+.lb-row.bronze{background:linear-gradient(135deg,#fff7ed,#fed7aa);border-color:#f97316;}
+.lb-medal{font-size:20px;flex-shrink:0;} .lb-name{font-weight:700;font-size:14px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.lb-score{font-size:12px;font-weight:600;color:var(--primary);flex-shrink:0;text-align:end;}
+.name-entry{margin-top:12px;padding:14px;background:linear-gradient(135deg,#fdf4ff,#ede9fe);border:2px solid var(--primary);border-radius:var(--radius-sm);text-align:center;}
+.name-entry-msg{font-size:14px;font-weight:700;margin-bottom:10px;color:var(--primary);}
+.name-entry-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.name-entry-row input{padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--text);font-size:14px;font-family:inherit;width:160px;}
+.name-entry-row input:focus{outline:none;border-color:var(--primary);}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-container">
+  <a href="index.html" class="nav-brand">Adawati</a>
+  <div class="nav-links">
+    <a href="index.html" data-i18n="nav_home">Home</a>
+    <a href="about.html" data-i18n="nav_about">About</a>
+    <a href="contact.html" data-i18n="nav_contact">Contact</a>
+    
+    <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">🌙</button><div class="lang-switcher">
+      <button class="lang-btn" onclick="toggleLangMenu()">🌐 <span id="currentLang">EN</span> ▾</button>
+      <div class="lang-menu" id="langMenu">
+        <a onclick="setLang('ar')">🇸🇦 العربية</a><a onclick="setLang('en')">🇬🇧 English</a>
+        <a onclick="setLang('fr')">🇫🇷 Français</a><a onclick="setLang('es')">🇪🇸 Español</a>
+        <a onclick="setLang('de')">🇩🇪 Deutsch</a><a onclick="setLang('ru')">🇷🇺 Русский</a>
+      </div>
+    </div>
+  </div>
+</div></nav>
+
+<main><div class="tool-page">
+  <div class="page-header"><a href="index.html" data-i18n="back">← Back to Home</a></div>
+  <div class="card">
+    <div class="card-icon" style="background:#f0fdf4;">🧠</div>
+    <h1 class="card-title" data-i18n="memory_card_title">Memory Game</h1>
+    <div class="card-subtitle" data-i18n="memory_card_desc">Match the cards and test your memory</div>
+    <div class="divider"></div>
+
+    <div class="level-steps" id="levelSteps"></div>
+    <div class="level-badge">
+      <span id="levelEmoji">🟢</span>
+      <span class="level-pill" id="levelPill">المستوى 1</span>
+      <span id="levelName" style="font-size:13px;color:var(--text-muted);font-weight:600;"></span>
+    </div>
+    <div style="text-align:center;margin-bottom:8px;">
+      <span class="speed-badge" id="speedBadge">⚡ سرعة الإخفاء: 1.2s</span>
+    </div>
+    <div class="level-selector" id="levelSelector"></div>
+
+    <div class="mem-stats">
+      <div class="mem-stat"><div class="mem-stat-val" id="moveCount">0</div><div class="mem-stat-lbl" id="movesLbl">حركات</div></div>
+      <div class="mem-stat"><div class="mem-stat-val" id="matchCount">0</div><div class="mem-stat-lbl" id="matchLbl">أزواج</div></div>
+      <div class="mem-stat"><div class="mem-stat-val" id="totalCount">0</div><div class="mem-stat-lbl" id="totalLbl">مجموع</div></div>
+    </div>
+
+    <div class="mem-grid" id="memGrid"></div>
+
+    <div class="game-overlay level-complete" id="levelCompleteBox">
+      <div class="overlay-title" id="lcTitle">🎉 أحسنت!</div>
+      <div class="overlay-sub" id="lcSub"></div>
+      <div class="overlay-btns">
+        <button class="btn btn-primary" onclick="nextLevel()" id="nextLevelBtn">المستوى التالي ←</button>
+        <button class="btn btn-secondary" onclick="restartAll()" id="restartBtn2">⏮ من البداية</button>
+      </div>
+    </div>
+
+    <div class="game-overlay all-done" id="allDoneBox">
+      <div class="overlay-title">🏆 أنت أسطورة!</div>
+      <div class="overlay-sub" id="allDoneSub"></div>
+      <div class="overlay-btns">
+        <button class="btn btn-primary" onclick="restartAll()" id="playAgainBtn">🔄 العب مجدداً</button>
+      </div>
+    </div>
+
+    <div class="name-entry" id="nameEntry" style="display:none;">
+      <div class="name-entry-msg" id="nameEntryMsg">🏆 دخلت إلى أفضل 3! اكتب اسمك:</div>
+      <div class="name-entry-row">
+        <input type="text" id="nameInput" maxlength="20" placeholder="اسمك"
+          onkeydown="if(event.key==='Enter')saveScore()">
+        <button class="btn btn-primary" onclick="saveScore()" id="saveBtn">💾 حفظ</button>
+      </div>
+    </div>
+
+    <div class="lb-wrap">
+      <div class="lb-header">
+        <span class="lb-title" id="lbTitle">🏆 أفضل 3 لاعبين</span>
+        <button class="lb-clear" onclick="clearLb()" id="clearBtn">🗑 مسح</button>
+      </div>
+      <div id="lbRows"></div>
+    </div>
+  </div>
+</div></main>
+
+<footer class="footer" style="padding:28px;">
+  <div style="max-width:1160px;margin:0 auto;">
+    <div class="footer-links"><a href="about.html" data-i18n="footer_about">About</a><a href="contact.html" data-i18n="footer_contact">Contact</a></div>
+    <div class="footer-copy-simple" data-i18n="footer_copy">© 2026 Adawati</div>
+  </div>
+</footer>
+
+<script>
+const MEM_LEVELS=[
+  {cols:3,pairs:3, flipMs:1200,emoji:'🟢'},
+  {cols:4,pairs:4, flipMs:1000,emoji:'🟡'},
+  {cols:4,pairs:6, flipMs:850, emoji:'🟠'},
+  {cols:4,pairs:8, flipMs:700, emoji:'🔴'},
+  {cols:5,pairs:10,flipMs:550, emoji:'🟣'},
+  {cols:6,pairs:12,flipMs:400, emoji:'💀'},
+];
+const ALL_EMOJIS=['🦁','🐯','🦊','🐼','🐨','🦄','🐸','🐧','🦋','🐬','🦀','🐝'];
+const MEDALS=['🥇','🥈','🥉'], MEDAL_CLS=['gold','silver','bronze'];
+const STORAGE_KEY='adawati_memory_lb';
+const MT={
+  ar:{moves:'حركات',matched:'أزواج',total:'مجموع',levelLbl:'المستوى',
+    levelNames:['مبتدئ','سهل','متوسط','صعب','خبير','أسطوري'],speedLbl:'⚡ سرعة الإخفاء:',
+    lcTitle:'🎉 أحسنت!',lcSub:'اجتزت المستوى {l} في {m} حركة!',
+    nextLevel:'المستوى التالي ←',restart:'⏮ من البداية',
+    allDone:'🏆 أنت أسطورة!',allDoneSub:'أكملت جميع المستويات الستة! خبير حقيقي.',
+    playAgain:'🔄 العب مجدداً',
+    lbTitle:'🏆 أفضل 3 لاعبين',lbEmpty:'لا توجد نتائج بعد — كن أول المتنافسين!',
+    lbNew:'🏆 دخلت إلى أفضل 3! اكتب اسمك:',lbSave:'💾 حفظ',lbPh:'اسمك',
+    lbScore:'مستوى {l} · {s} حركة',lbClear:'🗑 مسح'},
+  en:{moves:'Moves',matched:'Matched',total:'Total',levelLbl:'Level',
+    levelNames:['Beginner','Easy','Medium','Hard','Expert','Legend'],speedLbl:'⚡ Flip speed:',
+    lcTitle:'🎉 Level Complete!',lcSub:'You beat Level {l} in {m} moves!',
+    nextLevel:'Next Level →',restart:'⏮ Restart',
+    allDone:'🏆 You\'re a Legend!',allDoneSub:'All 6 levels completed! Amazing memory.',
+    playAgain:'🔄 Play Again',
+    lbTitle:'🏆 Top 3 Players',lbEmpty:'No scores yet — be the first!',
+    lbNew:'🏆 You made Top 3! Enter your name:',lbSave:'💾 Save',lbPh:'Your name',
+    lbScore:'Level {l} · {s} moves',lbClear:'🗑 Clear'},
+  fr:{moves:'Mouvements',matched:'Paires',total:'Total',levelLbl:'Niveau',
+    levelNames:['Débutant','Facile','Moyen','Difficile','Expert','Légendaire'],speedLbl:'⚡ Vitesse:',
+    lcTitle:'🎉 Niveau Terminé!',lcSub:'Niveau {l} en {m} mouvements!',
+    nextLevel:'Niveau suivant →',restart:'⏮ Recommencer',
+    allDone:'🏆 Vous êtes une Légende!',allDoneSub:'6 niveaux complétés!',
+    playAgain:'🔄 Rejouer',
+    lbTitle:'🏆 Top 3 Joueurs',lbEmpty:'Pas de scores!',
+    lbNew:'🏆 Top 3! Entrez votre nom:',lbSave:'💾 Sauver',lbPh:'Votre nom',
+    lbScore:'Niv. {l} · {s} mvts',lbClear:'🗑 Effacer'},
+  es:{moves:'Movimientos',matched:'Pares',total:'Total',levelLbl:'Nivel',
+    levelNames:['Principiante','Fácil','Medio','Difícil','Experto','Legendario'],speedLbl:'⚡ Velocidad:',
+    lcTitle:'🎉 ¡Nivel Completado!',lcSub:'¡Nivel {l} en {m} movimientos!',
+    nextLevel:'Siguiente nivel →',restart:'⏮ Reiniciar',
+    allDone:'🏆 ¡Eres una Leyenda!',allDoneSub:'¡6 niveles completados!',
+    playAgain:'🔄 Jugar de nuevo',
+    lbTitle:'🏆 Top 3 Jugadores',lbEmpty:'¡Sin puntuaciones!',
+    lbNew:'🏆 ¡Top 3! Escribe tu nombre:',lbSave:'💾 Guardar',lbPh:'Tu nombre',
+    lbScore:'Niv. {l} · {s} mvtos',lbClear:'🗑 Borrar'},
+  de:{moves:'Züge',matched:'Paare',total:'Gesamt',levelLbl:'Level',
+    levelNames:['Anfänger','Leicht','Mittel','Schwer','Experte','Legende'],speedLbl:'⚡ Flip-Speed:',
+    lcTitle:'🎉 Level Geschafft!',lcSub:'Level {l} in {m} Zügen!',
+    nextLevel:'Nächstes Level →',restart:'⏮ Neustart',
+    allDone:'🏆 Du bist eine Legende!',allDoneSub:'Alle 6 Level geschafft!',
+    playAgain:'🔄 Nochmal spielen',
+    lbTitle:'🏆 Top 3 Spieler',lbEmpty:'Noch keine Einträge!',
+    lbNew:'🏆 Top 3! Gib deinen Namen ein:',lbSave:'💾 Speichern',lbPh:'Dein Name',
+    lbScore:'Lv. {l} · {s} Züge',lbClear:'🗑 Löschen'},
+  ru:{moves:'Ходы',matched:'Пары',total:'Всего',levelLbl:'Уровень',
+    levelNames:['Новичок','Легко','Средний','Сложно','Эксперт','Легенда'],speedLbl:'⚡ Скорость:',
+    lcTitle:'🎉 Уровень пройден!',lcSub:'Уровень {l} за {m} ходов!',
+    nextLevel:'Следующий уровень →',restart:'⏮ Сначала',
+    allDone:'🏆 Вы Легенда!',allDoneSub:'Все 6 уровней пройдены!',
+    playAgain:'🔄 Играть снова',
+    lbTitle:'🏆 Топ 3 игрока',lbEmpty:'Нет результатов!',
+    lbNew:'🏆 Вы в Топ 3! Введите имя:',lbSave:'💾 Сохранить',lbPh:'Ваше имя',
+    lbScore:'Ур. {l} · {s} ходов',lbClear:'🗑 Очистить'},
+};
+let currentLang='en',currentLevel=0,completedLevels=[];
+let moves=0,matched=0,locked=false,first=null,pendingScore=null,flipTimer=null;
+function tr(k){return(MT[currentLang]||MT.en)[k]||k;}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function getLb(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||[];}catch{return[];}}
+function saveLb(lb){localStorage.setItem(STORAGE_KEY,JSON.stringify(lb));}
+function qualifies(level,score){const lb=getLb();if(lb.length<3)return true;const l=lb[lb.length-1];return level>l.level||(level===l.level&&score<l.score);}
+function addEntry(name,level,score){const lb=getLb();lb.push({name:name.trim()||'?',level,score});lb.sort((a,b)=>b.level-a.level||(a.level===b.level?a.score-b.score:0));lb.splice(3);saveLb(lb);}
+function renderLb(){
+  const lb=getLb(),t=MT[currentLang]||MT.en;
+  document.getElementById('lbTitle').textContent=t.lbTitle;
+  document.getElementById('clearBtn').textContent=t.lbClear;
+  const rows=document.getElementById('lbRows');
+  if(!lb.length){rows.innerHTML=`<div class="lb-empty">${t.lbEmpty}</div>`;return;}
+  rows.innerHTML=lb.map((e,i)=>`<div class="lb-row ${MEDAL_CLS[i]||''}"><span class="lb-medal">${MEDALS[i]||''}</span><span class="lb-name">${esc(e.name)}</span><span class="lb-score">${t.lbScore.replace('{l}',e.level).replace('{s}',e.score)}</span></div>`).join('');
+}
+function clearLb(){localStorage.removeItem(STORAGE_KEY);renderLb();}
+function renderLevelUI(){
+  const t=MT[currentLang]||MT.en,lv=MEM_LEVELS[currentLevel];
+  document.getElementById('levelSteps').innerHTML=MEM_LEVELS.map((_,i)=>`<div class="level-step ${i<currentLevel?'done':i===currentLevel?'active':''}"></div>`).join('');
+  document.getElementById('levelEmoji').textContent=lv.emoji;
+  document.getElementById('levelPill').textContent=`${t.levelLbl} ${currentLevel+1}`;
+  document.getElementById('levelName').textContent=t.levelNames[currentLevel]||'';
+  document.getElementById('speedBadge').textContent=`${t.speedLbl} ${(lv.flipMs/1000).toFixed(1)}s`;
+  document.getElementById('levelSelector').innerHTML=MEM_LEVELS.map((l,i)=>`<button class="lvl-btn ${i===currentLevel?'current':completedLevels.includes(i)?'completed':''}" onclick="jumpToLevel(${i})">${l.emoji} ${i+1}</button>`).join('');
+}
+function updateStats(){
+  const t=MT[currentLang]||MT.en;
+  document.getElementById('moveCount').textContent=moves;
+  document.getElementById('matchCount').textContent=matched;
+  document.getElementById('totalCount').textContent=MEM_LEVELS[currentLevel].pairs;
+  document.getElementById('movesLbl').textContent=t.moves;
+  document.getElementById('matchLbl').textContent=t.matched;
+  document.getElementById('totalLbl').textContent=t.total;
+}
+function startLevel(lvIdx){
+  currentLevel=Math.min(lvIdx,MEM_LEVELS.length-1);
+  const lv=MEM_LEVELS[currentLevel];
+  moves=0;matched=0;locked=false;first=null;pendingScore=null;
+  if(flipTimer){clearTimeout(flipTimer);flipTimer=null;}
+  document.getElementById('levelCompleteBox').classList.remove('show');
+  document.getElementById('allDoneBox').classList.remove('show');
+  document.getElementById('nameEntry').style.display='none';
+  renderLevelUI();updateStats();renderLb();buildGrid(lv);
+}
+function buildGrid(lv){
+  const emojis=ALL_EMOJIS.slice(0,lv.pairs);
+  const cards=[...emojis,...emojis].sort(()=>Math.random()-0.5);
+  const grid=document.getElementById('memGrid');
+  grid.style.gridTemplateColumns=`repeat(${lv.cols},1fr)`;
+  grid.innerHTML='';
+  cards.forEach((em,i)=>{
+    const card=document.createElement('div');
+    card.className='mem-card';
+    card.dataset.emoji=em;card.dataset.idx=i;
+    card.innerHTML=`<div class="mem-back">🎴</div><div class="mem-face"><span class="mem-emoji">${em}</span></div>`;
+    card.addEventListener('click',()=>flipCard(card));
+    grid.appendChild(card);
+  });
+}
+function flipCard(card){
+  if(locked||card.classList.contains('flipped')||card.classList.contains('matched'))return;
+  card.classList.add('flipped');
+  if(!first){first=card;return;}
+  moves++;updateStats();
+  if(first.dataset.emoji===card.dataset.emoji){
+    first.classList.add('matched');card.classList.add('matched');
+    matched++;updateStats();first=null;
+    if(matched===MEM_LEVELS[currentLevel].pairs)onLevelComplete();
+  }else{
+    locked=true;const a=first,b=card;first=null;
+    flipTimer=setTimeout(()=>{a.classList.remove('flipped');b.classList.remove('flipped');locked=false;},MEM_LEVELS[currentLevel].flipMs);
+  }
+}
+function onLevelComplete(){
+  if(!completedLevels.includes(currentLevel))completedLevels.push(currentLevel);
+  const t=MT[currentLang]||MT.en;
+  const isLast=currentLevel===MEM_LEVELS.length-1;
+  if(isLast){
+    const box=document.getElementById('allDoneBox');
+    box.querySelector('.overlay-title').textContent=t.allDone;
+    document.getElementById('allDoneSub').textContent=t.allDoneSub;
+    document.getElementById('playAgainBtn').textContent=t.playAgain;
+    box.classList.add('show');
+  }else{
+    const box=document.getElementById('levelCompleteBox');
+    document.getElementById('lcTitle').textContent=t.lcTitle;
+    document.getElementById('lcSub').textContent=t.lcSub.replace('{l}',currentLevel+1).replace('{m}',moves);
+    document.getElementById('nextLevelBtn').textContent=t.nextLevel;
+    document.getElementById('restartBtn2').textContent=t.restart;
+    box.classList.add('show');
+  }
+  if(qualifies(currentLevel+1,moves)){
+    pendingScore={level:currentLevel+1,score:moves};
+    document.getElementById('nameEntryMsg').textContent=t.lbNew;
+    document.getElementById('nameInput').placeholder=t.lbPh;
+    document.getElementById('saveBtn').textContent=t.lbSave;
+    document.getElementById('nameEntry').style.display='';
+    setTimeout(()=>document.getElementById('nameInput').focus(),100);
+  }
+  if(typeof showHomePrompt==='function')showHomePrompt();
+  renderLevelUI();
+}
+function saveScore(){
+  if(!pendingScore)return;
+  const name=document.getElementById('nameInput').value.trim();
+  addEntry(name||'?',pendingScore.level,pendingScore.score);
+  pendingScore=null;
+  document.getElementById('nameEntry').style.display='none';
+  document.getElementById('nameInput').value='';
+  renderLb();
+}
+function nextLevel(){if(currentLevel<MEM_LEVELS.length-1)startLevel(currentLevel+1);}
+function restartAll(){completedLevels=[];startLevel(0);}
+function jumpToLevel(i){startLevel(i);}
+const _PAGE_LANG=document.documentElement.lang||'en';let _initDone=false;
+document.addEventListener('DOMContentLoaded',()=>{
+  currentLang=_PAGE_LANG;if(!MT[currentLang])currentLang='en';
+  const origSet=window.setLang;
+  window.setLang=function(lang){origSet&&origSet(lang);if(!_initDone&&lang!==_PAGE_LANG)return;currentLang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';renderLevelUI();updateStats();renderLb();};
+  window.onLangChange=function(lang){if(!_initDone&&lang!==_PAGE_LANG)return;currentLang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';renderLevelUI();updateStats();renderLb();};
+  startLevel(0);
+  setTimeout(function(){_initDone=true;window.setLang(_PAGE_LANG);},0);
+});
+</script>
+<script>(function(){var r=document.documentElement,b=document.getElementById('darkToggle');if(!b)return;try{if(localStorage.getItem('theme')==='dark'){r.classList.add('dark');b.textContent='☀️';}}catch(e){}b.addEventListener('click',function(){var d=r.classList.toggle('dark');b.textContent=d?'☀️':'🌙';try{localStorage.setItem('theme',d?'dark':'light');}catch(e){}});if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}})();</script>
+<script src="i18n.js?v=36"></script>
+<script>if('serviceWorker' in navigator)navigator.serviceWorker.register('/my-tools-site/sw.js',{updateViaCache:'none'});</script>
+</body></html>

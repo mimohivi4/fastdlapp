@@ -1,0 +1,439 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-97DQT5FHPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-97DQT5FHPF');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3337905412116301" crossorigin="anonymous"></script>
+<meta name="theme-color" content="#4f46e5">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jump Platformer Game — Collect Stars & Beat Levels | Adawati</title>
+<meta name="description" content="Jump between platforms and collect stars in this free browser platformer. No download, no signup — play instantly in any browser.">
+<meta name="keywords" content="jump game browser, platformer game online free, platform game kids, jump and run game, free platformer no download">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://adawati2027.github.io/my-tools-site/jump-game.html">
+<link rel="alternate" hreflang="en" href="https://adawati2027.github.io/my-tools-site/jump-game.html">
+<link rel="alternate" hreflang="ar" href="https://adawati2027.github.io/my-tools-site/ar/jump-game/">
+<link rel="alternate" hreflang="fr" href="https://adawati2027.github.io/my-tools-site/fr/jump-game/">
+<link rel="alternate" hreflang="es" href="https://adawati2027.github.io/my-tools-site/es/jump-game/">
+<link rel="alternate" hreflang="de" href="https://adawati2027.github.io/my-tools-site/de/jump-game/">
+<link rel="alternate" hreflang="ru" href="https://adawati2027.github.io/my-tools-site/ru/jump-game/">
+<link rel="alternate" hreflang="x-default" href="https://adawati2027.github.io/my-tools-site/jump-game.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","@id":"https://adawati2027.github.io/my-tools-site/jump-game.html#app","name":"Jump Platformer Game","url":"https://adawati2027.github.io/my-tools-site/jump-game.html","description":"Jump between platforms and collect stars in this free browser platformer. No download, no signup — play instantly in any browser.","applicationCategory":"GameApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I control the jump platformer game?","acceptedAnswer":{"@type":"Answer","text":"Use Space bar or the up arrow key to jump on desktop. On mobile, tap the jump button on screen. Move left and right using arrow keys or on-screen buttons. Reach all platforms and collect stars to complete each level."}},
+{"@type":"Question","name":"Is the jump game suitable for young children?","acceptedAnswer":{"@type":"Answer","text":"Yes. The game is designed to be simple and safe for children. No violent content, no ads within the game, no in-app purchases. Works directly in the browser — no installation required."}}
+]}]}
+</script>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="icon-192.svg">
+<link rel="apple-touch-icon" href="icon-192.svg">
+<link rel="stylesheet" href="style.css">
+<style>
+.game-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;}
+#gameCanvas{border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.18);display:block;max-width:100%;}
+.hud{display:flex;gap:20px;justify-content:center;font-size:15px;font-weight:800;flex-wrap:wrap;}
+.hud-item{text-align:center;}
+.hud-val{font-size:26px;font-weight:900;color:var(--primary);}
+.hud-lbl{font-size:11px;color:var(--text-muted);}
+.touch-jump-btn{margin:6px auto;display:block;width:120px;height:60px;border-radius:99px;border:3px solid #22c55e;background:#dcfce7;font-size:22px;font-weight:900;color:#15803d;cursor:pointer;font-family:inherit;transition:transform .1s,background .1s;user-select:none;-webkit-user-select:none;}
+.touch-jump-btn:active{transform:scale(.93);background:#22c55e;color:#fff;}
+.lb-wrap{margin-top:20px;border-top:1px solid var(--border);padding-top:16px;width:100%;}
+.lb-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.lb-title{font-size:15px;font-weight:800;}
+.lb-clear{font-size:12px;color:var(--text-muted);background:none;border:none;cursor:pointer;font-family:inherit;}
+.lb-clear:hover{color:#ef4444;}
+.lb-empty{font-size:13px;color:var(--text-muted);text-align:center;padding:10px 0;}
+.lb-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--surface-2);border:1px solid var(--border);}
+.lb-row.gold{background:linear-gradient(135deg,#fef9c3,#fef08a);border-color:#eab308;}
+.lb-row.silver{background:linear-gradient(135deg,#f1f5f9,#e2e8f0);border-color:#94a3b8;}
+.lb-row.bronze{background:linear-gradient(135deg,#fff7ed,#fed7aa);border-color:#f97316;}
+.lb-medal{font-size:20px;flex-shrink:0;} .lb-name{font-weight:700;font-size:14px;flex:1;} .lb-score{font-size:12px;font-weight:600;color:var(--primary);}
+.name-entry{margin-top:12px;padding:14px;background:linear-gradient(135deg,#fdf4ff,#ede9fe);border:2px solid var(--primary);border-radius:var(--radius-sm);text-align:center;}
+.name-entry-msg{font-size:14px;font-weight:700;margin-bottom:10px;color:var(--primary);}
+.name-entry-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.name-entry-row input{padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--text);font-size:14px;font-family:inherit;width:160px;}
+.name-entry-row input:focus{outline:none;border-color:var(--primary);}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-container">
+  <a href="index.html" class="nav-brand">Adawati</a>
+  <div class="nav-links">
+    <a href="index.html" data-i18n="nav_home">Home</a>
+    
+    <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">🌙</button><div class="lang-switcher">
+      <button class="lang-btn" onclick="toggleLangMenu()">🌐 <span id="currentLang">EN</span> ▾</button>
+      <div class="lang-menu" id="langMenu">
+        <a onclick="setLang('ar')">🇸🇦 العربية</a><a onclick="setLang('en')">🇬🇧 English</a>
+        <a onclick="setLang('fr')">🇫🇷 Français</a><a onclick="setLang('es')">🇪🇸 Español</a>
+        <a onclick="setLang('de')">🇩🇪 Deutsch</a><a onclick="setLang('ru')">🇷🇺 Русский</a>
+      </div>
+    </div>
+  </div>
+</div></nav>
+
+<main><div class="tool-page">
+  <div class="page-header"><a href="index.html" data-i18n="back">← Back to Home</a></div>
+  <div class="card">
+    <div class="card-icon" style="background:#f0fdf4;">🦸</div>
+    <h1 class="card-title" data-i18n="jump_card_title">Jump Game — Platformer</h1>
+    <div class="card-subtitle" data-i18n="jump_card_desc">Jump between platforms and collect stars like Mario!</div>
+    <div class="divider"></div>
+
+    <div class="game-wrap">
+      <div class="hud">
+        <div class="hud-item"><div class="hud-val" id="scoreDisplay">0</div><div class="hud-lbl" id="scoreLbl">نقاط</div></div>
+        <div class="hud-item"><div class="hud-val" id="starsDisplay">0</div><div class="hud-lbl" id="starsLbl">⭐ نجوم</div></div>
+        <div class="hud-item"><div class="hud-val" id="bestDisplay">0</div><div class="hud-lbl" id="bestLbl">أفضل</div></div>
+      </div>
+
+      <canvas id="gameCanvas" width="380" height="320"></canvas>
+
+      <button class="touch-jump-btn" id="jumpBtn">⬆</button>
+    </div>
+
+    <div class="name-entry" id="nameEntry" style="display:none;">
+      <div class="name-entry-msg" id="nameEntryMsg">🏆 دخلت أفضل 3! اكتب اسمك:</div>
+      <div class="name-entry-row">
+        <input type="text" id="nameInput" maxlength="20" placeholder="اسمك" onkeydown="if(event.key==='Enter')saveScore()">
+        <button class="btn btn-primary" onclick="saveScore()" id="saveBtn">💾</button>
+      </div>
+    </div>
+
+    <div class="lb-wrap">
+      <div class="lb-header">
+        <span class="lb-title" id="lbTitle">🏆 أفضل 3 لاعبين</span>
+        <button class="lb-clear" onclick="clearLb()" id="clearBtn">🗑 مسح</button>
+      </div>
+      <div id="lbRows"></div>
+    </div>
+  </div>
+</div></main>
+
+<footer class="footer" style="padding:28px;">
+  <div style="max-width:1160px;margin:0 auto;">
+    <div class="footer-links"><a href="about.html" data-i18n="footer_about">About</a><a href="contact.html" data-i18n="footer_contact">Contact</a></div>
+    <div class="footer-copy-simple" data-i18n="footer_copy">© 2026 Adawati</div>
+  </div>
+</footer>
+
+<script>
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+const W = 380, H = 320;
+const GRAVITY = 0.55, JUMP_V = -12.5;
+const STORAGE_KEY = 'adawati_jump_lb';
+const MEDALS=['🥇','🥈','🥉'], MEDAL_CLS=['gold','silver','bronze'];
+
+const JT = {
+  ar:{points:'نقاط',stars:'⭐ نجوم',best:'أفضل',jump:'⬆ اقفز!',
+      top3:'🏆 أفضل 3 لاعبين',clear:'🗑 مسح',no_scores:'لا توجد نتائج بعد!',
+      top3_enter:'🏆 دخلت أفضل 3! اكتب اسمك:',your_name:'اسمك',save:'💾 حفظ',
+      game_title:'لعبة القفز!',press_start:'اضغط قفز أو مسّ الشاشة للبدء',start:'▶ ابدأ',
+      game_over:'انتهت اللعبة!',score_lbl:'نقاط',play_again:'▶ مجدداً'},
+  en:{points:'Points',stars:'⭐ Stars',best:'Best',jump:'⬆ Jump!',
+      top3:'🏆 Top 3 Jumpers',clear:'🗑 Clear',no_scores:'No scores yet!',
+      top3_enter:'🏆 Top 3! Enter your name:',your_name:'Your name',save:'💾 Save',
+      game_title:'Jump Game!',press_start:'Press SPACE or tap to start',start:'▶ Start',
+      game_over:'Game Over!',score_lbl:'Score',play_again:'▶ Again'},
+  fr:{points:'Points',stars:'⭐ Étoiles',best:'Meilleur',jump:'⬆ Sauter!',
+      top3:'🏆 Top 3 Sauteurs',clear:'🗑 Effacer',no_scores:'Aucun score!',
+      top3_enter:'🏆 Top 3! Votre prénom:',your_name:'Votre prénom',save:'💾 Sauver',
+      game_title:'Jeu de Saut!',press_start:'Appuyez ESPACE ou touchez',start:'▶ Démarrer',
+      game_over:'Jeu Terminé!',score_lbl:'Score',play_again:'▶ Rejouer'},
+  es:{points:'Puntos',stars:'⭐ Estrellas',best:'Mejor',jump:'⬆ Saltar!',
+      top3:'🏆 Top 3 Saltadores',clear:'🗑 Borrar',no_scores:'¡Sin puntuaciones!',
+      top3_enter:'🏆 Top 3! Tu nombre:',your_name:'Tu nombre',save:'💾 Guardar',
+      game_title:'¡Juego de Salto!',press_start:'Pulsa ESPACIO o toca',start:'▶ Iniciar',
+      game_over:'¡Juego Terminado!',score_lbl:'Puntos',play_again:'▶ De nuevo'},
+  de:{points:'Punkte',stars:'⭐ Sterne',best:'Beste',jump:'⬆ Springen!',
+      top3:'🏆 Top 3 Springer',clear:'🗑 Löschen',no_scores:'Noch keine Punkte!',
+      top3_enter:'🏆 Top 3! Dein Name:',your_name:'Dein Name',save:'💾 Speichern',
+      game_title:'Sprungspiel!',press_start:'LEERTASTE oder Tippen',start:'▶ Starten',
+      game_over:'Spiel vorbei!',score_lbl:'Punkte',play_again:'▶ Nochmal'},
+  ru:{points:'Очки',stars:'⭐ Звёзды',best:'Лучший',jump:'⬆ Прыгать!',
+      top3:'🏆 Топ 3 Прыгунов',clear:'🗑 Очистить',no_scores:'Нет результатов!',
+      top3_enter:'🏆 Топ 3! Введите имя:',your_name:'Ваше имя',save:'💾 Сохранить',
+      game_title:'Игра-прыжок!',press_start:'Пробел или коснитесь экрана',start:'▶ Старт',
+      game_over:'Игра окончена!',score_lbl:'Очки',play_again:'▶ Ещё раз'},
+};
+function tr(k){return(JT[currentLang]||JT.ar)[k]||JT.ar[k]||k;}
+function updateText(){
+  document.getElementById('scoreLbl').textContent=tr('points');
+  document.getElementById('starsLbl').textContent=tr('stars');
+  document.getElementById('bestLbl').textContent=tr('best');
+  document.getElementById('jumpBtn').textContent=tr('jump');
+  document.getElementById('saveBtn').textContent=tr('save');
+  document.getElementById('nameInput').placeholder=tr('your_name');
+  renderLb();
+}
+function resizeCanvas(){
+  const w=Math.min(W,canvas.parentElement.offsetWidth||W);
+  canvas.style.width=w+'px';
+  canvas.style.height=Math.round(w*H/W)+'px';
+}
+
+let currentLang = 'ar';
+let state = 'idle', rafId = null;
+let score = 0, stars = 0, camX = 0, speed = 3, spawnX = W+100;
+let pendingScore = null;
+
+const PLATFORM_COLORS = ['#22c55e','#3b82f6','#f59e0b','#8b5cf6','#ef4444'];
+const PLATFORM_H = 14;
+const GROUND_Y = H - 40;
+
+const player = {x:80, y:GROUND_Y-52, vy:0, w:34, h:42, jumpsLeft:2, onGround:false};
+let platforms = [], starObjs = [], particles = [];
+
+function resetGame(){
+  score=0; stars=0; camX=0; speed=3; spawnX=W+80;
+  player.x=80; player.y=GROUND_Y-52; player.vy=0; player.jumpsLeft=2; player.onGround=false;
+  platforms=[
+    {x:0, y:GROUND_Y, w:W+200, h:PLATFORM_H, color:'#166534'},
+    {x:400, y:GROUND_Y-80, w:120, h:PLATFORM_H, color:'#22c55e'},
+    {x:580, y:GROUND_Y-40, w:100, h:PLATFORM_H, color:'#3b82f6'},
+  ];
+  starObjs=[]; particles=[];
+}
+
+function spawnPlatforms(){
+  while(spawnX < camX + W + 400){
+    const gap = 60 + Math.random()*(30 + Math.min(score/50, 60));
+    const pw  = Math.max(60, 140 - Math.min(score/40, 80));
+    const py  = GROUND_Y - 40 - Math.random()*100;
+    const clr = PLATFORM_COLORS[Math.floor(Math.random()*PLATFORM_COLORS.length)];
+    platforms.push({x:spawnX, y:py, w:pw, h:PLATFORM_H, color:clr});
+    // Maybe add a star
+    if(Math.random()<0.5) starObjs.push({x:spawnX+pw/2, y:py-28, collected:false});
+    spawnX += gap + pw;
+  }
+}
+
+function jump(){
+  if(player.jumpsLeft>0){
+    player.vy = JUMP_V * (player.jumpsLeft===2?1:0.85);
+    player.jumpsLeft--;
+    player.onGround=false;
+    // particle burst
+    for(let i=0;i<8;i++) particles.push({x:player.x+player.w/2, y:player.y+player.h, vx:(Math.random()-0.5)*4, vy:-Math.random()*3-1, life:18, color:'#fbbf24'});
+  }
+}
+
+function update(){
+  speed = 3 + Math.min(score/200, 5);
+  camX += speed;
+  spawnPlatforms();
+
+  // Gravity
+  player.vy += GRAVITY;
+  player.y += player.vy;
+  player.onGround = false;
+
+  // Platform collision
+  platforms.forEach(p=>{
+    const px = p.x - camX;
+    if(player.vy>=0 &&
+       player.x+player.w-4 > px &&
+       player.x+4 < px+p.w &&
+       player.y+player.h >= p.y &&
+       player.y+player.h <= p.y+p.h+player.vy+2){
+      player.y = p.y - player.h;
+      player.vy = 0;
+      player.onGround = true;
+      player.jumpsLeft = 2;
+    }
+  });
+
+  // Fall death
+  if(player.y > H+60){ onGameOver(); return; }
+
+  // Stars
+  starObjs.forEach(s=>{
+    if(!s.collected && Math.abs((s.x-camX)-player.x-player.w/2)<30 && Math.abs(s.y-player.y-player.h/2)<30){
+      s.collected=true; stars++;
+      for(let i=0;i<10;i++) particles.push({x:s.x-camX, y:s.y, vx:(Math.random()-0.5)*5, vy:-Math.random()*4-1, life:22, color:'#fbbf24'});
+    }
+  });
+
+  // Particles
+  particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.15;p.life--;});
+  particles=particles.filter(p=>p.life>0);
+
+  // Cleanup
+  const cullX = camX - 200;
+  platforms=platforms.filter(p=>p.x+p.w>cullX);
+  starObjs=starObjs.filter(s=>s.x>cullX);
+
+  score = Math.floor(camX/10);
+}
+
+function drawSky(){
+  const grad=ctx.createLinearGradient(0,0,0,H);
+  grad.addColorStop(0,'#bfdbfe');grad.addColorStop(1,'#e0f2fe');
+  ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);
+  // Clouds
+  [[60,40,3],[180,25,2],[300,55,2.5]].forEach(([cx,cy,sc])=>{
+    const ox=(camX*0.12)%W;
+    const x=((cx-ox%W)+W)%W;
+    ctx.fillStyle='rgba(255,255,255,.85)';
+    ctx.beginPath();ctx.arc(x,cy,18*sc,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(x+22*sc,cy+5,14*sc,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(x-18*sc,cy+5,12*sc,0,Math.PI*2);ctx.fill();
+  });
+}
+
+function draw(){
+  drawSky();
+  // Ground fill
+  ctx.fillStyle='#166534';ctx.fillRect(0,GROUND_Y+PLATFORM_H,W,H-GROUND_Y-PLATFORM_H);
+
+  // Platforms
+  platforms.forEach(p=>{
+    const px=p.x-camX;
+    ctx.fillStyle=p.color;
+    ctx.beginPath();ctx.roundRect(px,p.y,p.w,p.h,4);ctx.fill();
+    ctx.fillStyle='rgba(255,255,255,.25)';
+    ctx.fillRect(px+4,p.y+2,p.w-8,4);
+  });
+
+  // Stars
+  starObjs.filter(s=>!s.collected).forEach(s=>{
+    ctx.font='20px serif';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('⭐',s.x-camX,s.y+Math.sin(Date.now()/400)*3);
+  });
+
+  // Particles
+  particles.forEach(p=>{
+    ctx.globalAlpha=p.life/22;ctx.fillStyle=p.color;
+    ctx.beginPath();ctx.arc(p.x,p.y,3,0,Math.PI*2);ctx.fill();
+  });
+  ctx.globalAlpha=1;
+
+  // Player (superhero)
+  ctx.font='34px serif';ctx.textAlign='center';ctx.textBaseline='bottom';
+  ctx.fillText('🦸',player.x+player.w/2,player.y+player.h);
+
+  // HUD
+  document.getElementById('scoreDisplay').textContent=score;
+  document.getElementById('starsDisplay').textContent=stars;
+  document.getElementById('bestDisplay').textContent=getBest();
+}
+
+function drawOverlay(title,sub,btn){
+  ctx.fillStyle='rgba(0,0,0,.68)';ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#fff';ctx.font='bold 24px system-ui,sans-serif';
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText(title,W/2,H/2-60);
+  ctx.font='16px system-ui,sans-serif';ctx.fillStyle='#bbf7d0';
+  ctx.fillText(sub,W/2,H/2-25);
+  ctx.fillStyle='#22c55e';ctx.beginPath();ctx.roundRect(W/2-70,H/2+10,140,42,8);ctx.fill();
+  ctx.fillStyle='#fff';ctx.font='bold 15px system-ui,sans-serif';
+  ctx.fillText(btn,W/2,H/2+31);
+}
+
+function gameLoop(){
+  if(state!=='playing')return;
+  update();draw();
+  rafId=requestAnimationFrame(gameLoop);
+}
+
+function pauseGame(){
+  if(state!=='playing') return;
+  state='paused';
+  cancelAnimationFrame(rafId);
+}
+function resumeGame(){
+  if(state!=='paused') return;
+  state='playing';
+  rafId=requestAnimationFrame(gameLoop);
+}
+
+function startGame(){
+  state='playing';resetGame();
+  cancelAnimationFrame(rafId);
+  document.getElementById('nameEntry').style.display='none';
+  canvas.onclick=null;
+  rafId=requestAnimationFrame(gameLoop);
+}
+
+function onGameOver(){
+  state='over';
+  cancelAnimationFrame(rafId);
+  const sc=score+stars*5;
+  const best=getBest();
+  if(sc>best) localStorage.setItem('adawati_jump_best',sc);
+  draw();
+  const sub=`${tr('score_lbl')}: ${score}  ⭐${stars}`;
+  setTimeout(()=>{
+    drawOverlay(tr('game_over'),sub,tr('play_again'));
+  },200);
+  if(qualifies(sc)){
+    pendingScore=sc;
+    document.getElementById('nameEntryMsg').textContent=tr('top3_enter');
+    document.getElementById('nameEntry').style.display='';
+    setTimeout(()=>document.getElementById('nameInput').focus(),100);
+  }
+  if(typeof showHomePrompt==='function')showHomePrompt();
+}
+
+function getBest(){return parseInt(localStorage.getItem('adawati_jump_best')||'0');}
+function getLb(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||[];}catch{return[];}}
+function saveLb(lb){localStorage.setItem(STORAGE_KEY,JSON.stringify(lb));}
+function qualifies(sc){const lb=getLb();return lb.length<3||sc>lb[lb.length-1].score;}
+function addEntry(n,sc){const lb=getLb();lb.push({name:n||'?',score:sc});lb.sort((a,b)=>b.score-a.score);lb.splice(3);saveLb(lb);}
+function clearLb(){localStorage.removeItem(STORAGE_KEY);renderLb();}
+function saveScore(){if(!pendingScore)return;addEntry(document.getElementById('nameInput').value.trim(),pendingScore);pendingScore=null;document.getElementById('nameEntry').style.display='none';document.getElementById('nameInput').value='';renderLb();}
+function renderLb(){
+  const lb=getLb();
+  document.getElementById('lbTitle').textContent=tr('top3');
+  document.getElementById('clearBtn').textContent=tr('clear');
+  const rows=document.getElementById('lbRows');
+  if(!lb.length){rows.innerHTML=`<div class="lb-empty">${tr('no_scores')}</div>`;return;}
+  rows.innerHTML=lb.map((e,i)=>`<div class="lb-row ${MEDAL_CLS[i]||''}"><span class="lb-medal">${MEDALS[i]||''}</span><span class="lb-name">${e.name}</span><span class="lb-score">${e.score} pts</span></div>`).join('');
+}
+
+// Controls
+document.getElementById('jumpBtn').addEventListener('pointerdown',e=>{e.preventDefault();if(state==='idle'||state==='over'||state==='paused')startGame();else jump();});
+canvas.addEventListener('touchstart',e=>{e.preventDefault();if(state==='idle'||state==='over')startGame();else if(state==='playing')jump();},{passive:false});
+canvas.addEventListener('click',()=>{if(state==='idle'||state==='over')startGame();});
+document.addEventListener('keydown',e=>{
+  if(e.key===' '||e.key==='ArrowUp'||e.key==='w'){
+    e.preventDefault();
+    if(state==='idle'||state==='over'||state==='paused')startGame();else if(state==='playing')jump();
+  }
+});
+
+document.addEventListener('DOMContentLoaded',()=>{
+  resizeCanvas();
+  window.addEventListener('resize',resizeCanvas);
+  const origSet=window.setLang;
+  window.setLang=function(lang){
+    origSet&&origSet(lang);
+    currentLang=lang;
+    document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+    updateText();
+    if(state==='idle') drawInitOverlay();
+  };
+  window.onLangChange=function(lang){currentLang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';updateText();if(state==='idle')drawInitOverlay();};
+  // Pause on tab hide
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden) pauseGame();
+    else resumeGame();
+  });
+  updateText();
+  drawInitOverlay();
+});
+function drawInitOverlay(){
+  drawSky();
+  ctx.font='34px serif';ctx.textAlign='center';ctx.textBaseline='bottom';
+  ctx.fillText('🦸',player.x+player.w/2,player.y+player.h);
+  drawOverlay(tr('game_title'),tr('press_start'),tr('start'));
+}
+</script>
+<script>(function(){var r=document.documentElement,b=document.getElementById('darkToggle');if(!b)return;try{if(localStorage.getItem('theme')==='dark'){r.classList.add('dark');b.textContent='☀️';}}catch(e){}b.addEventListener('click',function(){var d=r.classList.toggle('dark');b.textContent=d?'☀️':'🌙';try{localStorage.setItem('theme',d?'dark':'light');}catch(e){}});if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}})();</script>
+<script src="i18n.js?v=33"></script>
+<script>if('serviceWorker' in navigator)navigator.serviceWorker.register('/my-tools-site/sw.js',{updateViaCache:'none'});</script>
+</body></html>

@@ -1,0 +1,27 @@
+{
+  "name": "Adawati — Free Online Tools",
+  "short_name": "Adawati",
+  "description": "50+ free tools, calculators, converters & productivity apps in your browser. No signup required.",
+  "start_url": "/my-tools-site/",
+  "scope": "/my-tools-site/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#4f46e5",
+  "background_color": "#f6f7fb",
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    { "src": "icon-192.svg", "sizes": "192x192", "type": "image/svg+xml", "purpose": "any maskable" },
+    { "src": "icon-512.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any maskable" }
+  ],
+  "screenshots": [],
+  "categories": ["utilities", "productivity", "finance"],
+  "shortcuts": [
+    { "name": "BMI Calculator", "url": "/my-tools-site/bmi-calculator.html", "description": "Calculate body mass index" },
+    { "name": "Currency Converter", "url": "/my-tools-site/currency-converter.html", "description": "Convert currencies" },
+    { "name": "Password Generator", "url": "/my-tools-site/password-generator.html", "description": "Generate secure passwords" },
+    { "name": "Zakat Calculator", "url": "/my-tools-site/zakat-calculator.html", "description": "2.5% Zakat on cash, gold & silver" },
+    { "name": "JSON Formatter", "url": "/my-tools-site/json-formatter.html", "description": "Validate & beautify JSON" },
+    { "name": "Pomodoro Timer", "url": "/my-tools-site/pomodoro-timer.html", "description": "25/5 focus timer" }
+  ]
+}

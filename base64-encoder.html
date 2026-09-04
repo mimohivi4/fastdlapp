@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Base64 Encoder & Decoder — Free Online | Adawati</title>
+<meta name="description" content="Free Base64 encoder & decoder: convert text to Base64 and back instantly. Unicode-safe, local, private, no signup.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Adawati"><meta name="theme-color" content="#4f46e5">
+<link rel="canonical" href="https://adawati2027.github.io/my-tools-site/base64-encoder.html">
+<link rel="alternate" hreflang="en" href="https://adawati2027.github.io/my-tools-site/base64-encoder.html">
+<link rel="alternate" hreflang="ar" href="https://adawati2027.github.io/my-tools-site/ar/base64-encoder/">
+<link rel="alternate" hreflang="fr" href="https://adawati2027.github.io/my-tools-site/fr/base64-encoder/">
+<link rel="alternate" hreflang="es" href="https://adawati2027.github.io/my-tools-site/es/base64-encoder/">
+<link rel="alternate" hreflang="de" href="https://adawati2027.github.io/my-tools-site/de/base64-encoder/">
+<link rel="alternate" hreflang="ru" href="https://adawati2027.github.io/my-tools-site/ru/base64-encoder/">
+<link rel="alternate" hreflang="x-default" href="https://adawati2027.github.io/my-tools-site/base64-encoder.html">
+<meta property="og:title" content="Base64 Encoder & Decoder — Free">
+<meta property="og:description" content="Encode & decode Base64 instantly in your browser. Unicode-safe, private.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://adawati2027.github.io/my-tools-site/base64-encoder.html">
+<meta property="og:site_name" content="Adawati"><meta property="og:image" content="https://adawati2027.github.io/my-tools-site/icon-512.svg">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Base64 Encoder — Free"><meta name="twitter:description" content="Encode & decode Base64 locally. No signup."><meta name="twitter:image" content="https://adawati2027.github.io/my-tools-site/icon-512.svg">
+<link rel="manifest" href="manifest.json"><link rel="icon" type="image/svg+xml" href="icon-192.svg"><link rel="apple-touch-icon" href="icon-192.svg">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-97DQT5FHPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-97DQT5FHPF');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3337905412116301" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://adawati2027.github.io/my-tools-site/"},{"@type":"ListItem","position":2,"name":"Base64 Encoder","item":"https://adawati2027.github.io/my-tools-site/base64-encoder.html"}]},
+{"@type":"WebApplication","name":"Base64 Encoder & Decoder","url":"https://adawati2027.github.io/my-tools-site/base64-encoder.html","description":"Encode and decode Base64 text locally.","applicationCategory":"DeveloperApplication","operatingSystem":"All","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},
+{"@type":"HowTo","name":"How to encode Base64","step":[{"@type":"HowToStep","position":1,"name":"Paste text","text":"Paste plain text or Base64 code."},{"@type":"HowToStep","position":2,"name":"Convert","text":"Click Encode or Decode."},{"@type":"HowToStep","position":3,"name":"Copy","text":"Copy the result with one click."}]},
+{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Base64 encryption?","acceptedAnswer":{"@type":"Answer","text":"No. Base64 is an encoding, not encryption — anyone can decode it. Never use it to hide passwords or secrets."}}]}
+]}
+</script>
+<link rel="stylesheet" href="style.css">
+<style>.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;direction:ltr;text-align:left;}</style>
+</head>
+<body>
+<a class="skip-link" href="#calc">Skip to tool</a>
+<header><nav class="navbar" aria-label="Main navigation"><div class="nav-container">
+<a href="index.html" class="nav-brand">Adawati</a>
+<div class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a><button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">🌙</button></div>
+</div></nav></header>
+<main><div class="tool-page">
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">›</span><span aria-current="page">Base64 Encoder</span></nav>
+<div class="page-header"><a href="index.html">← Back to Home</a></div>
+<div class="card" id="calc">
+<div class="card-icon" style="background:#f5f3ff;">🔐</div>
+<h1 class="card-title">Base64 Encoder &amp; Decoder</h1>
+<div class="card-subtitle">Unicode-safe • instant • 100% local</div>
+<div class="divider"></div>
+<label for="bin">Input</label>
+<textarea id="bin" class="mono" placeholder="Hello Adawati / SGVsbG8= ..." spellcheck="false"></textarea>
+<div class="btn-row"><button class="btn btn-primary" onclick="enc()">Encode →</button><button class="btn btn-secondary" onclick="dec()">← Decode</button></div>
+<label for="bout">Output</label>
+<textarea id="bout" class="mono" readonly placeholder="Result appears here..." spellcheck="false"></textarea>
+<div class="btn-row"><button class="btn btn-secondary" onclick="cp()">📋 Copy</button><button class="btn btn-secondary" onclick="swap()">⇅ Swap</button></div>
+<div id="result" class="result-box"><div class="result-label" id="bmsg" style="font-weight:700;"></div></div>
+</div>
+<div class="content-section"><h2>What is Base64?</h2><p>Base64 represents binary data with 64 ASCII characters — used in APIs, JWT tokens, data-URLs and email attachments. It is <strong>not encryption</strong>: decoding is trivial, so never rely on it for secrecy.</p></div>
+<div class="related-tools"><h3>Related tools</h3><div class="related-links"><a class="related-link" href="json-formatter.html">🧩 JSON</a><a class="related-link" href="password-generator.html">🔑 Passwords</a><a class="related-link" href="qr-generator.html">📱 QR</a></div></div>
+</div></main>
+<footer class="footer"><div class="footer-links"><a href="about.html">About</a><a href="contact.html">Contact</a><a href="index.html">All tools</a></div><div class="footer-copy-simple">© 2026 Adawati</div></footer>
+<script>
+function msg(ok,t){var b=document.getElementById('result');b.className='result-box show '+(ok?'success':'danger');document.getElementById('bmsg').textContent=t;}
+function enc(){try{var v=document.getElementById('bin').value;document.getElementById('bout').value=btoa(unescape(encodeURIComponent(v)));msg(true,'✓ Encoded.');}catch(e){msg(false,'✗ '+e.message);}}
+function dec(){try{var v=document.getElementById('bin').value.trim().replace(/\s+/g,'');document.getElementById('bout').value=decodeURIComponent(escape(atob(v)));msg(true,'✓ Decoded.');}catch(e){msg(false,'✗ Invalid Base64.');}}
+function cp(){var t=document.getElementById('bout');t.select();try{navigator.clipboard.writeText(t.value);}catch(e){document.execCommand('copy');}msg(true,'Copied ✓');}
+function swap(){var a=document.getElementById('bin'),b=document.getElementById('bout');var t=a.value;a.value=b.value;b.value=t;}
+(function(){var r=document.documentElement,b=document.getElementById('darkToggle');try{if(localStorage.getItem('theme')==='dark'){r.classList.add('dark');b.textContent='☀️';}}catch(e){}b.addEventListener('click',function(){var d=r.classList.toggle('dark');b.textContent=d?'☀️':'🌙';try{localStorage.setItem('theme',d?'dark':'light');}catch(e){}});})();
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}
+</script>
+<script src="i18n.js?v=34"></script>
+</body></html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-97DQT5FHPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-97DQT5FHPF');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3337905412116301" crossorigin="anonymous"></script>
+<meta name="theme-color" content="#4f46e5">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kids Math Game — Addition & Subtraction | Adawati</title>
+<meta name="description" content="Free math game for kids ages 6-9: addition and subtraction with emoji visuals and instant feedback. No signup, no ads in game.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://adawati2027.github.io/my-tools-site/kids-math.html">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="icon-192.svg">
+<link rel="apple-touch-icon" href="icon-192.svg">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://adawati2027.github.io/my-tools-site/"},{"@type":"ListItem","position":2,"name":"Kids Math Game","item":"https://adawati2027.github.io/my-tools-site/kids-math.html"}]},{"@type":"WebApplication","name":"Kids Math Game | Adawati","url":"https://adawati2027.github.io/my-tools-site/kids-math.html","applicationCategory":"EducationalApplication","operatingSystem":"All","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}]}</script>
+<link rel="stylesheet" href="style.css">
+<style>
+.km-level{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
+.km-btn{padding:10px 22px;border-radius:99px;border:2px solid transparent;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;transition:all .2s;background:var(--surface-2);color:var(--text);}
+.km-btn.active{background:var(--primary);color:#fff;}
+.km-visual{font-size:36px;min-height:56px;text-align:center;line-height:1.4;margin:12px 0;word-break:break-all;}
+.km-question{font-size:32px;font-weight:900;text-align:center;color:var(--primary);margin:12px 0;}
+.km-choices{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:16px 0;}
+.km-choice{min-width:72px;padding:16px;border-radius:14px;border:3px solid var(--border);background:var(--surface-2);font-size:26px;font-weight:900;cursor:pointer;font-family:inherit;transition:all .15s;text-align:center;}
+.km-choice:hover{transform:scale(1.08);border-color:var(--primary);}
+.km-choice.correct{background:#dcfce7;border-color:#22c55e;color:#15803d;}
+.km-choice.wrong{background:#fee2e2;border-color:#ef4444;color:#b91c1c;}
+.km-feedback{font-size:22px;font-weight:800;text-align:center;min-height:32px;}
+.km-score{font-size:14px;font-weight:700;color:var(--text-muted);text-align:center;margin-bottom:8px;}
+.km-done{text-align:center;padding:24px;background:linear-gradient(135deg,#fdf4ff,#ede9fe);border-radius:16px;border:2px solid var(--primary);}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-container">
+  <a href="index.html" class="nav-brand">Adawati</a>
+  <div class="nav-links"><a href="kids-learn.html">🧒 Kids</a><a href="index.html">Home</a></div>
+</div></nav>
+
+<main><div class="tool-page">
+  <div class="page-header"><a href="kids-learn.html">← Back to Kids</a></div>
+  <div class="card">
+    <div class="card-icon" style="background:#fef9c3;">➕</div>
+    <h1 class="card-title">Kids Math Game</h1>
+    <div class="card-subtitle">Addition & Subtraction — Ages 6–9</div>
+    <div class="divider"></div>
+
+    <div class="km-level">
+      <button class="km-btn active" onclick="setLevel('easy')" id="lvlEasy">⭐ Easy (1–10)</button>
+      <button class="km-btn" onclick="setLevel('medium')" id="lvlMed">⭐⭐ Medium (1–20)</button>
+      <button class="km-btn" onclick="setLevel('hard')" id="lvlHard">⭐⭐⭐ Hard (1–50)</button>
+    </div>
+
+    <div id="gameArea">
+      <div class="km-score" id="kmScore">Score: 0 / 10</div>
+      <div class="km-visual" id="kmVisual"></div>
+      <div class="km-question" id="kmQuestion">Loading...</div>
+      <div class="km-choices" id="kmChoices"></div>
+      <div class="km-feedback" id="kmFeedback"></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+      <a href="kids-times-tables.html" class="btn" style="background:var(--surface-2);color:var(--text);text-decoration:none;">✖️ Times Tables</a>
+      <a href="kids-learn.html" class="btn" style="background:var(--surface-2);color:var(--text);text-decoration:none;">🧒 All Kids Tools</a>
+      <a href="kids-spelling.html" class="btn" style="background:var(--surface-2);color:var(--text);text-decoration:none;">🔤 Spelling Bee</a>
+    </div>
+  </div>
+</div></main>
+
+<script>
+const EMOJIS = ['🍎','🌸','🚗','🎈','🌟','🍕','🐝','🦋','🌳','🐟'];
+let level='easy', score=0, total=10, qIdx=0, answered=false, questions=[];
+
+function setLevel(l){
+  level=l;
+  ['easy','medium','hard'].forEach(x=>{
+    document.getElementById('lvl'+x.charAt(0).toUpperCase()+x.slice(1)).classList.toggle('active',x===l);
+  });
+  startGame();
+}
+
+function randInt(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+
+function makeQ(){
+  let max = level==='easy'?10:level==='medium'?20:50;
+  const op = Math.random()>0.5 ? '+' : '-';
+  let a,b;
+  if(op==='+'){
+    a=randInt(1,max-1); b=randInt(1,max-a);
+  } else {
+    a=randInt(2,max); b=randInt(1,a);
+  }
+  const ans = op==='+' ? a+b : a-b;
+  return {a,b,op,ans};
+}
+
+function makeChoices(ans, max){
+  const s=new Set([ans]);
+  while(s.size<4){
+    let v=ans+randInt(-5,5);
+    if(v>=0&&v!==ans) s.add(v);
+  }
+  return [...s].sort(()=>Math.random()-.5);
+}
+
+function startGame(){
+  score=0; qIdx=0; answered=false;
+  questions=Array.from({length:total},makeQ);
+  renderQ();
+}
+
+function renderQ(){
+  if(qIdx>=total){
+    const pct=Math.round(score/total*100);
+    const msg=pct>=80?'🎉 Amazing! You\'re a Math Star!':pct>=50?'👍 Great job! Keep going!':'💪 Keep practicing!';
+    document.getElementById('gameArea').innerHTML=`
+      <div class="km-done">
+        <div style="font-size:60px;">🏆</div>
+        <div style="font-size:22px;font-weight:900;color:var(--primary);margin:10px 0;">${msg}</div>
+        <div style="font-size:16px;color:var(--text-muted);">Score: ${score} / ${total} (${pct}%)</div>
+        <button class="btn btn-primary" style="margin-top:16px;" onclick="startGame()">Play Again</button>
+      </div>`;
+    return;
+  }
+  const q=questions[qIdx];
+  const emoji=EMOJIS[qIdx%EMOJIS.length];
+  let visual='';
+  if(q.op==='+'&&q.a+q.b<=20){
+    visual=`<div>${emoji.repeat(q.a)}</div><div style="font-size:24px;">+</div><div>${emoji.repeat(q.b)}</div>`;
+  } else if(q.op==='-'&&q.a<=20){
+    visual=`<div>${emoji.repeat(q.a)}</div><div style="font-size:24px;">−</div><div style="text-decoration:line-through;opacity:.4;">${emoji.repeat(q.b)}</div>`;
+  }
+  const choices=makeChoices(q.ans, level==='easy'?10:level==='medium'?20:50);
+  document.getElementById('kmScore').textContent=`Score: ${score} / ${total} | Question ${qIdx+1} of ${total}`;
+  document.getElementById('kmVisual').innerHTML=visual;
+  document.getElementById('kmQuestion').textContent=`${q.a} ${q.op==='+'?'+':'−'} ${q.b} = ?`;
+  document.getElementById('kmChoices').innerHTML=choices.map(c=>
+    `<button class="km-choice" onclick="answerQ(this,${c},${q.ans})">${c}</button>`
+  ).join('');
+  document.getElementById('kmFeedback').textContent='';
+  answered=false;
+}
+
+function answerQ(btn,chosen,correct){
+  if(answered) return;
+  answered=true;
+  if(chosen===correct){
+    btn.classList.add('correct');
+    score++;
+    document.getElementById('kmFeedback').textContent='✅ Correct!';
+    if(window.speechSynthesis){const u=new SpeechSynthesisUtterance('Correct!');u.lang='en-US';speechSynthesis.speak(u);}
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.km-choice').forEach(b=>{if(parseInt(b.textContent)===correct) b.classList.add('correct');});
+    document.getElementById('kmFeedback').textContent=`❌ The answer is ${correct}`;
+  }
+  setTimeout(()=>{qIdx++;renderQ();},1000);
+}
+
+startGame();
+</script>
+<script>(function(){var r=document.documentElement,b=document.getElementById('darkToggle');if(!b)return;try{if(localStorage.getItem('theme')==='dark'){r.classList.add('dark');b.textContent='☀️';}}catch(e){}b.addEventListener('click',function(){var d=r.classList.toggle('dark');b.textContent=d?'☀️':'🌙';try{localStorage.setItem('theme',d?'dark':'light');}catch(e){}});if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}})();</script>
+<script src="i18n.js?v=39"></script>
+</body></html>

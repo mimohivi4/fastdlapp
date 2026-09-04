@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-97DQT5FHPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-97DQT5FHPF');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3337905412116301" crossorigin="anonymous"></script>
+<meta name="theme-color" content="#4f46e5">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kids Typing Practice — Learn to Type Fast | Adawati</title>
+<meta name="description" content="Free typing practice for kids ages 8-13: type words and sentences, see your WPM speed and accuracy. Three levels. No signup.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://adawati2027.github.io/my-tools-site/kids-typing.html">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="icon-192.svg">
+<link rel="apple-touch-icon" href="icon-192.svg">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://adawati2027.github.io/my-tools-site/"},{"@type":"ListItem","position":2,"name":"Typing Practice","item":"https://adawati2027.github.io/my-tools-site/kids-typing.html"}]},{"@type":"WebApplication","name":"Typing Practice | Adawati","url":"https://adawati2027.github.io/my-tools-site/kids-typing.html","applicationCategory":"EducationalApplication","operatingSystem":"All","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}]}</script>
+<link rel="stylesheet" href="style.css">
+<style>
+.tp-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:16px;}
+.tp-tab{padding:9px 16px;border-radius:99px;border:2px solid transparent;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;transition:all .2s;background:var(--surface-2);color:var(--text);}
+.tp-tab.active{background:var(--primary);color:#fff;}
+.tp-target{font-size:28px;font-weight:900;text-align:center;font-family:monospace;background:var(--surface-2);padding:16px;border-radius:14px;margin:10px 0;min-height:56px;word-break:break-all;line-height:1.4;}
+.tp-target .correct{color:#22c55e;}
+.tp-target .wrong{color:#ef4444;text-decoration:underline;}
+.tp-target .cursor{border-left:3px solid var(--primary);animation:blink .7s step-end infinite;}
+@keyframes blink{50%{opacity:0}}
+.tp-input{width:100%;font-size:20px;font-weight:700;padding:12px 16px;border-radius:12px;border:3px solid var(--border);background:var(--surface-2);color:var(--text);font-family:monospace;box-sizing:border-box;outline:none;margin:10px 0;}
+.tp-input:focus{border-color:var(--primary);}
+.tp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0;}
+.tp-stat{background:var(--surface-2);border-radius:12px;padding:12px 8px;text-align:center;}
+.tp-stat-val{font-size:22px;font-weight:900;color:var(--primary);}
+.tp-stat-lbl{font-size:11px;font-weight:700;color:var(--text-muted);}
+.tp-result{text-align:center;padding:24px;background:linear-gradient(135deg,#fdf4ff,#ede9fe);border-radius:16px;border:2px solid var(--primary);}
+.tp-prog{height:8px;background:var(--border);border-radius:99px;margin:8px 0;overflow:hidden;}
+.tp-prog-bar{height:100%;background:var(--primary);border-radius:99px;transition:width .3s;}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-container">
+  <a href="index.html" class="nav-brand">Adawati</a>
+  <div class="nav-links"><a href="kids-learn.html">🧒 Kids</a><a href="index.html">Home</a></div>
+</div></nav>
+
+<main><div class="tool-page">
+  <div class="page-header"><a href="kids-learn.html">← Back to Kids</a></div>
+  <div class="card">
+    <div class="card-icon" style="background:#f5f3ff;">⌨️</div>
+    <h1 class="card-title">Typing Practice</h1>
+    <div class="card-subtitle">Type Fast & Accurate — Ages 8–13</div>
+    <div class="divider"></div>
+
+    <div class="tp-tabs">
+      <button class="tp-tab active" onclick="setLevel('easy')" id="tabEasy">⭐ Easy Words</button>
+      <button class="tp-tab" onclick="setLevel('medium')" id="tabMedium">⭐⭐ Medium</button>
+      <button class="tp-tab" onclick="setLevel('hard')" id="tabHard">⭐⭐⭐ Sentences</button>
+    </div>
+
+    <div id="gameArea">
+      <div class="tp-stats">
+        <div class="tp-stat"><div class="tp-stat-val" id="tWPM">0</div><div class="tp-stat-lbl">WPM</div></div>
+        <div class="tp-stat"><div class="tp-stat-val" id="tAcc">100%</div><div class="tp-stat-lbl">Accuracy</div></div>
+        <div class="tp-stat"><div class="tp-stat-val" id="tTime">0s</div><div class="tp-stat-lbl">Time</div></div>
+      </div>
+      <div style="font-size:13px;font-weight:700;color:var(--text-muted);text-align:center;margin-bottom:4px;" id="tCount">Word 1 / 10</div>
+      <div class="tp-prog"><div class="tp-prog-bar" id="tProgBar" style="width:0%"></div></div>
+      <div class="tp-target" id="tTarget">cat</div>
+      <input class="tp-input" id="tInput" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Type here and press Space or Enter...">
+      <div style="font-size:16px;font-weight:800;text-align:center;min-height:24px;" id="tFeedback"></div>
+      <div style="text-align:center;margin-top:8px;">
+        <button class="btn" onclick="restart()" style="background:var(--surface-2);color:var(--text);font-size:13px;">🔄 Restart</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;padding:16px;">
+    <div style="font-size:14px;font-weight:700;margin-bottom:8px;">⌨️ Typing Tips</div>
+    <div style="display:grid;gap:6px;font-size:13px;">
+      <div style="background:var(--surface-2);padding:8px 12px;border-radius:8px;">🖐️ Keep fingers on home row: <strong>A S D F — J K L ;</strong></div>
+      <div style="background:var(--surface-2);padding:8px 12px;border-radius:8px;">👀 Try to look at the <strong>screen</strong>, not your keyboard</div>
+      <div style="background:var(--surface-2);padding:8px 12px;border-radius:8px;">🎯 Focus on <strong>accuracy first</strong>, speed will follow</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+      <a href="kids-spelling.html" class="btn" style="background:var(--surface-2);color:var(--text);text-decoration:none;">🐝 Spelling Bee</a>
+      <a href="kids-learn.html" class="btn" style="background:var(--surface-2);color:var(--text);text-decoration:none;">🧒 All Kids Tools</a>
+    </div>
+  </div>
+</div></main>
+
+<script>
+const WORDS = {
+  easy: ['cat','dog','sun','run','fun','red','big','hot','cup','hat','sit','top','map','bag','box','net','log','pig','hen','web','ant','car','arm','air','ago','all','ask','bad','bed','bit','bus','buy','can','cut','did','dig','dry','due','egg','end','far','few','fit','fly','for','gap','get','god','got','had','has','him','his','hit','how','ice','its','job','key','kid','law','let','lie','low','mad','man','may','men','mix','mud','new','nor','now','nut','odd','off','oil','old','one','our','out','own','pan','pay','pen','pet','pin','pot','put','raw','row','rub','sad','say','sea','set','she','shy','sin','six','sky','son','sum','tag','tan','tar','tax','ten','the','tie','tin','tip','try','two','urn','use','van','via','war','was','way','who','why','win','wit','yes','yet','you','zip'],
+  medium: ['apple','beach','brave','brown','build','carry','catch','clean','clear','climb','clock','close','cloud','color','count','cover','crash','crazy','cross','crowd','crown','curve','dance','dark','delay','depth','dirty','dizzy','doubt','dream','drink','drive','drops','eagle','early','earth','eight','empty','enter','equal','every','exact','extra','faint','false','fancy','fault','feast','field','fifty','final','first','fixed','flame','flash','float','floor','flour','flute','focus','force','forge','frame','fresh','front','fruit','ghost','giant','given','glass','globe','gloom','gloss','grace','grade','grain','grand','graph','grass','grave','great','green','grief','grind','groan','gross','group','grove','grown','guard','guess','guest','guide','quiet','quick','quite','queen'],
+  hard: [
+    'The sun rises in the east.',
+    'She plays guitar every day.',
+    'Cats and dogs are good pets.',
+    'Learning to type is a great skill.',
+    'Practice makes perfect in everything.',
+    'The blue sky is full of clouds today.',
+    'I love reading books about science.',
+    'Music makes people happy and calm.',
+    'Working hard helps you reach your goals.',
+    'We must take care of our planet Earth.',
+  ]
+};
+
+let level='easy', score=0, errors=0, wordIdx=0, wordList=[], startTime=null, timerInt=null, typed=[];
+
+function setLevel(l){
+  level=l;
+  ['easy','medium','hard'].forEach(x=>{
+    document.getElementById('tab'+x.charAt(0).toUpperCase()+x.slice(1)).classList.toggle('active',x===l);
+  });
+  restart();
+}
+
+function shuffle(a){return [...a].sort(()=>Math.random()-.5);}
+
+function restart(){
+  clearInterval(timerInt);
+  if(level==='hard'){
+    wordList=shuffle(WORDS.hard).slice(0,5);
+  } else {
+    wordList=shuffle(WORDS[level]).slice(0,10);
+  }
+  wordIdx=0; score=0; errors=0; startTime=null; typed=[];
+  document.getElementById('tInput').value='';
+  document.getElementById('tFeedback').textContent='';
+  document.getElementById('tWPM').textContent='0';
+  document.getElementById('tAcc').textContent='100%';
+  document.getElementById('tTime').textContent='0s';
+  document.getElementById('tProgBar').style.width='0%';
+  renderTarget();
+  document.getElementById('tInput').focus();
+}
+
+function renderTarget(){
+  if(wordIdx>=wordList.length){
+    showResult();return;
+  }
+  const w=wordList[wordIdx];
+  document.getElementById('tTarget').innerHTML=`<span class="cursor">${escHtml(w)}</span>`;
+  document.getElementById('tCount').textContent=`${level==='hard'?'Sentence':'Word'} ${wordIdx+1} / ${wordList.length}`;
+  document.getElementById('tProgBar').style.width=`${wordIdx/wordList.length*100}%`;
+  document.getElementById('tInput').value='';
+  document.getElementById('tFeedback').textContent='';
+}
+
+function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+document.getElementById('tInput').addEventListener('input',function(){
+  if(!startTime){startTime=Date.now();startTimer();}
+  const target=wordList[wordIdx];
+  const val=this.value;
+  // Render colored target
+  let html='';
+  for(let i=0;i<target.length;i++){
+    if(i<val.length){
+      html+=val[i]===target[i]?`<span class="correct">${escHtml(target[i])}</span>`:`<span class="wrong">${escHtml(target[i])}</span>`;
+    } else {
+      html+=i===val.length?`<span class="cursor">${escHtml(target[i])}</span>`:escHtml(target[i]);
+    }
+  }
+  document.getElementById('tTarget').innerHTML=html;
+});
+
+document.getElementById('tInput').addEventListener('keydown',function(e){
+  if(e.key===' '||e.key==='Enter'){
+    e.preventDefault();
+    const target=wordList[wordIdx];
+    const val=this.value.trim();
+    if(!val) return;
+    const ok=val===target;
+    if(!ok) errors++;
+    typed.push({word:target,typed:val,ok});
+    const acc=Math.round((typed.filter(x=>x.ok).length/typed.length)*100);
+    document.getElementById('tAcc').textContent=acc+'%';
+    document.getElementById('tFeedback').textContent=ok?'✅':'❌ '+target;
+    wordIdx++;
+    setTimeout(renderTarget,ok?200:600);
+  }
+});
+
+function startTimer(){
+  timerInt=setInterval(()=>{
+    const secs=Math.round((Date.now()-startTime)/1000);
+    document.getElementById('tTime').textContent=secs+'s';
+    if(typed.length>0){
+      const chars=typed.reduce((s,x)=>s+x.word.length+1,0);
+      const wpm=Math.round((chars/5)/(secs/60));
+      document.getElementById('tWPM').textContent=wpm;
+    }
+  },1000);
+}
+
+function showResult(){
+  clearInterval(timerInt);
+  const secs=Math.round((Date.now()-startTime)/1000)||1;
+  const chars=typed.reduce((s,x)=>s+x.word.length+1,0);
+  const wpm=Math.round((chars/5)/(secs/60));
+  const acc=Math.round((typed.filter(x=>x.ok).length/typed.length)*100);
+  const grade=wpm>=50?'🏆 Typing Champion!':wpm>=30?'🎉 Great speed!':wpm>=15?'👍 Good job!':'💪 Keep practicing!';
+  document.getElementById('tProgBar').style.width='100%';
+  document.getElementById('gameArea').innerHTML=`
+    <div class="tp-result">
+      <div style="font-size:60px;">⌨️</div>
+      <div style="font-size:22px;font-weight:900;color:var(--primary);margin:10px 0;">${grade}</div>
+      <div class="tp-stats" style="max-width:300px;margin:12px auto;">
+        <div class="tp-stat"><div class="tp-stat-val">${wpm}</div><div class="tp-stat-lbl">WPM</div></div>
+        <div class="tp-stat"><div class="tp-stat-val">${acc}%</div><div class="tp-stat-lbl">Accuracy</div></div>
+        <div class="tp-stat"><div class="tp-stat-val">${secs}s</div><div class="tp-stat-lbl">Time</div></div>
+      </div>
+      <button class="btn btn-primary" style="margin-top:12px;" onclick="restart()">Try Again</button>
+    </div>`;
+}
+
+restart();
+</script>
+<script>(function(){var r=document.documentElement,b=document.getElementById('darkToggle');if(!b)return;try{if(localStorage.getItem('theme')==='dark'){r.classList.add('dark');b.textContent='☀️';}}catch(e){}b.addEventListener('click',function(){var d=r.classList.toggle('dark');b.textContent=d?'☀️':'🌙';try{localStorage.setItem('theme',d?'dark':'light');}catch(e){}});if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}})();</script>
+<script src="i18n.js?v=39"></script>
+</body></html>
