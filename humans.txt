@@ -1,4 +1,4 @@
 /* Adawati — free online tools */
 Site: Adawati — 50+ free calculators, converters & productivity tools
 Stack: Static HTML/CSS/JS, PWA, no backend
-Contact: https://adawati2027.github.io/my-tools-site/contact.html
+Contact: https://mimohivi4.github.io/fastdlapp/contact.html
