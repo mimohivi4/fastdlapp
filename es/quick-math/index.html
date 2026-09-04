@@ -1,0 +1,728 @@
+﻿<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<base href="https://mimohivi4.github.io/fastdlapp/">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-97DQT5FHPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-97DQT5FHPF');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3337905412116301" crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matemáticas rápidas — Desafío inteligente 100 niveles | Adawati</title>
+<meta name="description" content="Prueba tu velocidad de cálculo mental en 100 niveles progresivos. De principiante a increíble. Gratis.">
+<meta name="keywords" content="quick math game, mental math challenge, arithmetic quiz online, math speed test, free math brain game">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mimohivi4.github.io/fastdlapp/es/quick-math/">
+<link rel="alternate" hreflang="en" href="https://mimohivi4.github.io/fastdlapp/quick-math.html">
+<link rel="alternate" hreflang="ar" href="https://mimohivi4.github.io/fastdlapp/ar/quick-math/">
+<link rel="alternate" hreflang="fr" href="https://mimohivi4.github.io/fastdlapp/fr/quick-math/">
+<link rel="alternate" hreflang="es" href="https://mimohivi4.github.io/fastdlapp/es/quick-math/">
+<link rel="alternate" hreflang="de" href="https://mimohivi4.github.io/fastdlapp/de/quick-math/">
+<link rel="alternate" hreflang="ru" href="https://mimohivi4.github.io/fastdlapp/ru/quick-math/">
+<link rel="alternate" hreflang="x-default" href="https://mimohivi4.github.io/fastdlapp/quick-math.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","@id":"https://mimohivi4.github.io/fastdlapp/quick-math.html#app","name":"Quick Math Challenge","url":"https://mimohivi4.github.io/fastdlapp/quick-math.html","description":"Test your mental math speed with 100 levels of arithmetic challenges. Answer before the timer runs out. Free brain game, no signup.","applicationCategory":"GameApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How does the Quick Math challenge work?","acceptedAnswer":{"@type":"Answer","text":"You are given arithmetic questions — addition, subtraction, multiplication, division — and must answer before the timer runs out. 100 levels progress from simple sums to complex calculations. Each correct answer earns points and advances your level."}},
+{"@type":"Question","name":"Does practicing mental arithmetic actually improve math skills?","acceptedAnswer":{"@type":"Answer","text":"Yes. Timed mental math practice improves calculation speed and recall of number facts. The pressure of a timer forces your brain to access arithmetic knowledge faster, a technique used in educational programs worldwide."}}
+]}]}
+</script>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── Progress bar ── */
+.lvl-progress-outer{height:12px;background:var(--border);border-radius:99px;overflow:hidden;margin-bottom:10px;position:relative;}
+.lvl-progress-inner{height:100%;border-radius:99px;background:linear-gradient(90deg,#22c55e,#3b82f6,var(--primary));transition:width 0.5s ease;}
+
+/* ── Tier & Level display ── */
+.tier-level-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px;}
+.tier-badge-big{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:99px;font-size:15px;font-weight:900;background:linear-gradient(135deg,var(--primary-light),#ede9fe);border:2px solid var(--primary);color:var(--primary);}
+.level-num-lbl{font-size:13px;color:var(--text-muted);font-weight:700;}
+
+/* ── Timer bar ── */
+.timer-wrap{height:10px;background:var(--border);border-radius:99px;overflow:hidden;margin-bottom:14px;}
+.timer-bar{height:100%;border-radius:99px;background:#22c55e;transition:width .1s linear,background .3s;}
+.timer-bar.warn{background:#f59e0b;} .timer-bar.danger{background:#ef4444;}
+
+/* ── Score row ── */
+.score-row{display:flex;gap:12px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;}
+.score-item{text-align:center;}
+.score-val{font-size:24px;font-weight:900;color:var(--primary);}
+.score-lbl{font-size:11px;color:var(--text-muted);font-weight:600;}
+
+/* ── Question ── */
+.qm-question{font-size:40px;font-weight:900;color:var(--primary);text-align:center;min-height:56px;display:flex;align-items:center;justify-content:center;margin:8px 0;line-height:1.2;}
+.qm-feedback{text-align:center;font-size:17px;font-weight:700;min-height:26px;transition:color .2s;}
+.qm-feedback.right{color:#22c55e;} .qm-feedback.wrong{color:#ef4444;}
+.qm-input-row{display:flex;gap:10px;justify-content:center;margin:10px 0;}
+.qm-input-row input{width:120px;text-align:center;font-size:24px;font-weight:700;padding:10px;border:2px solid var(--border);border-radius:var(--radius-sm);background:var(--surface-2);color:var(--text);}
+.qm-input-row input:focus{outline:none;border-color:var(--primary);}
+
+/* ── Level jump ── */
+.level-jump{display:flex;gap:8px;justify-content:center;align-items:center;margin:10px 0;flex-wrap:wrap;}
+.level-jump input{width:80px;text-align:center;font-size:15px;font-weight:700;padding:7px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--surface-2);color:var(--text);}
+.level-jump input:focus{outline:none;border-color:var(--primary);}
+.level-jump-lbl{font-size:13px;color:var(--text-muted);font-weight:600;}
+
+/* ── Share button ── */
+.share-btn{display:flex;align-items:center;gap:8px;margin:12px auto;padding:10px 22px;border-radius:99px;border:none;background:linear-gradient(135deg,#f97316,#ef4444);color:#fff;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 16px rgba(239,68,68,.3);}
+.share-btn:hover{transform:scale(1.04);box-shadow:0 6px 20px rgba(239,68,68,.4);}
+
+/* ── Toast ── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#1e293b;color:#fff;padding:10px 22px;border-radius:99px;font-size:14px;font-weight:700;transition:transform .3s;z-index:9999;pointer-events:none;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* ── Overlays ── */
+.game-overlay{text-align:center;padding:20px;border-radius:var(--radius-lg);margin:8px 0;font-weight:700;}
+.level-complete{background:linear-gradient(135deg,#dcfce7,#bbf7d0);border:2px solid #22c55e;color:#15803d;display:none;}
+.level-complete.show{display:block;}
+.all-done{background:linear-gradient(135deg,#fef9c3,#fde68a);border:2px solid #eab308;color:#854d0e;display:none;}
+.all-done.show{display:block;}
+.overlay-title{font-size:22px;margin-bottom:6px;}
+.overlay-sub{font-size:14px;font-weight:600;opacity:.8;margin-bottom:6px;}
+.overlay-tier{font-size:28px;font-weight:900;margin:6px 0;}
+.overlay-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px;}
+
+/* ── Saved progress banner ── */
+.continue-banner{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1.5px solid #3b82f6;border-radius:var(--radius-sm);margin-bottom:12px;gap:10px;flex-wrap:wrap;}
+.continue-banner-txt{font-size:13px;font-weight:700;color:#1d4ed8;}
+.continue-banner-btns{display:flex;gap:8px;}
+
+/* ── Leaderboard ── */
+.lb-wrap{margin-top:20px;border-top:1px solid var(--border);padding-top:16px;}
+.lb-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.lb-title{font-size:15px;font-weight:800;}
+.lb-clear{font-size:12px;color:var(--text-muted);background:none;border:none;cursor:pointer;font-family:inherit;}
+.lb-clear:hover{color:#ef4444;}
+.lb-empty{font-size:13px;color:var(--text-muted);text-align:center;padding:10px 0;}
+.lb-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--surface-2);border:1px solid var(--border);}
+.lb-row.gold{background:linear-gradient(135deg,#fef9c3,#fef08a);border-color:#eab308;}
+.lb-row.silver{background:linear-gradient(135deg,#f1f5f9,#e2e8f0);border-color:#94a3b8;}
+.lb-row.bronze{background:linear-gradient(135deg,#fff7ed,#fed7aa);border-color:#f97316;}
+.lb-medal{font-size:20px;flex-shrink:0;}
+.lb-name{font-weight:700;font-size:14px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.lb-score{font-size:12px;font-weight:600;color:var(--primary);flex-shrink:0;text-align:end;}
+.lb-tier-tag{font-size:11px;font-weight:800;padding:2px 8px;border-radius:99px;background:var(--primary);color:#fff;margin-right:4px;flex-shrink:0;}
+.name-entry{margin-top:12px;padding:14px;background:linear-gradient(135deg,#fdf4ff,#ede9fe);border:2px solid var(--primary);border-radius:var(--radius-sm);text-align:center;}
+.name-entry-msg{font-size:14px;font-weight:700;margin-bottom:10px;color:var(--primary);}
+.name-entry-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.name-entry-row input{padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--text);font-size:14px;font-family:inherit;width:160px;}
+.name-entry-row input:focus{outline:none;border-color:var(--primary);}
+
+@media(max-width:400px){.qm-question{font-size:30px;}.score-val{font-size:20px;}}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-container">
+  <a href="index.html" class="nav-brand">Adawati</a>
+  <div class="nav-links">
+    <a href="index.html" data-i18n="nav_home">Home</a>
+    <a href="about.html" data-i18n="nav_about">About</a>
+    <a href="contact.html" data-i18n="nav_contact">Contact</a>
+    
+    <div class="lang-switcher">
+      <button class="lang-btn" onclick="toggleLangMenu()">🌐 <span id="currentLang">EN</span> ▾</button>
+      <div class="lang-menu" id="langMenu">
+        <a onclick="setLang('ar')">🇸🇦 العربية</a><a onclick="setLang('en')">🇬🇧 English</a>
+        <a onclick="setLang('fr')">🇫🇷 Français</a><a onclick="setLang('es')">🇪🇸 Español</a>
+        <a onclick="setLang('de')">🇩🇪 Deutsch</a><a onclick="setLang('ru')">🇷🇺 Русский</a>
+      </div>
+    </div>
+  </div>
+</div></nav>
+
+<main><div class="tool-page">
+  <div class="page-header"><a href="index.html" data-i18n="back">← Back to Home</a></div>
+  <div class="card">
+    <div class="card-icon" style="background:#fef3c7;">🔢</div>
+    <h1 class="card-title" data-i18n="qmath_card_title">تحدي الأذكياء — سرعة الحساب</h1>
+    <div class="card-subtitle" id="qmSubtitle">100 levels — Beginner to Unbelievable 🔥</div>
+    <div class="divider"></div>
+
+    <!-- Continue banner (shown if saved progress found) -->
+    <div class="continue-banner" id="continueBanner" style="display:none;">
+      <span class="continue-banner-txt" id="continueTxt">كنت في المستوى 12 — تكمل؟</span>
+      <div class="continue-banner-btns">
+        <button class="btn btn-primary" onclick="continueProgress()" id="continueBtn" style="padding:5px 12px;font-size:13px;">تكمل ←</button>
+        <button class="btn btn-secondary" onclick="dismissContinue()" style="padding:5px 10px;font-size:12px;">من البداية</button>
+      </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="lvl-progress-outer">
+      <div class="lvl-progress-inner" id="progressBar" style="width:1%"></div>
+    </div>
+
+    <!-- Tier + level row -->
+    <div class="tier-level-row">
+      <div class="tier-badge-big" id="tierBadge">👶 مبتدئ</div>
+      <div class="level-num-lbl" id="levelNumLbl">المستوى 1 / 100</div>
+    </div>
+
+    <!-- Level jump -->
+    <div class="level-jump">
+      <span class="level-jump-lbl" id="jumpLbl">انتقل للمستوى:</span>
+      <input type="number" id="jumpInput" min="1" max="100" placeholder="1-100"
+        onkeydown="if(event.key==='Enter')doJump()">
+      <button class="btn btn-secondary" onclick="doJump()" id="jumpBtn" style="padding:7px 14px;font-size:13px;">انتقل ←</button>
+    </div>
+
+    <!-- Timer bar -->
+    <div class="timer-wrap"><div class="timer-bar" id="timerBar" style="width:100%"></div></div>
+
+    <!-- Score -->
+    <div class="score-row">
+      <div class="score-item"><div class="score-val" id="correctCount">0</div><div class="score-lbl" id="correctLbl">صحيح</div></div>
+      <div class="score-item"><div class="score-val" id="wrongCount">0</div><div class="score-lbl" id="wrongLbl">خطأ</div></div>
+      <div class="score-item"><div class="score-val" id="qNumDisplay">1/10</div><div class="score-lbl" id="qNumLbl">السؤال</div></div>
+      <div class="score-item"><div class="score-val" id="timerNum">–</div><div class="score-lbl" id="timerLbl">ثانية</div></div>
+    </div>
+
+    <!-- Question -->
+    <div class="qm-question" id="questionDisplay">3 + 4 = ?</div>
+    <div class="qm-feedback" id="feedbackMsg"></div>
+    <div class="qm-input-row" id="inputRow">
+      <input type="number" id="answerInput" placeholder="؟" onkeydown="if(event.key==='Enter')submitAnswer()">
+      <button class="btn btn-primary" onclick="submitAnswer()" id="submitBtn">←</button>
+    </div>
+
+    <!-- Level complete -->
+    <div class="game-overlay level-complete" id="levelCompleteBox">
+      <div class="overlay-title" id="lcTitle">🎉 أحسنت!</div>
+      <div class="overlay-tier" id="lcTier"></div>
+      <div class="overlay-sub" id="lcSub"></div>
+      <button class="share-btn" onclick="shareChallenge()" id="shareBtnLc">🔥 تحدّ أصدقاءك بنتيجتك</button>
+      <div class="overlay-btns">
+        <button class="btn btn-primary" onclick="nextLevel()" id="nextLevelBtn">المستوى التالي ←</button>
+        <button class="btn btn-secondary" onclick="restartAll()" id="restartBtn">⏮ من البداية</button>
+      </div>
+    </div>
+
+    <!-- All done (level 100) -->
+    <div class="game-overlay all-done" id="allDoneBox">
+      <div class="overlay-title">🏆 غير قابل للتصديق!</div>
+      <div class="overlay-tier">🔥 المستوى 100 من 100</div>
+      <div class="overlay-sub" id="allDoneSub"></div>
+      <button class="share-btn" onclick="shareChallenge()" id="shareBtnAll">🔥 تحدّ العالم بنتيجتك</button>
+      <div class="overlay-btns">
+        <button class="btn btn-primary" onclick="restartAll()" id="playAgainBtn">🔄 العب مجدداً</button>
+      </div>
+    </div>
+
+    <!-- Name entry -->
+    <div class="name-entry" id="nameEntry" style="display:none;">
+      <div class="name-entry-msg" id="nameEntryMsg">🏆 دخلت إلى أفضل 3! اكتب اسمك:</div>
+      <div class="name-entry-row">
+        <input type="text" id="nameInput" maxlength="20" placeholder="اسمك"
+          onkeydown="if(event.key==='Enter')saveScore()">
+        <button class="btn btn-primary" onclick="saveScore()" id="saveBtn">💾 حفظ</button>
+      </div>
+    </div>
+
+    <!-- Leaderboard -->
+    <div class="lb-wrap">
+      <div class="lb-header">
+        <span class="lb-title" id="lbTitle">🏆 أذكى 3 لاعبين</span>
+        <button class="lb-clear" onclick="clearLb()" id="clearBtn">🗑 مسح</button>
+      </div>
+      <div id="lbRows"></div>
+    </div>
+  </div>
+</div></main>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<footer class="footer" style="padding:28px;">
+  <div style="max-width:1160px;margin:0 auto;">
+    <div class="footer-links"><a href="about.html" data-i18n="footer_about">About</a><a href="contact.html" data-i18n="footer_contact">Contact</a></div>
+    <div class="footer-copy-simple" data-i18n="footer_copy">© 2026 Adawati</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════
+   TIER CONFIG  (10 tiers × 10 levels = 100)
+═══════════════════════════════════════════ */
+const TIERS = [
+  {ar:'مبتدئ',           en:'Beginner',       fr:'Débutant',      es:'Principiante',  de:'Anfänger',  ru:'Новичок',       emoji:'👶'},
+  {ar:'متعلم',           en:'Learner',        fr:'Apprenant',     es:'Aprendiz',      de:'Lernender', ru:'Ученик',         emoji:'📚'},
+  {ar:'متوسط',           en:'Average',        fr:'Moyen',         es:'Promedio',      de:'Durchschnitt',ru:'Средний',      emoji:'📊'},
+  {ar:'فوق المتوسط',     en:'Above Average',  fr:'Au-dessus',     es:'Por Encima',    de:'Überdurchschn.',ru:'Выше среднего',emoji:'⬆️'},
+  {ar:'ذكي',             en:'Smart',          fr:'Intelligent',   es:'Inteligente',   de:'Klug',      ru:'Умный',          emoji:'🧠'},
+  {ar:'ذكي جداً',        en:'Very Smart',     fr:'Très Intelligent',es:'Muy Inteligente',de:'Sehr Klug',ru:'Очень умный',  emoji:'💡'},
+  {ar:'موهوب',           en:'Gifted',         fr:'Doué',          es:'Dotado',        de:'Begabt',    ru:'Одарённый',      emoji:'🌟'},
+  {ar:'عبقري',           en:'Genius',         fr:'Génie',         es:'Genio',         de:'Genie',     ru:'Гений',          emoji:'🚀'},
+  {ar:'أسطورة',          en:'Legend',         fr:'Légende',       es:'Leyenda',       de:'Legende',   ru:'Легенда',        emoji:'🏆'},
+  {ar:'غير قابل للتصديق',en:'Unbelievable',   fr:'Incroyable',    es:'Increíble',     de:'Unglaublich',ru:'Невероятный',  emoji:'🔥'},
+];
+
+/* ═══════════════════════════════════════════
+   TRANSLATIONS
+═══════════════════════════════════════════ */
+const QT = {
+  ar:{correctLbl:'صحيح',wrongLbl:'خطأ',qNumLbl:'السؤال',timerLbl:'ثانية',
+    submitBtn:'←',jumpLbl:'انتقل للمستوى:',jumpBtn:'انتقل ←',
+    lcTitle:'🎉 أحسنت! اجتزت المستوى',
+    lcSub:'{c}/{q} إجابة صحيحة',
+    nextLevel:'المستوى التالي ←',restart:'⏮ من البداية',
+    allDoneSub:'أكملت 100 مستوى كاملة! لا يصدّق. أنت من 0.001% من الناس.',
+    playAgain:'🔄 العب مجدداً',
+    shareBtn:'🔥 تحدّ أصدقاءك بنتيجتك',
+    shareMsg:'🧠 وصلت للمستوى {l} من 100 في تحدي الأذكياء!\nرتبتي: {e} {t}\nأجبت على {c}/{q} بشكل صحيح!\n\nأنت كمان شايف حالك ذكي؟ 😏 جرّب الآن:\n🔢 https://mimohivi4.github.io/fastdlapp/quick-math.html',
+    copied:'✅ تم النسخ! شاركه الآن',
+    continueTxt:'مرحباً بعودتك! كنت في المستوى {l} — تكمل من حيث توقفت؟',
+    continueBtn:'تكمل ←',freshBtn:'من البداية',
+    lbTitle:'🏆 أذكى 3 لاعبين',lbEmpty:'لا توجد نتائج — كن أول الأذكياء!',
+    lbNew:'🏆 دخلت أفضل 3 أذكياء! اكتب اسمك:',lbSave:'💾 حفظ',lbPh:'اسمك',
+    lbScore:'مستوى {l} · {c}/{q} صح',lbClear:'🗑 مسح',
+    right:'✅ صحيح!',wrong:'❌ الجواب: {a}',timeUp:'⏰ الوقت! الجواب: {a}',levelLbl:'المستوى',subtitleLbl:'100 مستوى — من مبتدئ إلى غير قابل للتصديق 🔥'},
+  en:{correctLbl:'Correct',wrongLbl:'Wrong',qNumLbl:'Question',timerLbl:'sec',
+    submitBtn:'→',jumpLbl:'Jump to level:',jumpBtn:'Go →',
+    lcTitle:'🎉 Level cleared!',
+    lcSub:'{c}/{q} correct answers',
+    nextLevel:'Next Level →',restart:'⏮ Restart',
+    allDoneSub:'You completed all 100 levels! You\'re in the 0.001%.',
+    playAgain:'🔄 Play Again',
+    shareBtn:'🔥 Challenge your friends',
+    shareMsg:'🧠 I reached Level {l}/100 in the Smart Challenge!\nMy rank: {e} {t}\n{c}/{q} correct!\n\nThink you can beat me? 😏\n🔢 Try now: https://mimohivi4.github.io/fastdlapp/quick-math.html',
+    copied:'✅ Copied! Share it now',
+    continueTxt:'Welcome back! You were at Level {l} — continue?',
+    continueBtn:'Continue ←',freshBtn:'Fresh start',
+    lbTitle:'🏆 Top 3 Smartest',lbEmpty:'No scores yet — be the first genius!',
+    lbNew:'🏆 Top 3 Genius! Enter your name:',lbSave:'💾 Save',lbPh:'Your name',
+    lbScore:'Level {l} · {c}/{q} correct',lbClear:'🗑 Clear',
+    right:'✅ Correct!',wrong:'❌ Answer: {a}',timeUp:'⏰ Time\'s up! Answer: {a}',levelLbl:'Level',subtitleLbl:'100 levels — Beginner to Unbelievable 🔥'},
+  fr:{correctLbl:'Correct',wrongLbl:'Faux',qNumLbl:'Question',timerLbl:'sec',
+    submitBtn:'→',jumpLbl:'Aller au niveau:',jumpBtn:'Aller →',
+    lcTitle:'🎉 Niveau réussi!',lcSub:'{c}/{q} bonnes réponses',
+    nextLevel:'Niveau suivant →',restart:'⏮ Recommencer',
+    allDoneSub:'100 niveaux complétés! Vous êtes dans le 0,001%.',
+    playAgain:'🔄 Rejouer',shareBtn:'🔥 Défier vos amis',
+    shareMsg:'🧠 J\'ai atteint le Niveau {l}/100!\nMon rang: {e} {t}\n{c}/{q} correct!\nPeux-tu me battre? 😏\n🔢 https://mimohivi4.github.io/fastdlapp/quick-math.html',
+    copied:'✅ Copié!',continueTxt:'Bienvenue! Vous étiez au niveau {l} — continuer?',
+    continueBtn:'Continuer ←',freshBtn:'Recommencer',
+    lbTitle:'🏆 Top 3 Génies',lbEmpty:'Pas de scores!',
+    lbNew:'🏆 Top 3! Entrez votre nom:',lbSave:'💾 Sauver',lbPh:'Votre nom',
+    lbScore:'Niv. {l} · {c}/{q}',lbClear:'🗑 Effacer',
+    right:'✅ Correct!',wrong:'❌ Réponse: {a}',timeUp:'⏰ Temps! Réponse: {a}',levelLbl:'Niveau',subtitleLbl:'100 niveaux — Débutant à Incroyable 🔥'},
+  es:{correctLbl:'Correcto',wrongLbl:'Incorrecto',qNumLbl:'Pregunta',timerLbl:'seg',
+    submitBtn:'→',jumpLbl:'Ir al nivel:',jumpBtn:'Ir →',
+    lcTitle:'🎉 ¡Nivel superado!',lcSub:'{c}/{q} respuestas correctas',
+    nextLevel:'Siguiente nivel →',restart:'⏮ Reiniciar',
+    allDoneSub:'¡100 niveles completados! Estás en el 0,001%.',
+    playAgain:'🔄 Jugar de nuevo',shareBtn:'🔥 Desafía a tus amigos',
+    shareMsg:'🧠 ¡Llegué al Nivel {l}/100!\nMi rango: {e} {t}\n{c}/{q} correcto!\n¿Puedes superarme? 😏\n🔢 https://mimohivi4.github.io/fastdlapp/quick-math.html',
+    copied:'✅ ¡Copiado!',continueTxt:'¡Bienvenido! Estabas en el nivel {l} — ¿continuar?',
+    continueBtn:'Continuar ←',freshBtn:'Empezar de nuevo',
+    lbTitle:'🏆 Top 3 Genios',lbEmpty:'¡Sin puntuaciones!',
+    lbNew:'🏆 ¡Top 3! Escribe tu nombre:',lbSave:'💾 Guardar',lbPh:'Tu nombre',
+    lbScore:'Niv. {l} · {c}/{q}',lbClear:'🗑 Borrar',
+    right:'✅ ¡Correcto!',wrong:'❌ Respuesta: {a}',timeUp:'⏰ ¡Tiempo! Respuesta: {a}',levelLbl:'Nivel',subtitleLbl:'100 niveles — Principiante a Increíble 🔥'},
+  de:{correctLbl:'Richtig',wrongLbl:'Falsch',qNumLbl:'Frage',timerLbl:'Sek',
+    submitBtn:'→',jumpLbl:'Zum Level:',jumpBtn:'Gehe →',
+    lcTitle:'🎉 Level geschafft!',lcSub:'{c}/{q} richtige Antworten',
+    nextLevel:'Nächstes Level →',restart:'⏮ Neustart',
+    allDoneSub:'100 Level geschafft! Du bist in den 0,001%.',
+    playAgain:'🔄 Nochmal',shareBtn:'🔥 Freunde herausfordern',
+    shareMsg:'🧠 Ich habe Level {l}/100 erreicht!\nMein Rang: {e} {t}\n{c}/{q} richtig!\nKannst du mich schlagen? 😏\n🔢 https://mimohivi4.github.io/fastdlapp/quick-math.html',
+    copied:'✅ Kopiert!',continueTxt:'Willkommen! Du warst bei Level {l} — weitermachen?',
+    continueBtn:'Weiter ←',freshBtn:'Neu starten',
+    lbTitle:'🏆 Top 3 Genies',lbEmpty:'Keine Einträge!',
+    lbNew:'🏆 Top 3 Genie! Gib deinen Namen ein:',lbSave:'💾 Speichern',lbPh:'Dein Name',
+    lbScore:'Lv. {l} · {c}/{q}',lbClear:'🗑 Löschen',
+    right:'✅ Richtig!',wrong:'❌ Antwort: {a}',timeUp:'⏰ Zeit! Antwort: {a}',levelLbl:'Level',subtitleLbl:'100 Level — Anfänger bis Unglaublich 🔥'},
+  ru:{correctLbl:'Правильно',wrongLbl:'Неверно',qNumLbl:'Вопрос',timerLbl:'сек',
+    submitBtn:'→',jumpLbl:'Перейти к уровню:',jumpBtn:'Перейти →',
+    lcTitle:'🎉 Уровень пройден!',lcSub:'{c}/{q} правильных ответов',
+    nextLevel:'Следующий →',restart:'⏮ Сначала',
+    allDoneSub:'100 уровней пройдено! Вы в топ 0,001%.',
+    playAgain:'🔄 Снова',shareBtn:'🔥 Брось вызов друзьям',
+    shareMsg:'🧠 Я достиг уровня {l}/100!\nМой ранг: {e} {t}\n{c}/{q} правильно!\nМожешь меня превзойти? 😏\n🔢 https://mimohivi4.github.io/fastdlapp/quick-math.html',
+    copied:'✅ Скопировано!',continueTxt:'Добро пожаловать! Вы были на уровне {l} — продолжить?',
+    continueBtn:'Продолжить ←',freshBtn:'Заново',
+    lbTitle:'🏆 Топ 3 гениев',lbEmpty:'Нет результатов!',
+    lbNew:'🏆 Топ 3 гений! Введите имя:',lbSave:'💾 Сохранить',lbPh:'Ваше имя',
+    lbScore:'Ур. {l} · {c}/{q}',lbClear:'🗑 Очистить',
+    right:'✅ Правильно!',wrong:'❌ Ответ: {a}',timeUp:'⏰ Время! Ответ: {a}',levelLbl:'Уровень',subtitleLbl:'100 уровней — Новичок до Невероятного 🔥'},
+};
+
+const MEDALS=['🥇','🥈','🥉'], MEDAL_CLS=['gold','silver','bronze'];
+const STORAGE_KEY='adawati_qmath_lb', PROGRESS_KEY='adawati_qmath_progress';
+const MAX_LEVEL=100, BASE_Q=10;
+
+/* ── State ── */
+let currentLang='en', currentLevel=0, pendingScore=null;
+let questionNum=0, correct=0, wrong=0, answer=0;
+let timerInterval=null, timeLeft=0, savedProgress=0;
+let _timerPaused=false, _timerPauseStart=0;
+
+function tr(k){return(QT[currentLang]||QT.en)[k]||k;}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function rnd(max){return Math.floor(Math.random()*max)+1;}
+function rndRange(min,max){return min+Math.floor(Math.random()*(max-min+1));}
+
+/* ── Tier helpers ── */
+function getTier(level){return TIERS[Math.min(9,Math.floor((level-1)/10))];}
+function getTierName(tier){
+  const lang=currentLang==='ar'?'ar':currentLang==='fr'?'fr':currentLang==='es'?'es':currentLang==='de'?'de':currentLang==='ru'?'ru':'en';
+  return tier[lang]||tier.en;
+}
+
+/* ── Level config: formula-based ── */
+function getLevelConfig(level){
+  const tier=Math.ceil(level/10); // 1-10
+  const pos=(level-1)%10;         // 0-9
+  // Time: 20s at level 1 → 3s at level 100
+  const time=Math.max(3,Math.round(20-(level-1)*0.172));
+  const questions=tier===1?5:BASE_Q;
+
+  const cfgMap={
+    1:{type:'basic', ops:['+'],                range1:[1,10+pos*2],  range2:[1,10+pos*2]},
+    2:{type:'basic', ops:['+','-'],            range1:[1,30+pos*5],  range2:[1,30+pos*5]},
+    3:{type:'basic', ops:['+','-','×'],        range1:[1,12],        range2:[1,12]},
+    4:{type:'basic', ops:['+','-','×','÷'],    range1:[1,15+pos*3],  range2:[1,12]},
+    5:{type:'basic', ops:['+','-','×','÷'],    range1:[1,50+pos*5],  range2:[1,15]},
+    6:{type:'basic', ops:['+','-','×','÷'],    range1:[1,100+pos*10],range2:[1,20]},
+    7:{type:'twostep',                         range:[1,15+pos*3]},
+    8:{type:'twostep',                         range:[1,30+pos*5]},
+    9:{type:'square',                          range:[2,12+pos*2]},
+   10:{type:'elite',                           range:[1,50+pos*10]},
+  };
+  return {...cfgMap[tier],time,questions,tier,level};
+}
+
+/* ── Question generators ── */
+function genBasic(ops,r1,r2){
+  const op=ops[Math.floor(Math.random()*ops.length)];
+  let a,b,display,ans;
+  if(op==='+'){a=rndRange(r1[0],r1[1]);b=rndRange(r2[0],r2[1]);ans=a+b;display=`${a} + ${b} = ?`;}
+  else if(op==='-'){
+    a=rndRange(r1[0],r1[1])+rndRange(r2[0],r2[1]);
+    b=rndRange(r2[0],Math.max(r2[0],Math.min(r2[1],a)));
+    ans=a-b;display=`${a} − ${b} = ?`;
+  }
+  else if(op==='×'){a=rndRange(2,Math.min(20,r1[1]));b=rndRange(2,Math.min(15,r2[1]));ans=a*b;display=`${a} × ${b} = ?`;}
+  else{
+    b=rndRange(2,Math.min(12,r2[1]));
+    a=b*rndRange(2,Math.min(12,Math.floor(r1[1]/b)||2));
+    ans=a/b;display=`${a} ÷ ${b} = ?`;
+  }
+  return{display,ans};
+}
+
+function genTwoStep(range){
+  const r=Math.random(), cap=range[1];
+  if(r<0.25){
+    const a=rndRange(2,Math.min(15,cap)),b=rndRange(2,Math.min(10,cap));
+    const c=rndRange(1,Math.min(30,cap));
+    return{display:`${a} × ${b} + ${c} = ?`,ans:a*b+c};
+  }
+  if(r<0.5){
+    const a=rndRange(2,Math.min(15,cap)),b=rndRange(2,Math.min(10,cap));
+    const prod=a*b,c=rndRange(1,prod-1);
+    return{display:`${a} × ${b} − ${c} = ?`,ans:prod-c};
+  }
+  if(r<0.75){
+    const a=rndRange(2,Math.min(20,cap)),b=rndRange(2,Math.min(10,a-1)||2);
+    const c=rndRange(2,Math.min(8,cap));
+    return{display:`(${a} − ${b}) × ${c} = ?`,ans:(a-b)*c};
+  }
+  const a=rndRange(2,Math.min(15,cap)),b=rndRange(2,Math.min(10,cap));
+  const c=rndRange(2,Math.min(8,cap));
+  return{display:`(${a} + ${b}) × ${c} = ?`,ans:(a+b)*c};
+}
+
+function genSquare(range){
+  const n=rndRange(range[0],range[1]);
+  return{display:`${n}² = ?`,ans:n*n};
+}
+
+function genElite(range){
+  const r=Math.random(),cap=range[1];
+  if(r<0.35) return genTwoStep([1,Math.min(50,cap)]);
+  if(r<0.6)  return genSquare([2,Math.min(25,Math.floor(cap/5)+2)]);
+  if(r<0.8){
+    const a=rndRange(50,Math.min(500,cap)),b=rndRange(1,99);
+    return{display:`${a} + ${b} = ?`,ans:a+b};
+  }
+  const a=rndRange(2,Math.min(50,cap)),b=rndRange(2,Math.min(20,cap));
+  return{display:`${a} × ${b} = ?`,ans:a*b};
+}
+
+function generateQuestion(cfg){
+  if(cfg.type==='basic') return genBasic(cfg.ops,cfg.range1,cfg.range2);
+  if(cfg.type==='twostep') return genTwoStep(cfg.range);
+  if(cfg.type==='square') return genSquare(cfg.range);
+  return genElite(cfg.range);
+}
+
+/* ── Leaderboard ── */
+function getLb(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||[];}catch{return[];}}
+function saveLb(lb){localStorage.setItem(STORAGE_KEY,JSON.stringify(lb));}
+function qualifies(level,c){const lb=getLb();if(lb.length<3)return true;const l=lb[lb.length-1];return level>l.level||(level===l.level&&c>l.correct);}
+function addEntry(name,level,c){
+  const lb=getLb();lb.push({name:name.trim()||'?',level,correct:c});
+  lb.sort((a,b)=>b.level-a.level||(a.level===b.level?b.correct-a.correct:0));
+  lb.splice(3);saveLb(lb);
+}
+function renderLb(){
+  const lb=getLb(),t=QT[currentLang]||QT.en;
+  document.getElementById('lbTitle').textContent=t.lbTitle;
+  document.getElementById('clearBtn').textContent=t.lbClear;
+  const rows=document.getElementById('lbRows');
+  if(!lb.length){rows.innerHTML=`<div class="lb-empty">${t.lbEmpty}</div>`;return;}
+  rows.innerHTML=lb.map((e,i)=>{
+    const tier=getTier(e.level);
+    return`<div class="lb-row ${MEDAL_CLS[i]||''}">
+      <span class="lb-medal">${MEDALS[i]||''}</span>
+      <span class="lb-name">${esc(e.name)}</span>
+      <span class="lb-tier-tag">${tier.emoji} ${getTierName(tier)}</span>
+      <span class="lb-score">${t.lbScore.replace('{l}',e.level).replace('{c}',e.correct).replace('{q}',BASE_Q)}</span>
+    </div>`;
+  }).join('');
+}
+function clearLb(){localStorage.removeItem(STORAGE_KEY);renderLb();}
+function saveScore(){
+  if(!pendingScore)return;
+  const name=document.getElementById('nameInput').value.trim();
+  addEntry(name||'?',pendingScore.level,pendingScore.correct);
+  pendingScore=null;
+  document.getElementById('nameEntry').style.display='none';
+  document.getElementById('nameInput').value='';
+  renderLb();
+}
+
+/* ── Progress save ── */
+function saveProgress(level){localStorage.setItem(PROGRESS_KEY,level);}
+function loadProgress(){return parseInt(localStorage.getItem(PROGRESS_KEY)||'0')||0;}
+function clearProgress(){localStorage.removeItem(PROGRESS_KEY);}
+
+/* ── UI helpers ── */
+function renderLevelUI(){
+  const level=currentLevel+1;
+  const tier=getTier(level);
+  const pct=Math.max(1,(level/MAX_LEVEL)*100);
+  document.getElementById('progressBar').style.width=pct+'%';
+  document.getElementById('tierBadge').textContent=`${tier.emoji} ${getTierName(tier)}`;
+  document.getElementById('levelNumLbl').textContent=`${tr('levelLbl')} ${level} / ${MAX_LEVEL}`;
+}
+
+function updateScoreUI(cfg){
+  const t=QT[currentLang]||QT.en;
+  const total=cfg?cfg.questions:BASE_Q;
+  document.getElementById('correctCount').textContent=correct;
+  document.getElementById('wrongCount').textContent=wrong;
+  document.getElementById('qNumDisplay').textContent=`${Math.min(questionNum+1,total)}/${total}`;
+}
+
+function updateText(){
+  const t=QT[currentLang]||QT.en;
+  document.getElementById('correctLbl').textContent=t.correctLbl;
+  document.getElementById('wrongLbl').textContent=t.wrongLbl;
+  document.getElementById('qNumLbl').textContent=t.qNumLbl;
+  document.getElementById('timerLbl').textContent=t.timerLbl;
+  document.getElementById('submitBtn').textContent=t.submitBtn;
+  document.getElementById('jumpLbl').textContent=t.jumpLbl;
+  document.getElementById('jumpBtn').textContent=t.jumpBtn;
+  renderLevelUI();renderLb();
+  const _sub=document.getElementById('qmSubtitle');if(_sub)_sub.textContent=t.subtitleLbl;
+}
+
+/* ── Toast ── */
+function showToast(msg){
+  const el=document.getElementById('toast');
+  el.textContent=msg;el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),2800);
+}
+
+/* ── Share challenge ── */
+function shareChallenge(){
+  const t=QT[currentLang]||QT.en;
+  const level=currentLevel+1;
+  const tier=getTier(level);
+  const tierName=getTierName(tier);
+  const msg=t.shareMsg
+    .replace('{l}',level)
+    .replace('{e}',tier.emoji)
+    .replace('{t}',tierName)
+    .replace('{c}',correct)
+    .replace('{q}',getLevelConfig(level).questions);
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(msg).then(()=>showToast(t.copied)).catch(()=>fallbackCopy(msg,t));
+  }else fallbackCopy(msg,t);
+}
+function fallbackCopy(msg,t){
+  const ta=document.createElement('textarea');ta.value=msg;document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');showToast(t.copied);}catch{}
+  document.body.removeChild(ta);
+}
+
+/* ── Level jump ── */
+function doJump(){
+  const n=parseInt(document.getElementById('jumpInput').value);
+  if(!n||n<1||n>MAX_LEVEL)return;
+  startLevel(n-1);
+}
+
+/* ── Continue banner ── */
+function checkContinueBanner(){
+  savedProgress=loadProgress();
+  if(savedProgress>0&&savedProgress<MAX_LEVEL){
+    const t=QT[currentLang]||QT.en;
+    document.getElementById('continueBanner').style.display='';
+    document.getElementById('continueTxt').textContent=t.continueTxt.replace('{l}',savedProgress+1);
+    document.getElementById('continueBtn').textContent=t.continueBtn;
+  }
+}
+function continueProgress(){
+  document.getElementById('continueBanner').style.display='none';
+  startLevel(savedProgress);
+}
+function dismissContinue(){
+  document.getElementById('continueBanner').style.display='none';
+  clearProgress();
+  startLevel(0);
+}
+
+/* ── Game core ── */
+let _cfg=null;
+function startLevel(lvIdx){
+  currentLevel=Math.min(lvIdx,MAX_LEVEL-1);
+  _cfg=getLevelConfig(currentLevel+1);
+  questionNum=0;correct=0;wrong=0;pendingScore=null;
+  clearInterval(timerInterval);
+  document.getElementById('levelCompleteBox').classList.remove('show');
+  document.getElementById('allDoneBox').classList.remove('show');
+  document.getElementById('nameEntry').style.display='none';
+  document.getElementById('feedbackMsg').textContent='';
+  document.getElementById('inputRow').style.display='';
+  renderLevelUI();updateScoreUI(_cfg);renderLb();
+  nextQuestion();
+}
+
+function nextQuestion(){
+  if(questionNum>=_cfg.questions){onLevelComplete();return;}
+  const q=generateQuestion(_cfg);answer=q.ans;
+  document.getElementById('questionDisplay').textContent=q.display;
+  document.getElementById('answerInput').value='';
+  updateScoreUI(_cfg);
+  setTimeout(()=>document.getElementById('answerInput').focus(),50);
+  startTimer();
+}
+
+function startTimer(){
+  clearInterval(timerInterval);
+  timeLeft=_cfg.time;
+  const bar=document.getElementById('timerBar');
+  bar.style.width='100%';bar.className='timer-bar';
+  document.getElementById('timerNum').textContent=Math.ceil(timeLeft);
+  timerInterval=setInterval(()=>{
+    timeLeft-=0.1;
+    const pct=Math.max(0,(timeLeft/_cfg.time)*100);
+    bar.style.width=pct+'%';
+    bar.className='timer-bar'+(pct<=25?' danger':pct<=50?' warn':'');
+    document.getElementById('timerNum').textContent=Math.max(0,Math.ceil(timeLeft));
+    if(timeLeft<=0){clearInterval(timerInterval);onTimeUp();}
+  },100);
+}
+
+function onTimeUp(){
+  const t=QT[currentLang]||QT.en;
+  wrong++;questionNum++;
+  const fb=document.getElementById('feedbackMsg');
+  fb.textContent=t.timeUp.replace('{a}',answer);fb.className='qm-feedback wrong';
+  updateScoreUI(_cfg);
+  setTimeout(nextQuestion,900);
+}
+
+function submitAnswer(){
+  const val=parseInt(document.getElementById('answerInput').value);
+  if(isNaN(val))return;
+  clearInterval(timerInterval);
+  const t=QT[currentLang]||QT.en;
+  const fb=document.getElementById('feedbackMsg');
+  if(val===answer){correct++;fb.textContent=t.right;fb.className='qm-feedback right';}
+  else{wrong++;fb.textContent=t.wrong.replace('{a}',answer);fb.className='qm-feedback wrong';}
+  questionNum++;updateScoreUI(_cfg);
+  setTimeout(nextQuestion,700);
+}
+
+function onLevelComplete(){
+  clearInterval(timerInterval);
+  saveProgress(currentLevel);
+  document.getElementById('inputRow').style.display='none';
+  document.getElementById('timerBar').style.width='0';
+  document.getElementById('timerNum').textContent='–';
+  const t=QT[currentLang]||QT.en;
+  const level=currentLevel+1;
+  const tier=getTier(level);
+  const isLast=currentLevel===MAX_LEVEL-1;
+
+  if(isLast){
+    document.getElementById('allDoneSub').textContent=t.allDoneSub;
+    document.getElementById('playAgainBtn').textContent=t.playAgain;
+    document.getElementById('shareBtnAll').textContent=t.shareBtn;
+    document.getElementById('allDoneBox').classList.add('show');
+    clearProgress();
+  }else{
+    document.getElementById('lcTitle').textContent=`${t.lcTitle} ${level}`;
+    document.getElementById('lcTier').textContent=`${tier.emoji} ${getTierName(tier)}`;
+    document.getElementById('lcSub').textContent=t.lcSub.replace('{c}',correct).replace('{q}',_cfg.questions);
+    document.getElementById('nextLevelBtn').textContent=t.nextLevel;
+    document.getElementById('restartBtn').textContent=t.restart;
+    document.getElementById('shareBtnLc').textContent=t.shareBtn;
+    document.getElementById('levelCompleteBox').classList.add('show');
+  }
+
+  if(qualifies(level,correct)){
+    pendingScore={level,correct};
+    document.getElementById('nameEntryMsg').textContent=t.lbNew;
+    document.getElementById('nameInput').placeholder=t.lbPh;
+    document.getElementById('saveBtn').textContent=t.lbSave;
+    document.getElementById('nameEntry').style.display='';
+    setTimeout(()=>document.getElementById('nameInput').focus(),100);
+  }
+  if(typeof showHomePrompt==='function')showHomePrompt();
+}
+
+function nextLevel(){if(currentLevel<MAX_LEVEL-1)startLevel(currentLevel+1);}
+function restartAll(){clearProgress();startLevel(0);}
+
+const _PAGE_LANG=document.documentElement.lang||'en';let _initDone=false;
+document.addEventListener('DOMContentLoaded',()=>{
+  currentLang=_PAGE_LANG;if(!QT[currentLang])currentLang='en';
+  const origSet=window.setLang;
+  window.setLang=function(lang){origSet&&origSet(lang);if(!_initDone&&lang!==_PAGE_LANG)return;currentLang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';updateText();};
+  window.onLangChange=function(lang){if(!_initDone&&lang!==_PAGE_LANG)return;currentLang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';updateText();};
+  // Pause timer when tab is hidden, resume when visible
+  document.addEventListener('visibilitychange',()=>{
+    if(!timerInterval) return;
+    if(document.hidden){
+      _timerPaused=true;
+      _timerPauseStart=Date.now();
+      clearInterval(timerInterval);timerInterval=null;
+    } else if(_timerPaused){
+      _timerPaused=false;
+      // resume timer with remaining time
+      const elapsed=Date.now()-_timerPauseStart;
+      timeLeft=Math.max(0,timeLeft-elapsed/1000);
+      if(timeLeft<=0){onTimeUp();return;}
+      const bar=document.getElementById('timerBar');
+      timerInterval=setInterval(()=>{
+        timeLeft-=0.1;
+        const pct=Math.max(0,(timeLeft/(_cfg?_cfg.time:10))*100);
+        bar.style.width=pct+'%';
+        bar.className='timer-bar'+(pct<=25?' danger':pct<=50?' warn':'');
+        document.getElementById('timerNum').textContent=Math.max(0,Math.ceil(timeLeft));
+        if(timeLeft<=0){clearInterval(timerInterval);onTimeUp();}
+      },100);
+    }
+  });
+  checkContinueBanner();
+  startLevel(0);
+  setTimeout(function(){_initDone=true;window.setLang(_PAGE_LANG);},0);
+});
+</script>
+<script src="i18n.js?v=36"></script>
+<script>if('serviceWorker' in navigator)navigator.serviceWorker.register('/my-tools-site/sw.js',{updateViaCache:'none'});</script>
+</body></html>

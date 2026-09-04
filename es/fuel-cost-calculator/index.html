@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<base href="https://mimohivi4.github.io/fastdlapp/">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Calculadora de Combustible — Viaje y Consumo | Adawati</title>
+<meta name="description" content="Calculadora de combustible gratis: costo del viaje, L/100km con precios del Golfo. Sin registro.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Adawati"><meta name="theme-color" content="#4f46e5">
+<link rel="canonical" href="https://mimohivi4.github.io/fastdlapp/es/fuel-cost-calculator/">
+<link rel="alternate" hreflang="en" href="https://mimohivi4.github.io/fastdlapp/fuel-cost-calculator.html">
+<link rel="alternate" hreflang="ar" href="https://mimohivi4.github.io/fastdlapp/ar/fuel-cost-calculator/">
+<link rel="alternate" hreflang="fr" href="https://mimohivi4.github.io/fastdlapp/fr/fuel-cost-calculator/">
+<link rel="alternate" hreflang="es" href="https://mimohivi4.github.io/fastdlapp/es/fuel-cost-calculator/">
+<link rel="alternate" hreflang="de" href="https://mimohivi4.github.io/fastdlapp/de/fuel-cost-calculator/">
+<link rel="alternate" hreflang="ru" href="https://mimohivi4.github.io/fastdlapp/ru/fuel-cost-calculator/">
+<link rel="alternate" hreflang="x-default" href="https://mimohivi4.github.io/fastdlapp/fuel-cost-calculator.html">
+<meta property="og:title" content="Calculadora de Combustible — Viaje y Consumo | Adawati">
+<meta property="og:description" content="Calculadora de combustible gratis: costo del viaje, L/100km con precios del Golfo. Sin registro.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://mimohivi4.github.io/fastdlapp/es/fuel-cost-calculator/">
+<meta property="og:site_name" content="Adawati">
+<meta property="og:locale" content="es_ES"><meta property="og:image" content="https://mimohivi4.github.io/fastdlapp/icon-512.svg">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Calculadora de Combustible — Viaje y Consumo | Adawati"><meta name="twitter:description" content="Calculadora de combustible gratis: costo del viaje, L/100km con precios del Golfo. Sin registro."><meta name="twitter:image" content="https://mimohivi4.github.io/fastdlapp/icon-512.svg">
+<link rel="manifest" href="manifest.json"><link rel="icon" type="image/svg+xml" href="icon-192.svg"><link rel="apple-touch-icon" href="icon-192.svg">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-97DQT5FHPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-97DQT5FHPF');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3337905412116301" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mimohivi4.github.io/fastdlapp/"},{"@type":"ListItem","position":2,"name":"Fuel Cost Calculator","item":"https://mimohivi4.github.io/fastdlapp/es/fuel-cost-calculator/"}]},
+{"@type":"WebApplication","name":"Fuel Cost Calculator","url":"https://mimohivi4.github.io/fastdlapp/es/fuel-cost-calculator/","description":"Calculate trip fuel cost, consumption and cost per km.","applicationCategory":"UtilitiesApplication","operatingSystem":"All","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},
+{"@type":"HowTo","name":"How to calculate fuel cost","step":[{"@type":"HowToStep","position":1,"name":"Enter distance","text":"Enter trip distance in km."},{"@type":"HowToStep","position":2,"name":"Enter consumption","text":"Enter consumption in L/100km (e.g. 8)."},{"@type":"HowToStep","position":3,"name":"Enter price","text":"Enter fuel price per litre or pick a Gulf preset."}]},
+{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is fuel consumption calculated?","acceptedAnswer":{"@type":"Answer","text":"L/100km = litres used ÷ km driven × 100. Trip cost = distance ÷ 100 × consumption × price per litre."}},{"@type":"Question","name":"What are current Gulf fuel prices?","acceptedAnswer":{"@type":"Answer","text":"Prices change monthly. As a 2026 reference: Oman ~0.24 OMR/L, UAE ~3.0 AED/L, Saudi ~2.1 SAR/L. Always check your local station — presets here are editable."}}]}
+]}
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="https://mimohivi4.github.io/fastdlapp/es/fuel-cost-calculator/#calc">Saltar a la calculadora</a>
+<header><nav class="navbar" aria-label="Main navigation"><div class="nav-container">
+<a href="index.html" class="nav-brand">Adawati</a>
+<div class="nav-links"><a href="index.html">Inicio</a><a href="about.html">Acerca de</a><a href="contact.html">Contacto</a><button class="dark-toggle" id="darkToggle" aria-label="Cambiar a modo oscuro">🌙</button></div>
+</div></nav></header>
+<main><div class="tool-page">
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Inicio</a><span aria-hidden="true">›</span><span aria-current="page">Calculadora de Combustible</span></nav>
+<div class="page-header"><a href="index.html">← Volver</a></div>
+<div class="card" id="calc">
+<div class="card-icon" style="background:#fffbeb;">⛽</div>
+<h1 class="card-title">Calculadora de Combustible</h1>
+<div class="card-subtitle">Costo del viaje • L/100km • costo por km</div>
+<div class="divider"></div>
+<div class="tabs"><button class="tab active" id="tabTrip" onclick="tab('trip')">Costo del viaje</button><button class="tab" id="tabCons" onclick="tab('cons')">Consumo</button></div>
+<div id="secTrip" class="section active">
+<label for="dist">Distancia (km)</label><input type="number" id="dist" placeholder="ej. 350 km" inputmode="decimal" min="0">
+<label for="cons">Consumo (L/100km)</label><input type="number" id="cons" placeholder="e.g. 8" inputmode="decimal" min="0">
+<label for="price">Precio del combustible / litro</label><input type="number" id="price" value="0.24" step="0.001" inputmode="decimal" min="0">
+<div class="option-toggle">
+<button class="option-btn" onclick="preset(0.24,'OMR')">🇴🇲 0.24</button>
+<button class="option-btn" onclick="preset(3.0,'AED')">🇦🇪 3.0</button>
+<button class="option-btn" onclick="preset(2.1,'SAR')">🇸🇦 2.1</button>
+</div>
+<button class="btn btn-primary" onclick="calcTrip()">Calcular el costo</button>
+</div>
+<div id="secCons" class="section">
+<label for="litres">Combustible usado (litros)</label><input type="number" id="litres" placeholder="e.g. 40" inputmode="decimal" min="0">
+<label for="km">Distancia recorrida (km)</label><input type="number" id="km" placeholder="e.g. 500" inputmode="decimal" min="0">
+<button class="btn btn-primary" onclick="calcCons()">Calcular el consumo</button>
+</div>
+<div id="result" class="result-box"><div class="result-value" id="fVal"></div><div class="result-label" id="fLbl"></div></div>
+<div class="stat-grid"><div class="stat-box"><div class="stat-val" id="sCost">–</div><div class="stat-lbl">Costo</div></div>
+<div class="stat-box"><div class="stat-val" id="sLitres">–</div><div class="stat-lbl">Litros</div></div>
+<div class="stat-box"><div class="stat-val" id="sKm">–</div><div class="stat-lbl">Por km</div></div></div>
+</div>
+<div class="content-section"><h2>Fórmulas</h2><div class="formula-box">Litres = km ÷ 100 × L/100km → Cost = litres × price</div><p>MPG = 235.2 ÷ L/100km. Ejemplo: 8 L/100km ≈ 29.4 MPG.</p></div>
+<div class="related-tools"><h3>Herramientas relacionadas</h3><div class="related-links"><a class="related-link" href="unit-converter.html">🔄 Unidades</a><a class="related-link" href="loan-calculator.html">🧮 Préstamo</a><a class="related-link" href="currency-converter.html">💱 Moneda</a></div></div>
+</div></main>
+<footer class="footer"><div class="footer-links"><a href="about.html">Acerca de</a><a href="contact.html">Contacto</a><a href="index.html">Todas las herramientas</a></div><div class="footer-copy-simple">© 2026 Adawati</div></footer>
+<script>
+var curTab='trip';
+function tab(t){curTab=t;document.getElementById('secTrip').classList.toggle('active',t==='trip');document.getElementById('secCons').classList.toggle('active',t==='cons');document.getElementById('tabTrip').classList.toggle('active',t==='trip');document.getElementById('tabCons').classList.toggle('active',t==='cons');}
+function preset(p){document.getElementById('price').value=p;}
+function calcTrip(){var d=parseFloat(dist.value)||0,c=parseFloat(cons.value)||0,p=parseFloat(price.value)||0;var box=result;if(d<=0||c<=0||p<0){box.className='result-box show danger';fVal.textContent='⚠️';fLbl.textContent='Ingresa distancia y consumo.';return;}var L=d/100*c,cost=L*p;box.className='result-box show success';fVal.textContent=cost.toFixed(2);fLbl.textContent='Costo • '+L.toFixed(1)+' L para '+d+' km';sCost.textContent=cost.toFixed(2);sLitres.textContent=L.toFixed(1)+' L';sKm.textContent=(cost/d).toFixed(3)+'/km';}
+function calcCons(){var L=parseFloat(litres.value)||0,k=parseFloat(km.value)||0;var box=result;if(L<=0||k<=0){box.className='result-box show danger';fVal.textContent='⚠️';fLbl.textContent='Ingresa litros y km.';return;}var c=L/k*100;box.className='result-box show success';fVal.textContent=c.toFixed(1)+' L/100km';fLbl.textContent='≈ '+(235.2/c).toFixed(1)+' MPG (US)';}
+(function(){var r=document.documentElement,b=document.getElementById('darkToggle');try{if(localStorage.getItem('theme')==='dark'){r.classList.add('dark');b.textContent='☀️';}}catch(e){}b.addEventListener('click',function(){var d=r.classList.toggle('dark');b.textContent=d?'☀️':'🌙';try{localStorage.setItem('theme',d?'dark':'light');}catch(e){}});})();
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}
+</script>
+<script src="i18n.js?v=34"></script>
+</body></html>
