@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<base href="https://mimohivi4.github.io/fastdlapp/">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-97DQT5FHPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-97DQT5FHPF');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3337905412116301" crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>US Tip Calculator — How Much to Tip at Restaurants | Adawati</title>
+<meta name="description" content="Free US tip calculator: calculate restaurant tips (15–20%) and split the bill. Works for delivery, bars, hotels and more. No signup.">
+<meta name="keywords" content="US tip calculator, how much to tip at restaurant, tip calculator USA, bill splitter, restaurant gratuity calculator, tip 18 percent, tip 20 percent, split bill calculator">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mimohivi4.github.io/fastdlapp/us/tip-calculator/">
+<link rel="alternate" hreflang="x-default" href="https://mimohivi4.github.io/fastdlapp/">
+<link rel="alternate" hreflang="en-US" href="https://mimohivi4.github.io/fastdlapp/us/tip-calculator/">
+<link rel="alternate" hreflang="en-GB" href="https://mimohivi4.github.io/fastdlapp/uk/">
+<link rel="alternate" hreflang="ar" href="https://mimohivi4.github.io/fastdlapp/om/">
+<meta property="og:title" content="US Tip Calculator — Restaurant, Delivery & Bar Tips | Adawati">
+<meta property="og:description" content="Calculate tips the American way: 18–20% for sit-down restaurants, split any bill instantly. Free, no signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mimohivi4.github.io/fastdlapp/us/tip-calculator/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+  {"@type":"ListItem","position":1,"name":"Adawati","item":"https://mimohivi4.github.io/fastdlapp/"},
+  {"@type":"ListItem","position":2,"name":"USA Tools","item":"https://mimohivi4.github.io/fastdlapp/us/"},
+  {"@type":"ListItem","position":3,"name":"US Tip Calculator","item":"https://mimohivi4.github.io/fastdlapp/us/tip-calculator/"}
+]},
+{"@type":"WebApplication","name":"US Tip Calculator","url":"https://mimohivi4.github.io/fastdlapp/us/tip-calculator/","description":"Calculate restaurant tips and split bills the American way. Supports 15–25% tip ranges, bill splitting, and per-person totals.","applicationCategory":"UtilitiesApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},
+{"@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"How much should you tip at a restaurant in the US?","acceptedAnswer":{"@type":"Answer","text":"The standard tip in the US is 18–20% for good service at a sit-down restaurant. 15% is considered acceptable for average service. 25% or more shows exceptional appreciation. Many Americans tip 20% as a baseline."}},
+  {"@type":"Question","name":"Do you tip on the pre-tax or post-tax amount?","acceptedAnswer":{"@type":"Answer","text":"Most Americans tip on the pre-tax subtotal. However, tipping on the total (including tax) is also common and results in a slightly higher tip, which servers appreciate."}},
+  {"@type":"Question","name":"What is the mandatory gratuity for large groups?","acceptedAnswer":{"@type":"Answer","text":"Many US restaurants automatically add an 18% gratuity for parties of 6 or more. Always check your bill before adding an additional tip to avoid double-tipping."}},
+  {"@type":"Question","name":"How much do you tip for delivery in the US?","acceptedAnswer":{"@type":"Answer","text":"Tip delivery drivers 15–20% of the order total, with a minimum of $3–5 regardless of order size. During bad weather or for large orders, consider tipping more."}},
+  {"@type":"Question","name":"How much to tip at a bar in the US?","acceptedAnswer":{"@type":"Answer","text":"The standard bar tip is $1–2 per drink or 15–20% of the tab. For complex cocktails or exceptional service, $2+ per drink is appreciated."}}
+]}
+]}
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar"><div class="nav-container">
+  <a href="us/" class="nav-brand">Adawati 🇺🇸</a>
+  <div class="nav-links">
+    <a href="us/">US Tools</a>
+    <a href="index.html">Global</a>
+  </div>
+</div></nav>
+
+<main><div class="tool-page">
+  <div class="page-header"><a href="us/">← Back to US Tools</a></div>
+
+  <div class="card">
+    <div class="card-icon" style="background:#fdf4ff;">🤝</div>
+    <h1 class="card-title">US Tip Calculator</h1>
+    <div class="card-subtitle">Restaurant, delivery, bar & hotel tips — the American way</div>
+    <div class="divider"></div>
+
+    <label>Bill Amount (USD $)</label>
+    <input type="number" id="bill" placeholder="0.00" oninput="calcTip()">
+
+    <label><span>Tip Percentage:</span> <span id="tipPctLabel">18</span>%</label>
+    <input type="range" id="tipSlider" min="0" max="30" value="18" oninput="document.getElementById('tipPctLabel').textContent=this.value;calcTip()" style="width:100%;accent-color:var(--primary);margin:8px 0 4px;">
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-bottom:4px;"><span>0%</span><span>15%</span><span>18%</span><span>20%</span><span>30%</span></div>
+
+    <label>Number of People</label>
+    <input type="number" id="people" value="1" min="1" oninput="calcTip()">
+
+    <div id="results" style="display:none;margin-top:20px;">
+      <div class="stat-grid">
+        <div class="stat-box"><div class="stat-val" id="tipAmt"></div><div class="stat-lbl">Tip Amount</div></div>
+        <div class="stat-box"><div class="stat-val" id="totalAmt"></div><div class="stat-lbl">Total Bill</div></div>
+      </div>
+      <div class="result-box show success" style="margin-top:14px;">
+        <div class="result-value" id="perPerson"></div>
+        <div class="result-label">Per Person (incl. tip)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title" style="font-size:15px;">🇺🇸 US Tipping Guide by Situation</div>
+    <div style="overflow-x:auto;margin-top:12px;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:var(--surface-2);">
+            <th style="padding:9px 10px;text-align:left;border:1px solid var(--border);">Situation</th>
+            <th style="padding:9px 10px;text-align:center;border:1px solid var(--border);">Standard Tip</th>
+            <th style="padding:9px 10px;text-align:left;border:1px solid var(--border);">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding:8px 10px;border:1px solid var(--border);">Sit-down restaurant</td><td style="padding:8px 10px;text-align:center;border:1px solid var(--border);font-weight:700;">18–20%</td><td style="padding:8px 10px;border:1px solid var(--border);">Social norm; 15% for poor service</td></tr>
+          <tr style="background:var(--surface-2);"><td style="padding:8px 10px;border:1px solid var(--border);">Bar / drinks</td><td style="padding:8px 10px;text-align:center;border:1px solid var(--border);font-weight:700;">$1–2/drink or 20%</td><td style="padding:8px 10px;border:1px solid var(--border);">Tab method or per-drink</td></tr>
+          <tr><td style="padding:8px 10px;border:1px solid var(--border);">Food delivery</td><td style="padding:8px 10px;text-align:center;border:1px solid var(--border);font-weight:700;">15–20% (min $3)</td><td style="padding:8px 10px;border:1px solid var(--border);">More in bad weather</td></tr>
+          <tr style="background:var(--surface-2);"><td style="padding:8px 10px;border:1px solid var(--border);">Hotel housekeeping</td><td style="padding:8px 10px;text-align:center;border:1px solid var(--border);font-weight:700;">$3–5/night</td><td style="padding:8px 10px;border:1px solid var(--border);">Leave daily, not at checkout</td></tr>
+          <tr><td style="padding:8px 10px;border:1px solid var(--border);">Taxi / rideshare</td><td style="padding:8px 10px;text-align:center;border:1px solid var(--border);font-weight:700;">15–20%</td><td style="padding:8px 10px;border:1px solid var(--border);">Uber/Lyft prompts in-app</td></tr>
+          <tr style="background:var(--surface-2);"><td style="padding:8px 10px;border:1px solid var(--border);">Coffee shop / counter</td><td style="padding:8px 10px;text-align:center;border:1px solid var(--border);font-weight:700;">$0.50–$1 or 10–15%</td><td style="padding:8px 10px;border:1px solid var(--border);">Discretionary; prompted by POS</td></tr>
+          <tr><td style="padding:8px 10px;border:1px solid var(--border);">Large group (6+)</td><td style="padding:8px 10px;text-align:center;border:1px solid var(--border);font-weight:700;">18% auto-grat</td><td style="padding:8px 10px;border:1px solid var(--border);">Check bill — may be pre-added</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title" style="font-size:15px;">❓ US Tipping FAQs</div>
+    <details style="margin-top:12px;border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <summary style="font-weight:700;cursor:pointer;font-size:14px;">How much should you tip at a restaurant in the US?</summary>
+      <p style="margin-top:8px;font-size:14px;color:var(--text-muted);line-height:1.7;">18–20% is the standard for sit-down restaurants. 15% signals poor service; 25%+ signals exceptional appreciation. Many Americans simply double the tax line as an easy estimate.</p>
+    </details>
+    <details style="margin-top:8px;border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <summary style="font-weight:700;cursor:pointer;font-size:14px;">Do you tip on the pre-tax or post-tax amount?</summary>
+      <p style="margin-top:8px;font-size:14px;color:var(--text-muted);line-height:1.7;">Technically the tip should be on the pre-tax subtotal, but many diners tip on the full amount including tax. Either is acceptable — servers appreciate generosity.</p>
+    </details>
+    <details style="margin-top:8px;border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <summary style="font-weight:700;cursor:pointer;font-size:14px;">What is automatic gratuity for large groups?</summary>
+      <p style="margin-top:8px;font-size:14px;color:var(--text-muted);line-height:1.7;">Most US restaurants add an automatic 18% gratuity for parties of 6 or more. Always check the bill before adding a tip — you may be double-tipping.</p>
+    </details>
+    <details style="margin-top:8px;border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <summary style="font-weight:700;cursor:pointer;font-size:14px;">Why is tipping so important in the US?</summary>
+      <p style="margin-top:8px;font-size:14px;color:var(--text-muted);line-height:1.7;">US federal law allows restaurants to pay tipped workers a base wage as low as $2.13/hour — servers depend on tips for their income. In most states, tips make up the majority of a server's pay.</p>
+    </details>
+    <details style="margin-top:8px;border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <summary style="font-weight:700;cursor:pointer;font-size:14px;">Is it OK to not tip in the US?</summary>
+      <p style="margin-top:8px;font-size:14px;color:var(--text-muted);line-height:1.7;">Not tipping at a sit-down restaurant is considered rude and harms the server's livelihood. If service was poor, a 10–12% tip sends the message without leaving zero. No tip is appropriate only for truly unacceptable service.</p>
+    </details>
+  </div>
+
+  <div style="margin-top:16px;text-align:center;">
+    <strong>More US tools:</strong>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:8px;">
+      <a href="loan-calculator.html" style="font-size:13px;padding:8px 14px;background:var(--surface-2);color:var(--text);text-decoration:none;border-radius:8px;">🧮 Loan / Mortgage</a>
+      <a href="percentage-calculator.html" style="font-size:13px;padding:8px 14px;background:var(--surface-2);color:var(--text);text-decoration:none;border-radius:8px;">% Percentage Calculator</a>
+      <a href="currency-converter.html" style="font-size:13px;padding:8px 14px;background:var(--surface-2);color:var(--text);text-decoration:none;border-radius:8px;">💱 USD Currency Converter</a>
+      <a href="us/" style="font-size:13px;padding:8px 14px;background:var(--primary);color:#fff;text-decoration:none;border-radius:8px;">🇺🇸 All US Tools</a>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <h2 style="font-size:17px;font-weight:700;margin-bottom:10px;">Tip Calculator for the US — How Tipping Works in America</h2>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.8;margin-bottom:12px;">In the United States, tipping is not optional at sit-down restaurants — it is a social and economic expectation. Servers earn a federal tipped minimum wage of $2.13/hour, and tips make up the majority of their income. A standard tip of 18–20% on the pre-tax subtotal is the baseline for good service.</p>
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:6px;">How to use this calculator</h3>
+    <ul style="font-size:14px;color:var(--text-muted);line-height:2;padding-inline-start:18px;margin-bottom:12px;">
+      <li>Enter the bill subtotal (before tax)</li>
+      <li>Adjust the tip slider — 18% is the US default pre-set</li>
+      <li>Enter the number of people to split among</li>
+      <li>See tip amount, total, and each person's share instantly</li>
+    </ul>
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:6px;">Tip quick reference</h3>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.8;margin-bottom:0;">$50 bill: 18% tip = $9, total = $59 split 2 ways = $29.50 each. $100 bill: 20% tip = $20, total = $120 split 4 ways = $30 each. Use this calculator for any amount and party size.</p>
+  </div>
+</div></main>
+
+<footer class="footer" style="padding:28px;">
+  <div style="max-width:1160px;margin:0 auto;">
+    <div class="footer-links"><a href="about.html">About</a><a href="contact.html">Contact</a><a href="us/">US Hub</a></div>
+    <div class="footer-copy-simple">© 2026 Adawati</div>
+  </div>
+</footer>
+
+<script>
+function calcTip() {
+  const bill = parseFloat(document.getElementById('bill').value) || 0;
+  const pct = parseFloat(document.getElementById('tipSlider').value) || 0;
+  const people = Math.max(1, parseInt(document.getElementById('people').value) || 1);
+  if (!bill) { document.getElementById('results').style.display = 'none'; return; }
+  const tip = bill * pct / 100;
+  const total = bill + tip;
+  document.getElementById('tipAmt').textContent = '$' + tip.toFixed(2);
+  document.getElementById('totalAmt').textContent = '$' + total.toFixed(2);
+  document.getElementById('perPerson').textContent = '$' + (total / people).toFixed(2);
+  document.getElementById('results').style.display = 'block';
+}
+</script>
+</body></html>
