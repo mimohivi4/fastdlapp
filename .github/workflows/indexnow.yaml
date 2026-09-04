@@ -1,0 +1,74 @@
+name: IndexNow — Submit changed pages to Bing
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.html'
+      - 'sitemap.xml'
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Build URL list from changed files
+        id: urls
+        run: |
+          BASE="https://amimohivi4.github.io/fastdlapp"
+
+          CHANGED=$(git diff --name-only HEAD~1 HEAD -- '*.html' '**/*.html' 'sitemap.xml')
+          echo "Changed: $CHANGED"
+
+          URLS=""
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            if [ "$file" = "index.html" ]; then
+              U="$BASE/"
+            elif [[ "$file" == */index.html ]]; then
+              dir=$(dirname "$file")
+              U="$BASE/$dir/"
+            elif [[ "$file" == *.html ]]; then
+              U="$BASE/$file"
+            else
+              continue
+            fi
+            URLS="${URLS:+$URLS,}\"$U\""
+          done <<< "$CHANGED"
+
+          echo "urlList=$URLS" >> $GITHUB_OUTPUT
+
+      - name: Submit to IndexNow
+        if: steps.urls.outputs.urlList != ''
+        run: |
+          KEY="d0b90a0519994afea0fecdc0906071a2"
+          KEY_URL="https://amimohivi4.github.io/fastdlapp/$KEY.txt"
+
+          PAYLOAD=$(cat <<EOF
+          {
+            "host": "amimohivi4.github.io",
+            "key": "$KEY",
+            "keyLocation": "$KEY_URL",
+            "urlList": [${{ steps.urls.outputs.urlList }}]
+          }
+          EOF
+          )
+
+          echo "$PAYLOAD"
+
+          STATUS=$(curl -s -o /tmp/bing_resp.txt -w "%{http_code}" \
+            -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "$PAYLOAD")
+
+          echo "IndexNow response: $STATUS"
+          cat /tmp/bing_resp.txt
+          if [ "$STATUS" = "200" ] || [ "$STATUS" = "202" ]; then
+            echo "Submitted successfully"
+          else
+            echo "Submission failed"
+            exit 1
+          fi
