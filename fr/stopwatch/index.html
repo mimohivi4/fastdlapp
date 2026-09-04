@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<base href="https://mimohivi4.github.io/fastdlapp/">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-97DQT5FHPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-97DQT5FHPF');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3337905412116301" crossorigin="anonymous"></script><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chronomètre et minuterie en ligne gratuits | Adawati</title>
+<meta name="description" content="Chronomètre et minuterie en ligne gratuits. Démarrez, arrêtez et enregistrez les tours. Fonctionne dans votre navigateur.">
+<meta name="keywords" content="online stopwatch, countdown timer, free stopwatch, lap timer, online timer countdown">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mimohivi4.github.io/fastdlapp/fr/stopwatch/">
+<link rel="alternate" hreflang="en" href="https://mimohivi4.github.io/fastdlapp/stopwatch.html">
+<link rel="alternate" hreflang="ar" href="https://mimohivi4.github.io/fastdlapp/ar/stopwatch/">
+<link rel="alternate" hreflang="fr" href="https://mimohivi4.github.io/fastdlapp/fr/stopwatch/">
+<link rel="alternate" hreflang="es" href="https://mimohivi4.github.io/fastdlapp/es/stopwatch/">
+<link rel="alternate" hreflang="de" href="https://mimohivi4.github.io/fastdlapp/de/stopwatch/">
+<link rel="alternate" hreflang="ru" href="https://mimohivi4.github.io/fastdlapp/ru/stopwatch/">
+<link rel="alternate" hreflang="x-default" href="https://mimohivi4.github.io/fastdlapp/stopwatch.html">
+<meta property="og:title" content="Stopwatch & Countdown Timer — Free Online | Adawati">
+<meta property="og:description" content="Professional stopwatch with lap recording and countdown timer. For workouts, study sessions and work. Free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mimohivi4.github.io/fastdlapp/fr/stopwatch/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Adawati","item":"https://mimohivi4.github.io/fastdlapp/"},{"@type":"ListItem","position":2,"name":"Stopwatch & Timer","item":"https://mimohivi4.github.io/fastdlapp/stopwatch.html"}]},
+{"@type":"WebApplication","name":"Stopwatch & Countdown Timer — Free Online","url":"https://mimohivi4.github.io/fastdlapp/stopwatch.html","description":"ساعة إيقاف دقيقة مع تسجيل الجولات ومؤقت عد تنازلي. مناسبة للتمارين الرياضية وإدارة الوقت والدراسة.","applicationCategory":"UtilitiesApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"هل ساعة الإيقاف دقيقة؟","acceptedAnswer":{"@type":"Answer","text":"نعم، تستخدم الساعة Date.now() للمتصفح مع تحديث كل 10 ميلي ثانية، مما يوفر دقة تصل إلى جزء من المئة من الثانية (centisecond) مناسبة للاستخدام اليومي والرياضي."}},
+{"@type":"Question","name":"هل يمكن تسجيل أوقات الجولات؟","acceptedAnswer":{"@type":"Answer","text":"نعم، في وضع ساعة الإيقاف اضغط 'دورة' أثناء العدّ لتسجيل وقت الجولة الحالية مع الاستمرار في التوقيت. يمكن تسجيل عدة جولات متتالية."}},
+{"@type":"Question","name":"كيف يعمل المؤقت العكسي؟","acceptedAnswer":{"@type":"Answer","text":"حدِّد عدد الدقائق والثواني ثم اضغط ابدأ. يعدّ المؤقت تنازلياً حتى يصل للصفر ويصدر صوت تنبيه عند الانتهاء."}},
+{"@type":"Question","name":"هل يعمل في الخلفية؟","acceptedAnswer":{"@type":"Answer","text":"المؤقت يعمل ما دامت علامة تبويب المتصفح مفتوحة ونشطة. تقليص نشاط الخلفية بواسطة المتصفح قد يسبب تأخيرات بسيطة."}},
+{"@type":"Question","name":"Does the stopwatch work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. The stopwatch and countdown timer are fully client-side and work without an internet connection."}}
+]}]}
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar"><div class="nav-container">
+  <a href="index.html" class="nav-brand">Adawati</a>
+  <div class="nav-links">
+    <a href="index.html" data-i18n="nav_home">Home</a>
+    <a href="about.html" data-i18n="nav_about">About</a>
+    <a href="contact.html" data-i18n="nav_contact">Contact</a>
+    <div class="lang-switcher">
+      <button class="lang-btn" onclick="toggleLangMenu()">🌐 <span id="currentLang">EN</span> ▾</button>
+      <div class="lang-menu" id="langMenu">
+        <a onclick="setLang('ar')">🇸🇦 العربية</a><a onclick="setLang('en')">🇬🇧 English</a>
+        <a onclick="setLang('fr')">🇫🇷 Français</a><a onclick="setLang('es')">🇪🇸 Español</a>
+        <a onclick="setLang('de')">🇩🇪 Deutsch</a><a onclick="setLang('ru')">🇷🇺 Русский</a>
+      </div>
+    </div>
+  </div>
+</div></nav>
+<main><div class="tool-page">
+  <div class="page-header"><a href="index.html" data-i18n="back">← Back to Home</a></div>
+  <div class="card">
+    <div class="card-icon" style="background:#eff6ff;">⏱️</div>
+    <h1 class="card-title" data-i18n="sw_title">Stopwatch &amp; Timer</h1>
+    <div class="card-subtitle" data-i18n="sw_sub">Timing tool for workouts and work</div>
+    <div class="divider"></div>
+    <div class="tabs">
+      <div class="tab active" data-tab="sw" onclick="switchMode('sw')" data-i18n="sw_tab">Stopwatch</div>
+      <div class="tab" data-tab="timer" onclick="switchMode('timer')" data-i18n="timer_tab">Timer</div>
+    </div>
+
+    <!-- Stopwatch -->
+    <div id="section-sw">
+      <div style="text-align:center;padding:24px 0;">
+        <div id="swDisplay" style="font-size:64px;font-weight:900;font-family:monospace;color:var(--primary);letter-spacing:2px;line-height:1;">00:00.00</div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:8px;">
+        <button id="swStartBtn" class="btn btn-primary" style="margin-top:0;" onclick="swToggle()" data-i18n="sw_start">Start</button>
+        <button class="btn btn-secondary" style="margin-top:0;flex:0 0 auto;width:auto;padding:0 20px;" onclick="swLap()" data-i18n="sw_lap">Lap</button>
+        <button class="btn btn-secondary" style="margin-top:0;flex:0 0 auto;width:auto;padding:0 20px;" onclick="swReset()" data-i18n="sw_reset">Reset</button>
+      </div>
+      <div id="swLaps" style="margin-top:14px;max-height:140px;overflow-y:auto;font-size:13px;"></div>
+    </div>
+
+    <!-- Timer -->
+    <div id="section-timer" style="display:none;">
+      <div style="text-align:center;padding:16px 0 8px;">
+        <div id="timerDisplay" style="font-size:64px;font-weight:900;font-family:monospace;color:var(--primary);letter-spacing:2px;line-height:1;">00:00</div>
+      </div>
+      <div class="row" style="margin-top:8px;">
+        <div><label data-i18n="timer_min">Minutes</label><input type="number" id="timerMin" value="5" min="0" max="99"></div>
+        <div><label data-i18n="timer_sec">Seconds</label><input type="number" id="timerSec" value="0" min="0" max="59"></div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:12px;">
+        <button id="timerStartBtn" class="btn btn-primary" style="margin-top:0;" onclick="timerToggle()" data-i18n="sw_start">Start</button>
+        <button class="btn btn-secondary" style="margin-top:0;flex:0 0 auto;width:auto;padding:0 20px;" onclick="timerReset()" data-i18n="sw_reset">Reset</button>
+      </div>
+      <div id="timerDone" style="display:none;text-align:center;margin-top:12px;padding:12px;background:var(--success-bg);border-radius:var(--radius-sm);color:var(--success-text);font-weight:700;" data-i18n="timer_done">⏰ Time&apos;s up!</div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title" style="font-size:15px;">❓ Frequently Asked Questions</div>
+    <details style="margin-top:12px;border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <summary style="font-weight:700;cursor:pointer;font-size:14px;">Is the stopwatch accurate?</summary>
+      <p style="margin-top:8px;font-size:14px;color:var(--text-muted);line-height:1.7;">Yes — the stopwatch uses <code>Date.now()</code> with updates every 10 milliseconds, providing centisecond accuracy suitable for everyday and sports use.</p>
+    </details>
+    <details style="margin-top:8px;border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <summary style="font-weight:700;cursor:pointer;font-size:14px;">Can I record lap times?</summary>
+      <p style="margin-top:8px;font-size:14px;color:var(--text-muted);line-height:1.7;">Yes — in stopwatch mode, press "Lap" while running to record the current lap time while the main clock keeps going. Multiple consecutive laps can be recorded.</p>
+    </details>
+    <details style="margin-top:8px;border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <summary style="font-weight:700;cursor:pointer;font-size:14px;">How does the countdown timer work?</summary>
+      <p style="margin-top:8px;font-size:14px;color:var(--text-muted);line-height:1.7;">Set the number of minutes and seconds then press "Start". The timer counts down to zero and plays an alert sound when it finishes.</p>
+    </details>
+    <details style="margin-top:8px;border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <summary style="font-weight:700;cursor:pointer;font-size:14px;">Does it work offline?</summary>
+      <p style="margin-top:8px;font-size:14px;color:var(--text-muted);line-height:1.7;">Yes — the stopwatch and timer run entirely in the browser and need no internet connection.</p>
+    </details>
+    <details style="margin-top:8px;border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <summary style="font-weight:700;cursor:pointer;font-size:14px;">Does the stopwatch work in the background?</summary>
+      <p style="margin-top:8px;font-size:14px;color:var(--text-muted);line-height:1.7;">The timer runs as long as the browser tab is open. Background tab throttling by the browser may cause slight delays on long-running timers.</p>
+    </details>
+  </div>
+
+  <div class="card" style="margin-top:16px;" lang="en" dir="ltr">
+    <h2 style="font-size:17px;font-weight:700;margin-bottom:10px;">Stopwatch & Timer — Productivity Techniques</h2>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.8;margin-bottom:12px;">A stopwatch measures elapsed time forward; a countdown timer counts down to zero. Both are essential for timed study sessions, interval training, cooking, and professional presentations. This tool runs entirely in your browser with no setup required.</p>
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:6px;">The Pomodoro Technique</h3>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.8;margin-bottom:12px;">Set the timer to 25 minutes and work on a single task without interruption. When it rings, take a 5-minute break. After 4 cycles, take a longer 15-30 minute break. This rhythm reduces mental fatigue and improves sustained focus — popular among students and remote workers worldwide.</p>
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:6px;">Using lap times for interval training</h3>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.8;margin-bottom:0;">The lap button records split times without stopping the main clock. Use it to track individual lap times while monitoring total elapsed time — ideal for running intervals, swimming laps or any repeated-effort training protocol.</p>
+  </div>
+</div></main>
+<footer class="footer" style="padding:28px;">
+  <div style="max-width:1160px;margin:0 auto;">
+    <div class="footer-links"><a href="about.html" data-i18n="footer_about">About</a><a href="contact.html" data-i18n="footer_contact">Contact</a></div>
+    <div class="footer-copy-simple" data-i18n="footer_copy">© 2026 Adawati</div>
+  </div>
+</footer>
+<script>
+function playBeep(){try{const ac=new(window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator();const g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type='sine';o.frequency.setValueAtTime(880,ac.currentTime);g.gain.setValueAtTime(0.4,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.6);o.start(ac.currentTime);o.stop(ac.currentTime+0.6);}catch(e){}}
+// Stopwatch
+let swRunning=false,swElapsed=0,swStart=0,swInterval=null,swLapCount=0;
+function pad(n,d=2){return String(n).padStart(d,'0');}
+function fmtSw(ms){const t=ms/10,cs=Math.floor(t%100),s=Math.floor(t/100%60),m=Math.floor(t/6000);return`${pad(m)}:${pad(s)}.${pad(cs)}`;}
+function swToggle(){
+  if(!swRunning){swStart=Date.now()-swElapsed;swInterval=setInterval(()=>{swElapsed=Date.now()-swStart;document.getElementById('swDisplay').textContent=fmtSw(swElapsed);},10);swRunning=true;document.getElementById('swStartBtn').textContent=document.querySelector('[data-i18n="sw_pause"]')?.textContent||'إيقاف مؤقت';}
+  else{clearInterval(swInterval);swRunning=false;document.getElementById('swStartBtn').textContent=document.querySelector('[data-i18n="sw_start"]')?.textContent||'استئناف';}
+}
+function swLap(){if(!swRunning)return;swLapCount++;const d=document.getElementById('swLaps');d.innerHTML=`<div style="padding:5px 8px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;"><span>دورة ${swLapCount}</span><span style="font-family:monospace;font-weight:700;">${fmtSw(swElapsed)}</span></div>`+d.innerHTML;}
+function swReset(){clearInterval(swInterval);swRunning=false;swElapsed=0;swLapCount=0;document.getElementById('swDisplay').textContent='00:00.00';document.getElementById('swLaps').innerHTML='';document.getElementById('swStartBtn').textContent=document.querySelector('[data-i18n="sw_start"]')?.textContent||'ابدأ';}
+// Timer
+let timerRunning=false,timerLeft=0,timerInterval=null;
+function fmtTimer(s){return`${pad(Math.floor(s/60))}:${pad(s%60)}`;}
+function timerToggle(){
+  if(!timerRunning){
+    if(timerLeft<=0){timerLeft=parseInt(document.getElementById('timerMin').value||0)*60+parseInt(document.getElementById('timerSec').value||0);if(!timerLeft)return;}
+    document.getElementById('timerDone').style.display='none';
+    timerInterval=setInterval(()=>{timerLeft--;document.getElementById('timerDisplay').textContent=fmtTimer(timerLeft);if(timerLeft<=0){clearInterval(timerInterval);timerRunning=false;document.getElementById('timerDone').style.display='block';document.getElementById('timerStartBtn').textContent='ابدأ';playBeep();}},1000);
+    timerRunning=true;document.getElementById('timerStartBtn').textContent='إيقاف';
+  } else {clearInterval(timerInterval);timerRunning=false;document.getElementById('timerStartBtn').textContent='استئناف';}
+}
+function timerReset(){clearInterval(timerInterval);timerRunning=false;timerLeft=0;document.getElementById('timerDisplay').textContent='00:00';document.getElementById('timerDone').style.display='none';document.getElementById('timerStartBtn').textContent='ابدأ';}
+function switchMode(m){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelector(`.tab[data-tab="${m}"]`).classList.add('active');
+  document.getElementById('section-sw').style.display=m==='sw'?'block':'none';
+  document.getElementById('section-timer').style.display=m==='timer'?'block':'none';
+}
+</script>
+<script src="i18n.js?v=33"></script>
+</body></html>

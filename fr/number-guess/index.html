@@ -1,0 +1,547 @@
+﻿<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<base href="https://mimohivi4.github.io/fastdlapp/">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-97DQT5FHPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-97DQT5FHPF');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3337905412116301" crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devinette de nombres — Devinez le nombre caché | Adawati</title>
+<meta name="description" content="Devinez le nombre caché avec des indices. Plusieurs niveaux. Jeu cérébral pour tous les âges. Gratuit.">
+<meta name="keywords" content="number guessing game, guess the number, free number game online, number quiz game browser">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mimohivi4.github.io/fastdlapp/fr/number-guess/">
+<link rel="alternate" hreflang="en" href="https://mimohivi4.github.io/fastdlapp/number-guess.html">
+<link rel="alternate" hreflang="ar" href="https://mimohivi4.github.io/fastdlapp/ar/number-guess/">
+<link rel="alternate" hreflang="fr" href="https://mimohivi4.github.io/fastdlapp/fr/number-guess/">
+<link rel="alternate" hreflang="es" href="https://mimohivi4.github.io/fastdlapp/es/number-guess/">
+<link rel="alternate" hreflang="de" href="https://mimohivi4.github.io/fastdlapp/de/number-guess/">
+<link rel="alternate" hreflang="ru" href="https://mimohivi4.github.io/fastdlapp/ru/number-guess/">
+<link rel="alternate" hreflang="x-default" href="https://mimohivi4.github.io/fastdlapp/number-guess.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","@id":"https://mimohivi4.github.io/fastdlapp/number-guess.html#app","name":"Number Guessing Game","url":"https://mimohivi4.github.io/fastdlapp/number-guess.html","description":"Guess the secret number in as few tries as possible. 6 difficulty levels from Easy to Legendary. Free browser game, no signup.","applicationCategory":"GameApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I play the number guessing game?","acceptedAnswer":{"@type":"Answer","text":"The game picks a secret number within a range. You enter a guess and the game tells you whether the secret number is higher or lower. Keep guessing until you find it in as few tries as possible. Higher difficulty levels use larger number ranges."}},
+{"@type":"Question","name":"What are the difficulty levels in the number guessing game?","acceptedAnswer":{"@type":"Answer","text":"There are 6 levels: Easy (1–10), Medium (1–50), Hard (1–100), Expert (1–500), Master (1–1000), and Legendary (1–5000). Each level requires more strategic guessing to narrow down the answer."}}
+]}]}
+</script>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── Level bar ── */
+.level-steps{display:flex;gap:6px;justify-content:center;margin-bottom:14px;flex-wrap:wrap;}
+.level-step{width:36px;height:8px;border-radius:99px;background:var(--border);transition:background 0.3s;}
+.level-step.done{background:#22c55e;}
+.level-step.active{background:var(--primary);}
+
+.level-badge{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;}
+.level-pill{padding:5px 16px;border-radius:99px;font-size:13px;font-weight:800;border:2px solid var(--primary);background:var(--primary-light);color:var(--primary);}
+
+/* ── Tries bar ── */
+.tries-row{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:6px;}
+.tries-bar-wrap{flex:1;max-width:200px;height:8px;background:var(--border);border-radius:99px;overflow:hidden;}
+.tries-bar{height:100%;border-radius:99px;background:#22c55e;transition:width 0.3s,background 0.3s;}
+.tries-bar.warn{background:#f59e0b;}
+.tries-bar.danger{background:#ef4444;}
+.tries-label{font-size:13px;font-weight:700;color:var(--text-muted);white-space:nowrap;}
+
+/* ── Game area ── */
+.guess-box{text-align:center;padding:16px 0 8px;}
+.guess-number-display{font-size:72px;font-weight:900;color:var(--primary);letter-spacing:-3px;line-height:1;min-height:80px;display:flex;align-items:center;justify-content:center;}
+.guess-input-row{display:flex;gap:10px;margin:14px 0;align-items:center;justify-content:center;}
+.guess-input-row input{width:120px;text-align:center;font-size:24px;font-weight:700;padding:10px;border:2px solid var(--border);border-radius:var(--radius-sm);background:var(--surface-2);color:var(--text);}
+.guess-input-row input:focus{outline:none;border-color:var(--primary);}
+.guess-hint{font-size:19px;font-weight:700;min-height:28px;transition:color 0.2s;padding:6px 0;}
+.guess-hint.high{color:#ef4444;} .guess-hint.low{color:#f59e0b;} .guess-hint.win{color:#22c55e;}
+.guess-history{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:28px;margin-top:8px;}
+.guess-history span{padding:3px 10px;border-radius:99px;font-size:13px;font-weight:600;}
+.guess-history span.high{background:#fee2e2;color:#ef4444;}
+.guess-history span.low{background:#fef3c7;color:#d97706;}
+.guess-history span.win{background:#dcfce7;color:#16a34a;}
+
+/* ── Overlays ── */
+.game-overlay{text-align:center;padding:20px;border-radius:var(--radius-lg);margin:8px 0;font-weight:700;}
+.level-complete{background:linear-gradient(135deg,#dcfce7,#bbf7d0);border:2px solid #22c55e;color:#15803d;display:none;}
+.level-complete.show{display:block;}
+.game-over{background:linear-gradient(135deg,#fee2e2,#fecaca);border:2px solid #ef4444;color:#b91c1c;display:none;}
+.game-over.show{display:block;}
+.all-done{background:linear-gradient(135deg,#fef9c3,#fde68a);border:2px solid #eab308;color:#854d0e;display:none;}
+.all-done.show{display:block;}
+.overlay-title{font-size:22px;margin-bottom:6px;}
+.overlay-sub{font-size:14px;font-weight:600;opacity:.8;margin-bottom:14px;}
+.overlay-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+
+/* ── Level selector ── */
+.level-selector{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:14px;}
+.lvl-btn{padding:5px 12px;border-radius:8px;border:1.5px solid var(--border);background:var(--surface-2);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.15s;}
+.lvl-btn:hover{border-color:var(--primary);}
+.lvl-btn.current{border-color:var(--primary);background:var(--primary);color:#fff;}
+.lvl-btn.completed{border-color:#22c55e;background:#dcfce7;color:#15803d;}
+
+/* ── Leaderboard ── */
+.lb-wrap{margin-top:20px;border-top:1px solid var(--border);padding-top:16px;}
+.lb-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.lb-title{font-size:15px;font-weight:800;}
+.lb-clear{font-size:12px;color:var(--text-muted);background:none;border:none;cursor:pointer;font-family:inherit;}
+.lb-clear:hover{color:#ef4444;}
+.lb-empty{font-size:13px;color:var(--text-muted);text-align:center;padding:10px 0;}
+.lb-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--surface-2);border:1px solid var(--border);}
+.lb-row.gold{background:linear-gradient(135deg,#fef9c3,#fef08a);border-color:#eab308;}
+.lb-row.silver{background:linear-gradient(135deg,#f1f5f9,#e2e8f0);border-color:#94a3b8;}
+.lb-row.bronze{background:linear-gradient(135deg,#fff7ed,#fed7aa);border-color:#f97316;}
+.lb-medal{font-size:20px;flex-shrink:0;} .lb-name{font-weight:700;font-size:14px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.lb-score{font-size:12px;font-weight:600;color:var(--primary);flex-shrink:0;text-align:end;}
+
+/* ── Name entry ── */
+.name-entry{margin-top:12px;padding:14px;background:linear-gradient(135deg,#fdf4ff,#ede9fe);border:2px solid var(--primary);border-radius:var(--radius-sm);text-align:center;}
+.name-entry-msg{font-size:14px;font-weight:700;margin-bottom:10px;color:var(--primary);}
+.name-entry-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.name-entry-row input{padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--text);font-size:14px;font-family:inherit;width:160px;}
+.name-entry-row input:focus{outline:none;border-color:var(--primary);}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-container">
+  <a href="index.html" class="nav-brand">Adawati</a>
+  <div class="nav-links">
+    <a href="index.html" data-i18n="nav_home">Home</a>
+    <a href="about.html" data-i18n="nav_about">About</a>
+    <a href="contact.html" data-i18n="nav_contact">Contact</a>
+    
+    <div class="lang-switcher">
+      <button class="lang-btn" onclick="toggleLangMenu()">🌐 <span id="currentLang">EN</span> ▾</button>
+      <div class="lang-menu" id="langMenu">
+        <a onclick="setLang('ar')">🇸🇦 العربية</a><a onclick="setLang('en')">🇬🇧 English</a>
+        <a onclick="setLang('fr')">🇫🇷 Français</a><a onclick="setLang('es')">🇪🇸 Español</a>
+        <a onclick="setLang('de')">🇩🇪 Deutsch</a><a onclick="setLang('ru')">🇷🇺 Русский</a>
+      </div>
+    </div>
+  </div>
+</div></nav>
+
+<main><div class="tool-page">
+  <div class="page-header"><a href="index.html" data-i18n="back">← Back to Home</a></div>
+  <div class="card">
+    <div class="card-icon" style="background:#fdf4ff;">🎯</div>
+    <h1 class="card-title" data-i18n="guess_card_title">Number Guessing Game</h1>
+    <div class="card-subtitle" data-i18n="guess_card_desc">Guess the secret number in as few tries as possible</div>
+    <div class="divider"></div>
+
+    <!-- Level progress dots -->
+    <div class="level-steps" id="levelSteps"></div>
+
+    <!-- Level badge -->
+    <div class="level-badge">
+      <span id="levelEmoji">🟢</span>
+      <span class="level-pill" id="levelPill">المستوى 1</span>
+      <span id="levelName" style="font-size:13px;color:var(--text-muted);font-weight:600;"></span>
+    </div>
+
+    <!-- Level selector buttons -->
+    <div class="level-selector" id="levelSelector"></div>
+
+    <!-- Tries remaining bar -->
+    <div class="tries-row" id="triesRow">
+      <span class="tries-label" id="triesLabel">محاولات متبقية: 15</span>
+      <div class="tries-bar-wrap"><div class="tries-bar" id="triesBar" style="width:100%"></div></div>
+    </div>
+
+    <!-- Game -->
+    <div class="guess-box">
+      <div class="guess-number-display" id="secretDisplay">?</div>
+      <div class="guess-hint" id="hintMsg"></div>
+      <div class="guess-input-row" id="inputRow">
+        <input type="number" id="guessInput" placeholder="؟" min="1"
+          onkeydown="if(event.key==='Enter')makeGuess()">
+        <button class="btn btn-primary" onclick="makeGuess()" id="guessBtn">تخمين</button>
+      </div>
+      <div class="guess-history" id="guessHistory"></div>
+    </div>
+
+    <!-- Level complete overlay -->
+    <div class="game-overlay level-complete" id="levelCompleteBox">
+      <div class="overlay-title" id="lcTitle">🎉 أحسنت!</div>
+      <div class="overlay-sub" id="lcSub"></div>
+      <div class="overlay-btns">
+        <button class="btn btn-primary" onclick="nextLevel()" id="nextLevelBtn">المستوى التالي ←</button>
+      </div>
+    </div>
+
+    <!-- Game over overlay -->
+    <div class="game-overlay game-over" id="gameOverBox">
+      <div class="overlay-title" id="goTitle">💀 انتهت اللعبة!</div>
+      <div class="overlay-sub" id="goSub"></div>
+      <div class="overlay-btns">
+        <button class="btn btn-primary" onclick="retryLevel()" id="retryBtn">🔄 إعادة المحاولة</button>
+        <button class="btn btn-secondary" onclick="restartAll()" id="restartBtn">⏮ من البداية</button>
+      </div>
+    </div>
+
+    <!-- All levels complete -->
+    <div class="game-overlay all-done" id="allDoneBox">
+      <div class="overlay-title">🏆 أنت أسطورة!</div>
+      <div class="overlay-sub" id="allDoneSub"></div>
+      <div class="overlay-btns">
+        <button class="btn btn-primary" onclick="restartAll()" id="playAgainBtn">🔄 العب مجدداً</button>
+      </div>
+    </div>
+
+    <!-- Name entry for leaderboard -->
+    <div class="name-entry" id="nameEntry" style="display:none;">
+      <div class="name-entry-msg" id="nameEntryMsg">🏆 دخلت إلى أفضل 3! اكتب اسمك:</div>
+      <div class="name-entry-row">
+        <input type="text" id="nameInput" maxlength="20" placeholder="اسمك"
+          onkeydown="if(event.key==='Enter')saveScore()">
+        <button class="btn btn-primary" onclick="saveScore()" id="saveBtn">💾 حفظ</button>
+      </div>
+    </div>
+
+    <!-- Leaderboard -->
+    <div class="lb-wrap">
+      <div class="lb-header">
+        <span class="lb-title" id="lbTitle">🏆 أفضل 3 لاعبين</span>
+        <button class="lb-clear" onclick="clearLb()" id="clearBtn">🗑 مسح</button>
+      </div>
+      <div id="lbRows"></div>
+    </div>
+  </div>
+</div></main>
+
+<footer class="footer" style="padding:28px;">
+  <div style="max-width:1160px;margin:0 auto;">
+    <div class="footer-links"><a href="about.html" data-i18n="footer_about">About</a><a href="contact.html" data-i18n="footer_contact">Contact</a></div>
+    <div class="footer-copy-simple" data-i18n="footer_copy">© 2026 Adawati</div>
+  </div>
+</footer>
+
+<script>
+/* ── Level config ── */
+const LEVELS = [
+  {max:50,   maxTries:15, emoji:'🟢'},
+  {max:100,  maxTries:10, emoji:'🟡'},
+  {max:250,  maxTries:8,  emoji:'🟠'},
+  {max:500,  maxTries:6,  emoji:'🔴'},
+  {max:1000, maxTries:5,  emoji:'🟣'},
+  {max:2000, maxTries:4,  emoji:'💀'},
+];
+const MEDALS = ['🥇','🥈','🥉'];
+const MEDAL_CLS = ['gold','silver','bronze'];
+const STORAGE_KEY = 'adawati_guess_lb';
+
+/* ── Translations ── */
+const GT = {
+  ar:{
+    guess:'تخمين', ph:'؟',
+    high:'كبير! جرّب أصغر ⬇️', low:'صغير! جرّب أكبر ⬆️',
+    win:'🎉 صحيح! الرقم {n} — {t} محاولة',
+    triesLeft:'محاولات متبقية: {n}',
+    lcTitle:'🎉 أحسنت!', lcSub:'اجتزت المستوى {l} في {t} محاولة!',
+    nextLevel:'المستوى التالي ←',
+    goTitle:'💀 انتهت اللعبة!', goSub:'الرقم كان {n}. استنفدت {t} محاولة.',
+    retry:'🔄 إعادة المحاولة', restart:'⏮ من البداية',
+    allDone:'🏆 أنت أسطورة!', allDoneSub:'أكملت جميع المستويات الستة! لا يضاهيك أحد.',
+    playAgain:'🔄 العب مجدداً',
+    levelNames:['مبتدئ','سهل','متوسط','صعب','خبير','أسطوري'],
+    levelLbl:'المستوى',
+    lbTitle:'🏆 أفضل 3 لاعبين', lbEmpty:'لا توجد نتائج بعد — كن أول المتنافسين!',
+    lbNew:'🏆 دخلت إلى أفضل 3! اكتب اسمك:', lbSave:'💾 حفظ', lbPh:'اسمك',
+    lbScore:'مستوى {l} · {s} محاولة', lbClear:'🗑 مسح',
+  },
+  en:{
+    guess:'Guess', ph:'?',
+    high:'Too high! Try lower ⬇️', low:'Too low! Try higher ⬆️',
+    win:'🎉 Correct! Number {n} — {t} tries',
+    triesLeft:'Tries left: {n}',
+    lcTitle:'🎉 Level Complete!', lcSub:'You beat Level {l} in {t} tries!',
+    nextLevel:'Next Level →',
+    goTitle:'💀 Game Over!', goSub:'The number was {n}. You used all {t} tries.',
+    retry:'🔄 Retry', restart:'⏮ Restart',
+    allDone:'🏆 You\'re a Legend!', allDoneSub:'You completed all 6 levels! Incredible.',
+    playAgain:'🔄 Play Again',
+    levelNames:['Beginner','Easy','Medium','Hard','Expert','Legend'],
+    levelLbl:'Level',
+    lbTitle:'🏆 Top 3 Players', lbEmpty:'No scores yet — be the first!',
+    lbNew:'🏆 You made the Top 3! Enter your name:', lbSave:'💾 Save', lbPh:'Your name',
+    lbScore:'Level {l} · {s} tries', lbClear:'🗑 Clear',
+  },
+  fr:{
+    guess:'Deviner', ph:'?',
+    high:'Trop grand! Essayez moins ⬇️', low:'Trop petit! Essayez plus ⬆️',
+    win:'🎉 Correct! Nombre {n} — {t} essais',
+    triesLeft:'Essais restants: {n}',
+    lcTitle:'🎉 Niveau Terminé!', lcSub:'Niveau {l} en {t} essais!',
+    nextLevel:'Niveau suivant →',
+    goTitle:'💀 Game Over!', goSub:'Le nombre était {n}. {t} essais épuisés.',
+    retry:'🔄 Réessayer', restart:'⏮ Recommencer',
+    allDone:'🏆 Vous êtes une Légende!', allDoneSub:'6 niveaux complétés!',
+    playAgain:'🔄 Rejouer',
+    levelNames:['Débutant','Facile','Moyen','Difficile','Expert','Légendaire'],
+    levelLbl:'Niveau',
+    lbTitle:'🏆 Top 3 Joueurs', lbEmpty:'Pas encore de scores!',
+    lbNew:'🏆 Top 3! Entrez votre nom:', lbSave:'💾 Sauver', lbPh:'Votre nom',
+    lbScore:'Niv. {l} · {s} essais', lbClear:'🗑 Effacer',
+  },
+  es:{
+    guess:'Adivinar', ph:'?',
+    high:'¡Muy alto! Menor ⬇️', low:'¡Muy bajo! Mayor ⬆️',
+    win:'🎉 ¡Correcto! Número {n} — {t} intentos',
+    triesLeft:'Intentos restantes: {n}',
+    lcTitle:'🎉 ¡Nivel Completado!', lcSub:'¡Nivel {l} en {t} intentos!',
+    nextLevel:'Siguiente nivel →',
+    goTitle:'💀 ¡Game Over!', goSub:'El número era {n}. {t} intentos agotados.',
+    retry:'🔄 Reintentar', restart:'⏮ Reiniciar',
+    allDone:'🏆 ¡Eres una Leyenda!', allDoneSub:'¡6 niveles completados!',
+    playAgain:'🔄 Jugar de nuevo',
+    levelNames:['Principiante','Fácil','Medio','Difícil','Experto','Legendario'],
+    levelLbl:'Nivel',
+    lbTitle:'🏆 Top 3 Jugadores', lbEmpty:'¡Sin puntuaciones aún!',
+    lbNew:'🏆 ¡Top 3! Escribe tu nombre:', lbSave:'💾 Guardar', lbPh:'Tu nombre',
+    lbScore:'Niv. {l} · {s} intentos', lbClear:'🗑 Borrar',
+  },
+  de:{
+    guess:'Raten', ph:'?',
+    high:'Zu hoch! Kleiner ⬇️', low:'Zu niedrig! Größer ⬆️',
+    win:'🎉 Richtig! Zahl {n} — {t} Versuche',
+    triesLeft:'Versuche übrig: {n}',
+    lcTitle:'🎉 Level Geschafft!', lcSub:'Level {l} in {t} Versuchen!',
+    nextLevel:'Nächstes Level →',
+    goTitle:'💀 Game Over!', goSub:'Die Zahl war {n}. {t} Versuche verbraucht.',
+    retry:'🔄 Nochmal', restart:'⏮ Neustart',
+    allDone:'🏆 Du bist eine Legende!', allDoneSub:'Alle 6 Level geschafft!',
+    playAgain:'🔄 Nochmal spielen',
+    levelNames:['Anfänger','Leicht','Mittel','Schwer','Experte','Legende'],
+    levelLbl:'Level',
+    lbTitle:'🏆 Top 3 Spieler', lbEmpty:'Noch keine Einträge!',
+    lbNew:'🏆 Top 3! Gib deinen Namen ein:', lbSave:'💾 Speichern', lbPh:'Dein Name',
+    lbScore:'Lv. {l} · {s} Versuche', lbClear:'🗑 Löschen',
+  },
+  ru:{
+    guess:'Угадать', ph:'?',
+    high:'Слишком большое! Меньше ⬇️', low:'Слишком маленькое! Больше ⬆️',
+    win:'🎉 Правильно! Число {n} — {t} попыток',
+    triesLeft:'Попыток осталось: {n}',
+    lcTitle:'🎉 Уровень пройден!', lcSub:'Уровень {l} за {t} попыток!',
+    nextLevel:'Следующий уровень →',
+    goTitle:'💀 Игра окончена!', goSub:'Число было {n}. {t} попыток использовано.',
+    retry:'🔄 Попробовать снова', restart:'⏮ Сначала',
+    allDone:'🏆 Вы Легенда!', allDoneSub:'Все 6 уровней пройдены!',
+    playAgain:'🔄 Играть снова',
+    levelNames:['Новичок','Легко','Средний','Сложно','Эксперт','Легенда'],
+    levelLbl:'Уровень',
+    lbTitle:'🏆 Топ 3 игрока', lbEmpty:'Нет результатов — будьте первым!',
+    lbNew:'🏆 Вы в Топ 3! Введите имя:', lbSave:'💾 Сохранить', lbPh:'Ваше имя',
+    lbScore:'Ур. {l} · {s} попыток', lbClear:'🗑 Очистить',
+  }
+};
+
+/* ── State ── */
+let currentLang='ar', currentLevel=0, secret, triesLeft, gameOver, pendingScore=null;
+let completedLevels=[];
+
+function tr(k){ return (GT[currentLang]||GT.en)[k]||k; }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* ── Leaderboard ── */
+function getLb(){ try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||[];}catch{return[];} }
+function saveLb(lb){ localStorage.setItem(STORAGE_KEY,JSON.stringify(lb)); }
+function qualifies(level,score){
+  const lb=getLb();
+  if(lb.length<3) return true;
+  const last=lb[lb.length-1];
+  return level>last.level||(level===last.level&&score<last.score);
+}
+function addEntry(name,level,score){
+  const lb=getLb();
+  lb.push({name:name.trim()||'?',level,score});
+  lb.sort((a,b)=>b.level-a.level||(a.level===b.level?a.score-b.score:0));
+  lb.splice(3); saveLb(lb);
+}
+function renderLb(){
+  const lb=getLb(), t=GT[currentLang]||GT.en;
+  const rows=document.getElementById('lbRows');
+  document.getElementById('lbTitle').textContent=t.lbTitle;
+  document.getElementById('clearBtn').textContent=t.lbClear;
+  if(!lb.length){rows.innerHTML=`<div class="lb-empty">${t.lbEmpty}</div>`;return;}
+  rows.innerHTML=lb.map((e,i)=>`
+    <div class="lb-row ${MEDAL_CLS[i]||''}">
+      <span class="lb-medal">${MEDALS[i]||''}</span>
+      <span class="lb-name">${esc(e.name)}</span>
+      <span class="lb-score">${t.lbScore.replace('{l}',e.level).replace('{s}',e.score)}</span>
+    </div>`).join('');
+}
+function clearLb(){localStorage.removeItem(STORAGE_KEY);renderLb();}
+
+/* ── Level UI ── */
+function renderLevelUI(){
+  const t=GT[currentLang]||GT.en;
+  const lv=LEVELS[currentLevel];
+  // Dots
+  const steps=document.getElementById('levelSteps');
+  steps.innerHTML=LEVELS.map((_,i)=>`<div class="level-step ${i<currentLevel?'done':i===currentLevel?'active':''}"></div>`).join('');
+  // Badge
+  document.getElementById('levelEmoji').textContent=lv.emoji;
+  document.getElementById('levelPill').textContent=`${t.levelLbl} ${currentLevel+1}`;
+  document.getElementById('levelName').textContent=t.levelNames[currentLevel]||'';
+  // Selector
+  const sel=document.getElementById('levelSelector');
+  sel.innerHTML=LEVELS.map((l,i)=>`
+    <button class="lvl-btn ${i===currentLevel?'current':completedLevels.includes(i)?'completed':''}"
+      onclick="jumpToLevel(${i})">${l.emoji} ${i+1}</button>`).join('');
+  // Tries bar update
+  updateTriesBar();
+}
+
+function updateTriesBar(){
+  const lv=LEVELS[currentLevel];
+  const t=GT[currentLang]||GT.en;
+  const max=lv.maxTries;
+  const left=triesLeft;
+  const pct=Math.max(0,(left/max)*100);
+  const bar=document.getElementById('triesBar');
+  bar.style.width=pct+'%';
+  bar.className='tries-bar'+(pct<=33?' danger':pct<=60?' warn':'');
+  document.getElementById('triesLabel').textContent=t.triesLeft.replace('{n}',left);
+}
+
+/* ── Game logic ── */
+function startLevel(lvIdx){
+  currentLevel=Math.min(lvIdx,LEVELS.length-1);
+  const lv=LEVELS[currentLevel];
+  secret=Math.floor(Math.random()*(lv.max-1))+1;
+  triesLeft=lv.maxTries; gameOver=false; pendingScore=null;
+
+  document.getElementById('secretDisplay').textContent='?';
+  document.getElementById('secretDisplay').style.color='var(--primary)';
+  document.getElementById('hintMsg').textContent='';
+  document.getElementById('hintMsg').className='guess-hint';
+  document.getElementById('guessHistory').innerHTML='';
+  document.getElementById('guessInput').value='';
+  document.getElementById('guessInput').max=lv.max;
+  document.getElementById('guessInput').placeholder=(GT[currentLang]||GT.en).ph;
+  document.getElementById('inputRow').style.display='';
+  document.getElementById('levelCompleteBox').classList.remove('show');
+  document.getElementById('gameOverBox').classList.remove('show');
+  document.getElementById('allDoneBox').classList.remove('show');
+  document.getElementById('nameEntry').style.display='none';
+  renderLevelUI();
+  renderLb();
+}
+
+function makeGuess(){
+  if(gameOver) return;
+  const inp=document.getElementById('guessInput');
+  const g=parseInt(inp.value);
+  if(isNaN(g)||g<1) return;
+  triesLeft--;
+  const t=GT[currentLang]||GT.en;
+  const hist=document.getElementById('guessHistory');
+  const span=document.createElement('span');
+  span.textContent=g;
+
+  if(g===secret){
+    span.className='win'; hist.prepend(span);
+    const tries=LEVELS[currentLevel].maxTries-triesLeft;
+    document.getElementById('secretDisplay').textContent=secret;
+    document.getElementById('secretDisplay').style.color='#22c55e';
+    const hint=document.getElementById('hintMsg');
+    hint.textContent=t.win.replace('{n}',secret).replace('{t}',tries);
+    hint.className='guess-hint win';
+    document.getElementById('inputRow').style.display='none';
+    gameOver=true;
+    onWin(tries);
+  } else if(triesLeft===0){
+    span.className='high'; hist.prepend(span);
+    document.getElementById('secretDisplay').textContent=secret;
+    document.getElementById('secretDisplay').style.color='#ef4444';
+    document.getElementById('inputRow').style.display='none';
+    gameOver=true;
+    onGameOver();
+  } else {
+    if(g>secret){span.className='high';hist.prepend(span);
+      const h=document.getElementById('hintMsg');h.textContent=t.high;h.className='guess-hint high';}
+    else{span.className='low';hist.prepend(span);
+      const h=document.getElementById('hintMsg');h.textContent=t.low;h.className='guess-hint low';}
+  }
+  updateTriesBar();
+  inp.value=''; inp.focus();
+}
+
+function onWin(tries){
+  if(!completedLevels.includes(currentLevel)) completedLevels.push(currentLevel);
+  const t=GT[currentLang]||GT.en;
+  const isLast=currentLevel===LEVELS.length-1;
+  if(isLast){
+    const box=document.getElementById('allDoneBox');
+    box.querySelector('.overlay-title').textContent=t.allDone;
+    document.getElementById('allDoneSub').textContent=t.allDoneSub;
+    document.getElementById('playAgainBtn').textContent=t.playAgain;
+    box.classList.add('show');
+  } else {
+    const box=document.getElementById('levelCompleteBox');
+    document.getElementById('lcTitle').textContent=t.lcTitle;
+    document.getElementById('lcSub').textContent=t.lcSub.replace('{l}',currentLevel+1).replace('{t}',tries);
+    document.getElementById('nextLevelBtn').textContent=t.nextLevel;
+    box.classList.add('show');
+  }
+  if(qualifies(currentLevel+1,tries)){
+    pendingScore={level:currentLevel+1,score:tries};
+    document.getElementById('nameEntryMsg').textContent=t.lbNew;
+    document.getElementById('nameInput').placeholder=t.lbPh;
+    document.getElementById('saveBtn').textContent=t.lbSave;
+    document.getElementById('nameEntry').style.display='';
+    setTimeout(()=>document.getElementById('nameInput').focus(),100);
+  }
+  if(typeof showHomePrompt==='function') showHomePrompt();
+  renderLevelUI();
+}
+
+function onGameOver(){
+  const t=GT[currentLang]||GT.en;
+  const totalTries=LEVELS[currentLevel].maxTries;
+  const box=document.getElementById('gameOverBox');
+  document.getElementById('goTitle').textContent=t.goTitle;
+  document.getElementById('goSub').textContent=t.goSub.replace('{n}',secret).replace('{t}',totalTries);
+  document.getElementById('retryBtn').textContent=t.retry;
+  document.getElementById('restartBtn').textContent=t.restart;
+  box.classList.add('show');
+}
+
+function saveScore(){
+  if(!pendingScore) return;
+  const name=document.getElementById('nameInput').value.trim();
+  addEntry(name||'?',pendingScore.level,pendingScore.score);
+  pendingScore=null;
+  document.getElementById('nameEntry').style.display='none';
+  document.getElementById('nameInput').value='';
+  renderLb();
+}
+
+function nextLevel(){ if(currentLevel<LEVELS.length-1) startLevel(currentLevel+1); }
+function retryLevel(){ startLevel(currentLevel); }
+function restartAll(){ completedLevels=[]; startLevel(0); }
+function jumpToLevel(i){ startLevel(i); }
+
+function updateAllText(){
+  const t=GT[currentLang]||GT.en;
+  document.getElementById('guessBtn').textContent=t.guess;
+  document.getElementById('guessInput').placeholder=t.ph;
+  renderLevelUI();
+  renderLb();
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const origSet=window.setLang;
+  window.setLang=function(lang){
+    origSet&&origSet(lang);
+    currentLang=lang;
+    document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+    updateAllText();
+  };
+  window.onLangChange=function(lang){currentLang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';updateAllText();};
+  startLevel(0);
+});
+</script>
+<script src="i18n.js?v=33"></script>
+<script>if('serviceWorker' in navigator) navigator.serviceWorker.register('/my-tools-site/sw.js',{updateViaCache:'none'});</script>
+</body></html>

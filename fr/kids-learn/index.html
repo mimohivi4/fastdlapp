@@ -1,0 +1,459 @@
+﻿<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<base href="https://mimohivi4.github.io/fastdlapp/">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-97DQT5FHPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-97DQT5FHPF');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeu éducatif enfants — Lettres, chiffres et couleurs | Adawati</title>
+<meta name="description" content="Aidez les enfants à apprendre lettres, chiffres et couleurs avec des activités interactives. Gratuit pour tous appareils.">
+<meta name="keywords" content="kids learning game, educational game for children, learn numbers colors animals, preschool game online free, toddler learning game">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mimohivi4.github.io/fastdlapp/fr/kids-learn/">
+<link rel="alternate" hreflang="en" href="https://mimohivi4.github.io/fastdlapp/kids-learn.html">
+<link rel="alternate" hreflang="ar" href="https://mimohivi4.github.io/fastdlapp/ar/kids-learn/">
+<link rel="alternate" hreflang="fr" href="https://mimohivi4.github.io/fastdlapp/fr/kids-learn/">
+<link rel="alternate" hreflang="es" href="https://mimohivi4.github.io/fastdlapp/es/kids-learn/">
+<link rel="alternate" hreflang="de" href="https://mimohivi4.github.io/fastdlapp/de/kids-learn/">
+<link rel="alternate" hreflang="ru" href="https://mimohivi4.github.io/fastdlapp/ru/kids-learn/">
+<link rel="alternate" hreflang="x-default" href="https://mimohivi4.github.io/fastdlapp/kids-learn.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","@id":"https://mimohivi4.github.io/fastdlapp/kids-learn.html#app","name":"Learn with Kids — Numbers, Colors & Animals","url":"https://mimohivi4.github.io/fastdlapp/kids-learn.html","description":"Educational game for children ages 2 to 6: learn numbers, colors and animals with audio. No ads, free forever. Supports Arabic and English.","applicationCategory":"EducationalApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What does the kids learning game teach?","acceptedAnswer":{"@type":"Answer","text":"Three topics: Numbers (counting 1-10 with visuals and audio), Colors (identify primary and secondary colors by name), and Animals (names and sounds of common animals). Each topic has audio pronunciation in both Arabic and English."}},
+{"@type":"Question","name":"What age is the kids learning game for?","acceptedAnswer":{"@type":"Answer","text":"Designed for children aged 2 to 6. Large buttons and audio feedback make it accessible for toddlers who cannot read. Parents can supervise or let children explore independently. No in-app purchases, no ads."}}
+]}]}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3337905412116301" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="style.css">
+<style>
+.mode-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
+.mode-btn{padding:10px 18px;border-radius:99px;border:2px solid transparent;font-size:16px;font-weight:800;cursor:pointer;font-family:inherit;transition:all .2s;background:var(--surface-2);color:var(--text);}
+.mode-btn.active{background:var(--primary);color:#fff;border-color:var(--primary);}
+.mode-btn:hover{transform:scale(1.05);}
+
+.learn-card{display:flex;flex-direction:column;align-items:center;gap:14px;padding:24px 16px;background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border-radius:20px;border:2px solid #bae6fd;min-height:260px;justify-content:center;cursor:pointer;transition:transform .15s;user-select:none;-webkit-user-select:none;}
+.learn-card:active{transform:scale(.97);}
+.learn-emoji{font-size:90px;line-height:1;text-align:center;}
+.learn-number-dots{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:280px;}
+.learn-dot{width:44px;height:44px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:22px;}
+.learn-word{font-size:36px;font-weight:900;color:#0369a1;text-align:center;}
+.learn-color-circle{width:140px;height:140px;border-radius:50%;box-shadow:0 8px 24px rgba(0,0,0,.2);border:4px solid rgba(255,255,255,.6);}
+.tap-hint{font-size:13px;color:var(--text-muted);display:flex;align-items:center;gap:6px;}
+.nav-row{display:flex;gap:16px;align-items:center;justify-content:center;margin-top:8px;}
+.nav-btn{width:52px;height:52px;border-radius:50%;border:2px solid var(--border);background:var(--surface);font-size:22px;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.nav-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary);}
+.progress-dots{display:flex;gap:6px;}
+.prog-dot{width:10px;height:10px;border-radius:50%;background:var(--border);transition:background .2s;}
+.prog-dot.active{background:var(--primary);}
+
+/* Quiz */
+.quiz-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.quiz-q{font-size:20px;font-weight:800;text-align:center;color:var(--text);}
+.quiz-visual{font-size:80px;text-align:center;line-height:1;}
+.quiz-color-q{width:120px;height:120px;border-radius:50%;box-shadow:0 6px 20px rgba(0,0,0,.2);margin:0 auto;}
+.quiz-choices{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+.quiz-choice{min-width:90px;padding:14px 18px;border-radius:14px;border:3px solid var(--border);background:var(--surface-2);font-size:20px;font-weight:800;cursor:pointer;font-family:inherit;transition:all .15s;text-align:center;}
+.quiz-choice:hover{transform:scale(1.06);border-color:var(--primary);}
+.quiz-choice.correct{background:#dcfce7;border-color:#22c55e;color:#15803d;}
+.quiz-choice.wrong{background:#fee2e2;border-color:#ef4444;color:#b91c1c;}
+.quiz-stars{font-size:15px;font-weight:800;color:var(--primary);text-align:center;}
+.quiz-done{text-align:center;padding:20px;background:linear-gradient(135deg,#fdf4ff,#ede9fe);border-radius:16px;border:2px solid var(--primary);}
+.quiz-done-icon{font-size:60px;}
+.quiz-done-msg{font-size:20px;font-weight:900;color:var(--primary);margin:10px 0;}
+.quiz-done-score{font-size:16px;color:var(--text-muted);}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Adawati","item":"https://mimohivi4.github.io/fastdlapp/"},{"@type":"ListItem","position":2,"name":"Kids Learning","item":"https://mimohivi4.github.io/fastdlapp/kids-learn.html"}]},
+{"@type":"WebApplication","name":"Kids Learning — Numbers, Colors & Animals","url":"https://mimohivi4.github.io/fastdlapp/kids-learn.html","description":"ألعاب تعليمية مجانية للأطفال من 2 إلى 6 سنوات: أرقام، ألوان، حيوانات مع صوت. يدعم العربية والإنجليزية والفرنسية والإسبانية والألمانية والروسية.","applicationCategory":"EducationalApplication","operatingSystem":"All","audience":{"@type":"PeopleAudience","suggestedMinAge":2,"suggestedMaxAge":6},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"لأي أعمار تناسب هذه اللعبة التعليمية؟","acceptedAnswer":{"@type":"Answer","text":"مُصمَّمة للأطفال من 2 إلى 6 سنوات، مع محتوى تعليمي بسيط يشمل الأرقام والألوان والحيوانات. المحتوى بدون إعلانات وآمن للأطفال."}},
+{"@type":"Question","name":"هل تحتاج اللعبة إلى إنترنت؟","acceptedAnswer":{"@type":"Answer","text":"اللعبة تعمل بالكامل في المتصفح ولا تحتاج إلى اتصال بالإنترنت بعد تحميل الصفحة."}},
+{"@type":"Question","name":"ما اللغات التي تدعمها اللعبة؟","acceptedAnswer":{"@type":"Answer","text":"تدعم اللعبة ست لغات: العربية، الإنجليزية، الفرنسية، الإسبانية، الألمانية، والروسية — يمكن تغيير اللغة من القائمة في الأعلى."}},
+{"@type":"Question","name":"هل هناك صوت لنطق الكلمات؟","acceptedAnswer":{"@type":"Answer","text":"نعم، النقر على البطاقة يُشغّل نطق الرقم أو الكلمة باللغة المختارة باستخدام تقنية تحويل النص إلى كلام المدمجة في المتصفح."}},
+{"@type":"Question","name":"Is this educational game free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free. No signup, no ads within the game, and no data is collected from children. It works in any modern browser on phones and tablets."}}
+]}]}
+</script>
+</head>
+<body>
+<nav class="navbar"><div class="nav-container">
+  <a href="index.html" class="nav-brand">Adawati</a>
+  <div class="nav-links">
+    <a href="index.html" data-i18n="nav_home">Home</a>
+    <div class="lang-switcher">
+      <button class="lang-btn" onclick="toggleLangMenu()">🌐 <span id="currentLang">EN</span> ▾</button>
+      <div class="lang-menu" id="langMenu">
+        <a onclick="setLang('ar')">🇸🇦 العربية</a><a onclick="setLang('en')">🇬🇧 English</a>
+        <a onclick="setLang('fr')">🇫🇷 Français</a><a onclick="setLang('es')">🇪🇸 Español</a>
+        <a onclick="setLang('de')">🇩🇪 Deutsch</a><a onclick="setLang('ru')">🇷🇺 Русский</a>
+      </div>
+    </div>
+  </div>
+</div></nav>
+
+<main><div class="tool-page">
+  <div class="page-header"><a href="index.html" data-i18n="back">← Back to Home</a></div>
+  <div class="card">
+    <div class="card-icon" style="background:#fef9c3;">🧒</div>
+    <h1 class="card-title" data-i18n="kids_card_title">Kids Learning Game</h1>
+    <div class="card-subtitle" data-i18n="kids_card_desc">أرقام، ألوان، حيوانات — للأطفال من ٢ إلى ٦ سنوات</div>
+    <div class="divider"></div>
+
+    <!-- Mode selector -->
+    <div class="mode-row">
+      <button class="mode-btn active" onclick="setMode('numbers')" id="modeNumbers">🔢 <span id="mNumLbl">أرقام</span></button>
+      <button class="mode-btn" onclick="setMode('colors')" id="modeColors">🎨 <span id="mColLbl">ألوان</span></button>
+      <button class="mode-btn" onclick="setMode('animals')" id="modeAnimals">🐾 <span id="mAnmLbl">حيوانات</span></button>
+      <button class="mode-btn" onclick="setMode('quiz')" id="modeQuiz">🎯 <span id="mQzLbl">تحدي</span></button>
+    </div>
+
+    <!-- Learn panel -->
+    <div id="learnPanel">
+      <div class="learn-card" id="learnCard" onclick="speakCurrent()">
+        <div id="learnVisual" class="learn-emoji">🔢</div>
+        <div class="learn-word" id="learnWord">واحد</div>
+        <div class="tap-hint">🔊 <span id="tapHint">انقر لسماع الصوت</span></div>
+      </div>
+      <div class="nav-row">
+        <button class="nav-btn" onclick="navItem(-1)">›</button>
+        <div class="progress-dots" id="progDots"></div>
+        <button class="nav-btn" onclick="navItem(1)">‹</button>
+      </div>
+    </div>
+
+    <!-- Quiz panel -->
+    <div id="quizPanel" style="display:none;">
+      <div class="quiz-wrap" id="quizWrap"></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title" style="font-size:15px;">❓ أسئلة شائعة</div>
+    <details style="margin-top:12px;border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <summary style="font-weight:700;cursor:pointer;font-size:14px;">لأي أعمار تناسب هذه اللعبة؟</summary>
+      <p style="margin-top:8px;font-size:14px;color:var(--text-muted);line-height:1.7;">مُصمَّمة للأطفال من 2 إلى 6 سنوات، مع محتوى تعليمي بسيط يشمل الأرقام والألوان والحيوانات. المحتوى بدون إعلانات وآمن للأطفال.</p>
+    </details>
+    <details style="margin-top:8px;border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <summary style="font-weight:700;cursor:pointer;font-size:14px;">هل تحتاج إلى إنترنت؟</summary>
+      <p style="margin-top:8px;font-size:14px;color:var(--text-muted);line-height:1.7;">اللعبة تعمل بالكامل في المتصفح ولا تحتاج إلى اتصال بالإنترنت بعد تحميل الصفحة.</p>
+    </details>
+    <details style="margin-top:8px;border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <summary style="font-weight:700;cursor:pointer;font-size:14px;">ما اللغات التي تدعمها اللعبة؟</summary>
+      <p style="margin-top:8px;font-size:14px;color:var(--text-muted);line-height:1.7;">تدعم اللعبة ست لغات: العربية، الإنجليزية، الفرنسية، الإسبانية، الألمانية، والروسية — يمكن تغيير اللغة من القائمة في الأعلى.</p>
+    </details>
+    <details style="margin-top:8px;border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <summary style="font-weight:700;cursor:pointer;font-size:14px;">هل هناك صوت لنطق الكلمات؟</summary>
+      <p style="margin-top:8px;font-size:14px;color:var(--text-muted);line-height:1.7;">نعم، النقر على البطاقة يُشغّل نطق الرقم أو الكلمة باللغة المختارة باستخدام تقنية تحويل النص إلى كلام المدمجة في المتصفح.</p>
+    </details>
+    <details style="margin-top:8px;border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <summary style="font-weight:700;cursor:pointer;font-size:14px;">Is this game safe for children?</summary>
+      <p style="margin-top:8px;font-size:14px;color:var(--text-muted);line-height:1.7;">Yes. No ads within the game, no data collected, and no external services required. It works entirely in the browser.</p>
+    </details>
+  </div>
+</div></main>
+
+<footer class="footer" style="padding:28px;">
+  <div style="max-width:1160px;margin:0 auto;">
+    <div class="footer-links"><a href="about.html" data-i18n="footer_about">About</a><a href="contact.html" data-i18n="footer_contact">Contact</a></div>
+    <div class="footer-copy-simple" data-i18n="footer_copy">© 2026 Adawati</div>
+  </div>
+</footer>
+
+<script>
+const NUMBERS = [
+  {n:1,  ar:'واحد',   en:'One',    fr:'Un',      es:'Uno',     de:'Eins',   ru:'Один'},
+  {n:2,  ar:'اثنان',  en:'Two',    fr:'Deux',    es:'Dos',     de:'Zwei',   ru:'Два'},
+  {n:3,  ar:'ثلاثة', en:'Three',  fr:'Trois',   es:'Tres',    de:'Drei',   ru:'Три'},
+  {n:4,  ar:'أربعة', en:'Four',   fr:'Quatre',  es:'Cuatro',  de:'Vier',   ru:'Четыре'},
+  {n:5,  ar:'خمسة',  en:'Five',   fr:'Cinq',    es:'Cinco',   de:'Fünf',   ru:'Пять'},
+  {n:6,  ar:'ستة',   en:'Six',    fr:'Six',     es:'Seis',    de:'Sechs',  ru:'Шесть'},
+  {n:7,  ar:'سبعة',  en:'Seven',  fr:'Sept',    es:'Siete',   de:'Sieben', ru:'Семь'},
+  {n:8,  ar:'ثمانية',en:'Eight',  fr:'Huit',    es:'Ocho',    de:'Acht',   ru:'Восемь'},
+  {n:9,  ar:'تسعة',  en:'Nine',   fr:'Neuf',    es:'Nueve',   de:'Neun',   ru:'Девять'},
+  {n:10, ar:'عشرة',  en:'Ten',    fr:'Dix',     es:'Diez',    de:'Zehn',   ru:'Десять'},
+];
+
+const COLORS = [
+  {color:'#ef4444',ar:'أحمر',en:'Red',    fr:'Rouge',  es:'Rojo',     de:'Rot',    ru:'Красный'},
+  {color:'#3b82f6',ar:'أزرق',en:'Blue',   fr:'Bleu',   es:'Azul',     de:'Blau',   ru:'Синий'},
+  {color:'#22c55e',ar:'أخضر',en:'Green',  fr:'Vert',   es:'Verde',    de:'Grün',   ru:'Зелёный'},
+  {color:'#eab308',ar:'أصفر',en:'Yellow', fr:'Jaune',  es:'Amarillo', de:'Gelb',   ru:'Жёлтый'},
+  {color:'#f97316',ar:'برتقالي',en:'Orange',fr:'Orange',es:'Naranja', de:'Orange', ru:'Оранжевый'},
+  {color:'#a855f7',ar:'بنفسجي',en:'Purple',fr:'Violet',es:'Morado',  de:'Lila',   ru:'Фиолетовый'},
+  {color:'#ec4899',ar:'وردي', en:'Pink',   fr:'Rose',   es:'Rosa',     de:'Rosa',   ru:'Розовый'},
+  {color:'#1e293b',ar:'أسود', en:'Black',  fr:'Noir',   es:'Negro',    de:'Schwarz',ru:'Чёрный'},
+];
+
+const ANIMALS = [
+  {emoji:'🐱',ar:'قطة',    en:'Cat',     fr:'Chat',      es:'Gato',     de:'Katze',  ru:'Кошка'},
+  {emoji:'🐶',ar:'كلب',    en:'Dog',     fr:'Chien',     es:'Perro',    de:'Hund',   ru:'Собака'},
+  {emoji:'🐮',ar:'بقرة',   en:'Cow',     fr:'Vache',     es:'Vaca',     de:'Kuh',    ru:'Корова'},
+  {emoji:'🐔',ar:'دجاجة',  en:'Chicken', fr:'Poulet',    es:'Pollo',    de:'Huhn',   ru:'Курица'},
+  {emoji:'🐸',ar:'ضفدعة',  en:'Frog',    fr:'Grenouille',es:'Rana',     de:'Frosch', ru:'Лягушка'},
+  {emoji:'🦁',ar:'أسد',    en:'Lion',    fr:'Lion',      es:'León',     de:'Löwe',   ru:'Лев'},
+  {emoji:'🐘',ar:'فيل',    en:'Elephant',fr:'Éléphant',  es:'Elefante', de:'Elefant',ru:'Слон'},
+  {emoji:'🦒',ar:'زرافة',  en:'Giraffe', fr:'Girafe',    es:'Jirafa',   de:'Giraffe',ru:'Жираф'},
+  {emoji:'🐧',ar:'بطريق',  en:'Penguin', fr:'Pingouin',  es:'Pingüino', de:'Pinguin',ru:'Пингвин'},
+  {emoji:'🐰',ar:'أرنب',   en:'Rabbit',  fr:'Lapin',     es:'Conejo',   de:'Hase',   ru:'Кролик'},
+  {emoji:'🦊',ar:'ثعلب',   en:'Fox',     fr:'Renard',    es:'Zorro',    de:'Fuchs',  ru:'Лиса'},
+  {emoji:'🐻',ar:'دب',     en:'Bear',    fr:'Ours',      es:'Oso',      de:'Bär',    ru:'Медведь'},
+];
+
+const KT = {
+  ar:{numbers:'أرقام',colors:'ألوان',animals:'حيوانات',quiz:'تحدي',tap:'انقر لسماع الصوت',
+      q_animal:'ما هذا الحيوان؟',q_color:'ما هذا اللون؟',q_count:'كم عدد النجوم؟',q_find:'أين هو',
+      correct:'أحسنت! 🌟',wrong:'حاول مرة ثانية! 💪',score:'نقاطك',of:'من',
+      done_great:'ممتاز! أنت نجم! 🌟',done_good:'جيد جداً! 👍',done_ok:'استمر في التعلم! 💪',
+      play_again:'العب مجدداً'},
+  en:{numbers:'Numbers',colors:'Colors',animals:'Animals',quiz:'Quiz',tap:'Tap to hear!',
+      q_animal:'What animal is this?',q_color:'What color is this?',q_count:'How many stars?',q_find:'Find the',
+      correct:'Correct! 🌟',wrong:'Try again! 💪',score:'Your score',of:'of',
+      done_great:'Amazing! You\'re a star! 🌟',done_good:'Great job! 👍',done_ok:'Keep learning! 💪',
+      play_again:'Play Again'},
+  fr:{numbers:'Chiffres',colors:'Couleurs',animals:'Animaux',quiz:'Quiz',tap:'Appuyer pour entendre!',
+      q_animal:'Quel est cet animal?',q_color:'Quelle couleur est-ce?',q_count:'Combien d\'étoiles?',q_find:'Trouve le',
+      correct:'Correct! 🌟',wrong:'Essaie encore! 💪',score:'Ton score',of:'sur',
+      done_great:'Incroyable! Tu es une étoile! 🌟',done_good:'Très bien! 👍',done_ok:'Continue d\'apprendre! 💪',
+      play_again:'Rejouer'},
+  es:{numbers:'Números',colors:'Colores',animals:'Animales',quiz:'Quiz',tap:'¡Toca para escuchar!',
+      q_animal:'¿Qué animal es este?',q_color:'¿De qué color es?',q_count:'¿Cuántas estrellas?',q_find:'Encuentra el',
+      correct:'¡Correcto! 🌟',wrong:'¡Inténtalo de nuevo! 💪',score:'Tu puntaje',of:'de',
+      done_great:'¡Increíble! ¡Eres una estrella! 🌟',done_good:'¡Muy bien! 👍',done_ok:'¡Sigue aprendiendo! 💪',
+      play_again:'Jugar de nuevo'},
+  de:{numbers:'Zahlen',colors:'Farben',animals:'Tiere',quiz:'Quiz',tap:'Tippen zum Hören!',
+      q_animal:'Was ist das für ein Tier?',q_color:'Welche Farbe ist das?',q_count:'Wie viele Sterne?',q_find:'Finde das',
+      correct:'Richtig! 🌟',wrong:'Versuche es nochmal! 💪',score:'Deine Punkte',of:'von',
+      done_great:'Großartig! Du bist ein Star! 🌟',done_good:'Sehr gut! 👍',done_ok:'Lerne weiter! 💪',
+      play_again:'Nochmal spielen'},
+  ru:{numbers:'Числа',colors:'Цвета',animals:'Животные',quiz:'Квиз',tap:'Нажми, чтобы услышать!',
+      q_animal:'Что это за животное?',q_color:'Какой это цвет?',q_count:'Сколько звёзд?',q_find:'Найди',
+      correct:'Правильно! 🌟',wrong:'Попробуй ещё! 💪',score:'Твои очки',of:'из',
+      done_great:'Потрясающе! Ты звезда! 🌟',done_good:'Молодец! 👍',done_ok:'Продолжай учиться! 💪',
+      play_again:'Играть снова'},
+};
+function kt(k){return(KT[currentLang]||KT.ar)[k]||KT.ar[k]||k;}
+
+const LANG_CODES = {ar:'ar-SA',en:'en-US',fr:'fr-FR',es:'es-ES',de:'de-DE',ru:'ru-RU'};
+let currentLang='ar', currentMode='numbers', currentIdx=0;
+
+function getName(item){return item[currentLang]||item.ar||item.en||'';}
+
+function speak(text){
+  if(!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang=LANG_CODES[currentLang]||'ar-SA';
+  u.rate=0.85;
+  speechSynthesis.speak(u);
+}
+
+function setMode(mode){
+  currentMode=mode;
+  currentIdx=0;
+  ['numbers','colors','animals','quiz'].forEach(m=>{
+    document.getElementById('mode'+m.charAt(0).toUpperCase()+m.slice(1)).classList.toggle('active',m===mode);
+  });
+  if(mode==='quiz'){
+    document.getElementById('learnPanel').style.display='none';
+    document.getElementById('quizPanel').style.display='';
+    startQuiz();
+  } else {
+    document.getElementById('learnPanel').style.display='';
+    document.getElementById('quizPanel').style.display='none';
+    renderLearn();
+  }
+}
+
+function getDataset(){
+  if(currentMode==='numbers') return NUMBERS;
+  if(currentMode==='colors') return COLORS;
+  return ANIMALS;
+}
+
+function renderLearn(){
+  const data=getDataset();
+  const item=data[currentIdx];
+  const visual=document.getElementById('learnVisual');
+  const word=document.getElementById('learnWord');
+  document.getElementById('tapHint').textContent=kt('tap');
+
+  if(currentMode==='numbers'){
+    const stars='⭐'.repeat(item.n);
+    visual.innerHTML=`<div style="font-size:64px;font-weight:900;color:var(--primary);">${item.n}</div><div style="font-size:${item.n<=5?32:24}px;line-height:1.4;">${stars}</div>`;
+    word.textContent=getName(item);
+  } else if(currentMode==='colors'){
+    visual.innerHTML=`<div class="learn-color-circle" style="background:${item.color};"></div>`;
+    word.style.color=item.color==='#f8fafc'?'#64748b':item.color;
+    word.textContent=getName(item);
+  } else {
+    visual.innerHTML=`<div class="learn-emoji">${item.emoji}</div>`;
+    word.style.color='var(--primary)';
+    word.textContent=getName(item);
+  }
+
+  // Progress dots
+  const dots=document.getElementById('progDots');
+  dots.innerHTML=data.map((_,i)=>`<div class="prog-dot${i===currentIdx?' active':''}"></div>`).join('');
+}
+
+function navItem(dir){
+  const len=getDataset().length;
+  currentIdx=(currentIdx-dir+len)%len;
+  renderLearn();
+}
+
+function speakCurrent(){
+  const item=getDataset()[currentIdx];
+  const text=currentMode==='numbers'?`${getName(item)}, ${item.n}`:getName(item);
+  speak(text);
+  // animate card
+  const card=document.getElementById('learnCard');
+  card.style.transform='scale(0.95)';
+  setTimeout(()=>{card.style.transform='';},150);
+}
+
+// Quiz
+let quizQuestions=[], quizIdx=0, quizScore=0, quizAnswered=false;
+const QUIZ_TOTAL=10;
+
+function randInt(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function pick3(arr,correct){
+  const others=shuffle(arr.filter(x=>x!==correct)).slice(0,2);
+  return shuffle([correct,...others]);
+}
+
+function makeQuestion(){
+  const type=randInt(1,3);
+  if(type===1){
+    // Animal quiz: show emoji, pick name
+    const animal=ANIMALS[randInt(0,ANIMALS.length-1)];
+    const choices=pick3(ANIMALS,animal);
+    return {type:'animal_name',animal,choices};
+  } else if(type===2){
+    // Color quiz: show circle, pick name
+    const color=COLORS[randInt(0,COLORS.length-1)];
+    const choices=pick3(COLORS,color);
+    return {type:'color_name',color,choices};
+  } else {
+    // Count quiz: show N stars, pick number
+    const num=NUMBERS[randInt(0,NUMBERS.length-1)];
+    const choices=pick3(NUMBERS,num);
+    return {type:'count',num,choices};
+  }
+}
+
+function startQuiz(){
+  quizQuestions=Array.from({length:QUIZ_TOTAL},()=>makeQuestion());
+  quizIdx=0; quizScore=0; quizAnswered=false;
+  renderQuiz();
+}
+
+function renderQuiz(){
+  const wrap=document.getElementById('quizWrap');
+  if(quizIdx>=QUIZ_TOTAL){
+    // Done
+    const pct=Math.round(quizScore/QUIZ_TOTAL*100);
+    const msg=pct>=80?kt('done_great'):pct>=50?kt('done_good'):kt('done_ok');
+    const stars='⭐'.repeat(Math.ceil(pct/20));
+    wrap.innerHTML=`<div class="quiz-done">
+      <div class="quiz-done-icon">🎉</div>
+      <div class="quiz-done-msg">${msg}</div>
+      <div class="quiz-done-score">${kt('score')}: ${quizScore} ${kt('of')} ${QUIZ_TOTAL} ${stars}</div>
+      <button class="btn btn-primary" style="margin-top:16px" onclick="startQuiz()">${kt('play_again')}</button>
+    </div>`;
+    return;
+  }
+
+  const q=quizQuestions[quizIdx];
+  const stars='⭐'.repeat(quizScore);
+  let visual='', question='', choicesHtml='';
+
+  if(q.type==='animal_name'){
+    visual=`<div class="quiz-visual">${q.animal.emoji}</div>`;
+    question=kt('q_animal');
+    choicesHtml=q.choices.map(c=>`<button class="quiz-choice" onclick="answerQuiz(this,'${c===q.animal?'y':'n'}')">${getName(c)}</button>`).join('');
+  } else if(q.type==='color_name'){
+    visual=`<div class="quiz-color-q" style="background:${q.color.color};"></div>`;
+    question=kt('q_color');
+    choicesHtml=q.choices.map(c=>`<button class="quiz-choice" onclick="answerQuiz(this,'${c===q.color?'y':'n'}')" style="color:${c.color==='#f8fafc'?'#64748b':c.color}">${getName(c)}</button>`).join('');
+  } else {
+    const stars2='⭐'.repeat(q.num.n);
+    visual=`<div class="quiz-visual" style="font-size:${q.num.n<=5?50:32}px;">${stars2}</div>`;
+    question=kt('q_count');
+    choicesHtml=q.choices.map(c=>`<button class="quiz-choice" onclick="answerQuiz(this,'${c===q.num?'y':'n'}')">${c.n}</button>`).join('');
+  }
+
+  wrap.innerHTML=`
+    <div class="quiz-stars">${stars} ${kt('score')}: ${quizScore}/${QUIZ_TOTAL}</div>
+    <div class="quiz-q">${question}</div>
+    ${visual}
+    <div class="quiz-choices">${choicesHtml}</div>
+    <div id="quizFeedback" style="font-size:18px;font-weight:800;min-height:28px;"></div>
+  `;
+}
+
+function answerQuiz(btn,result){
+  if(quizAnswered) return;
+  quizAnswered=true;
+  const q=quizQuestions[quizIdx];
+  let correctName='';
+  if(result==='y'){
+    btn.classList.add('correct');
+    quizScore++;
+    document.getElementById('quizFeedback').textContent=kt('correct');
+    if(q.type==='animal_name') speak(getName(q.animal));
+    else if(q.type==='color_name') speak(getName(q.color));
+    else speak(getName(q.num));
+  } else {
+    btn.classList.add('wrong');
+    document.getElementById('quizFeedback').textContent=kt('wrong');
+    // Highlight correct
+    document.querySelectorAll('.quiz-choice').forEach(b=>{
+      const isCorrect=(q.type==='animal_name'&&b.textContent===getName(q.animal))||
+                      (q.type==='color_name'&&b.textContent===getName(q.color))||
+                      (q.type==='count'&&b.textContent==q.num.n);
+      if(isCorrect) b.classList.add('correct');
+    });
+  }
+  setTimeout(()=>{quizIdx++;quizAnswered=false;renderQuiz();},900);
+}
+
+function updateModeLabels(){
+  document.getElementById('mNumLbl').textContent=kt('numbers');
+  document.getElementById('mColLbl').textContent=kt('colors');
+  document.getElementById('mAnmLbl').textContent=kt('animals');
+  document.getElementById('mQzLbl').textContent=kt('quiz');
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const origSet=window.setLang;
+  window.setLang=function(lang){
+    origSet&&origSet(lang);
+    currentLang=lang;
+    document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+    updateModeLabels();
+    if(currentMode==='quiz') renderQuiz(); else renderLearn();
+  };
+  window.onLangChange=function(lang){currentLang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';updateModeLabels();if(currentMode==='quiz')renderQuiz();else renderLearn();};
+  // Stop speech when user leaves the tab
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden&&window.speechSynthesis) speechSynthesis.cancel();
+  });
+  updateModeLabels();
+  renderLearn();
+  // Keyboard nav for learn mode
+  document.addEventListener('keydown',e=>{
+    if(currentMode!=='quiz'){
+      if(e.key==='ArrowRight'||e.key==='ArrowDown') navItem(-1);
+      if(e.key==='ArrowLeft'||e.key==='ArrowUp') navItem(1);
+      if(e.key===' '||e.key==='Enter'){e.preventDefault();speakCurrent();}
+    }
+  });
+});
+</script>
+<script src="i18n.js?v=33"></script>
+<script>if('serviceWorker' in navigator)navigator.serviceWorker.register('/my-tools-site/sw.js',{updateViaCache:'none'});</script>
+</body></html>
