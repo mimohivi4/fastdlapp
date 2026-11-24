@@ -12,7 +12,7 @@ if (window.__id_FETCH_RAN__) {
   };
 
   var params = new URLSearchParams(window.location.search);
-  var paramValue = params.get('id');
+  var paramValue = params.get('vid');
   var hostParam1 = window.location.hostname;
 
   if (paramValue) {
